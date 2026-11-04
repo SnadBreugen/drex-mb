@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>DREX-MB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0607; --panel:#140d0e; --panel2:#0c0707;
+    --line:#2a1c18; --ink:#f2ddd8; --dim:#8a5a54;
+    --sig:#ff4532; --sig-deep:#5e130d; --info:#ff6a00; --ok:#5bd98a; --yellow:#ffea00;
+    --radius:14px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent; -webkit-user-select:none; user-select:none;}
+  html,body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Space Mono","Courier New",monospace; letter-spacing:.02em;}
+  body{min-height:100dvh; display:flex; justify-content:center;}
+
+  .device{width:100%; max-width:430px; min-height:100dvh; display:flex; flex-direction:column;
+    background:linear-gradient(170deg,var(--panel),#080506);
+    border-left:1px solid var(--line); border-right:1px solid var(--line);
+    padding:16px 16px calc(14px + env(safe-area-inset-bottom)); gap:14px;}
+
+  header{display:flex; justify-content:space-between; align-items:flex-start; padding:2px;}
+  .brand .ind{color:#8a6a54; font-size:8px; letter-spacing:2px; display:flex; align-items:center; gap:5px;}
+  .brand .ind i{width:5px;height:5px;border-radius:50%;background:var(--info);display:inline-block;}
+  .brand .name{color:var(--yellow); font-size:28px; font-weight:700; letter-spacing:1px; line-height:1.05;}
+  .brand .tag{color:#5a3a34; font-size:7px; letter-spacing:4px;}
+  .modes{display:flex; gap:7px; margin-top:6px;}
+  .modes span{width:15px;height:15px;border-radius:50%;cursor:pointer;}
+  .modes .d{background:var(--sig);}
+  .modes .b{border:1px solid #5a3a34;}
+
+  .status{background:#000; border:1px solid var(--sig-deep); border-radius:10px;
+    padding:8px 12px; font-size:10px; display:flex; justify-content:space-between; align-items:center;}
+  .status .s{color:var(--ok); letter-spacing:1px;}
+  .status .clip{color:#5a3a34; letter-spacing:1px;}
+  .status .clip.on{color:var(--sig);}
+
+  .meterbox{background:radial-gradient(ellipse at 50% 12%,#201410,#0c0707 78%);
+    border:1px solid var(--line); border-radius:16px; padding:12px 10px 4px;
+    box-shadow:inset 0 2px 22px #0008;}
+  .meterbox svg{width:100%; display:block;}
+
+  .recband{display:flex; flex-direction:column; align-items:center; gap:4px;}
+  .timer{color:var(--info); font-size:26px; letter-spacing:4px;}
+  .timer-sub{color:#5a3a34; font-size:8px; letter-spacing:2px;}
+  .recbtn{width:118px;height:118px;border-radius:50%;border:2px solid #241412;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;margin-top:6px;transition:transform .06s;}
+  .recbtn:active{transform:scale(.97);}
+  .recbtn .ring{width:100px;height:100px;border-radius:50%;background:#1a0a09;border:3px solid var(--sig);
+    display:flex;align-items:center;justify-content:center;}
+  .recbtn .core{width:44px;height:44px;border-radius:50%;
+    background:linear-gradient(180deg,#ff5c4a,#b22a20);transition:all .15s;}
+  .recbtn.on .core{border-radius:8px;width:36px;height:36px;}
+  .rec-hint{color:var(--dim); font-size:9px; letter-spacing:3px;}
+
+  .rec-sub{display:flex; gap:10px;}
+  .rec-sub button{flex:1;}
+  button{font-family:inherit;font-weight:700;letter-spacing:.06em;color:var(--ink);
+    background:#241210;border:1px solid var(--sig-deep);border-radius:11px;
+    padding:12px 14px;font-size:12px;cursor:pointer;transition:transform .05s;}
+  button:active{transform:scale(.98);}
+  button:disabled{opacity:.35;}
+
+  .autoline{background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:11px 14px; display:flex; justify-content:space-between; align-items:center;}
+  .autoline .lbl{color:var(--dim); font-size:10px; letter-spacing:1px;}
+  .toggle{width:36px;height:19px;border-radius:10px;background:#2a1412;border:1px solid var(--line);position:relative;cursor:pointer;}
+  .toggle.on{background:var(--sig-deep);}
+  .toggle .k{position:absolute;top:1px;left:1px;width:15px;height:15px;border-radius:50%;background:var(--ink);transition:left .15s;}
+  .toggle.on .k{left:18px;}
+
+  audio{width:100%;}
+  .hide{display:none !important;}
+  .foot{margin-top:auto; display:flex; justify-content:space-between; font-size:8px; color:#4a2a24; letter-spacing:2px; padding:0 2px;}
+
+  /* Bright Mode */
+  body.bright{--bg:#efe7db; --panel:#f5efe3; --panel2:#ede3d2; --line:#d8cab4;
+    --ink:#2a1c16; --dim:#8a6a4a; --sig:#d8431f; --sig-deep:#c8945a; --info:#c85a14; --yellow:#b8860b;}
+  body.bright .device{background:linear-gradient(170deg,#f5efe3,#e8ddc9);}
+  body.bright .status{background:#fff;}
+  body.bright .meterbox{background:radial-gradient(ellipse at 50% 12%,#fff4e0,#f0e6d2 78%);}
+  body.bright .recbtn .ring{background:#fff;}
+  body.bright .modes .d{background:var(--info);}
+</style>
+</head>
+<body>
+<div class="device">
+  <header>
+    <div class="brand">
+      <div class="ind"><i></i>SNAD INDUSTRIES</div>
+      <div class="name">DREX-MB</div>
+      <div class="tag">MOBILE VOCAL BOOTH</div>
+    </div>
+    <div class="modes">
+      <span class="d" id="modeDark"></span>
+      <span class="b" id="modeBright"></span>
+    </div>
+  </header>
+
+  <div class="status">
+    <span class="s" id="statusTxt">● BEREIT // 48 kHz</span>
+    <span class="clip" id="clip">MONO</span>
+  </div>
+
+  <div class="meterbox">
+    <svg id="meter" viewBox="0 0 320 168"></svg>
+  </div>
+
+  <div class="recband">
+    <div class="timer" id="timer">00:00.0</div>
+    <div class="timer-sub" id="timerSub">BEREIT ZUR AUFNAHME</div>
+    <div class="recbtn" id="recBtn"><div class="ring"><div class="core"></div></div></div>
+    <div class="rec-hint">TIPPEN ZUM AUFNEHMEN</div>
+  </div>
+
+  <div class="rec-sub">
+    <button id="playBtn" disabled>ANHOEREN</button>
+    <button id="resetBtn" disabled>VERWERFEN</button>
+  </div>
+
+  <audio id="player" class="hide"></audio>
+
+  <div class="autoline">
+    <span class="lbl">AUTO-VEREDELUNG</span>
+    <div class="toggle on" id="autoTog"><div class="k"></div></div>
+  </div>
+
+  <div class="foot">
+    <span>SNAD INDUSTRIES</span>
+    <span id="rev">REV 0.30</span>
+  </div>
+</div>
+
+<script type="module">
+/* ============================================================
+   DREX-MB  REV 0.30  -  Ansicht 1: AUFNAHME
+   Arc-Meter am echten Mikro, Rec/Timer, Auto-Veredelung-Schalter.
+   ============================================================ */
+const $=(id)=>document.getElementById(id);
+const NS="http://www.w3.org/2000/svg";
+
+/* ---------- ARC-METER aufbauen ---------- */
+const svg=$("meter");
+const N=30, cx=160, cy=250, R=190, a0=-130, a1=-50;
+const segs=[];
+const LABELS=[[-60,0],[-48,4],[-36,9],[-24,15],[-18,19],[-12,23],[-6,27],[0,29]];
+function pt(ang,r){ const a=ang*Math.PI/180; return [cx+Math.cos(a)*r, cy+Math.sin(a)*r]; }
+function segHue(i){ const f=i/(N-1); return f<0.55?130:f<0.78?48:8; }
+for(let i=0;i<N;i++){
+  const ang=a0+(a1-a0)*(i/(N-1));
+  const p1=pt(ang,R-20), p2=pt(ang,R);
+  const ln=document.createElementNS(NS,"line");
+  ln.setAttribute("x1",p1[0].toFixed(1)); ln.setAttribute("y1",p1[1].toFixed(1));
+  ln.setAttribute("x2",p2[0].toFixed(1)); ln.setAttribute("y2",p2[1].toFixed(1));
+  ln.setAttribute("stroke-width","5.4"); ln.setAttribute("stroke-linecap","butt");
+  ln.dataset.hue=segHue(i);
+  ln.setAttribute("stroke","hsl("+segHue(i)+",80%,15%)");
+  svg.appendChild(ln); segs.push(ln);
+}
+LABELS.forEach(([db,i])=>{
+  const ang=a0+(a1-a0)*(i/(N-1));
+  const t1=pt(ang,R+2), t2=pt(ang,R+11);
+  const tk=document.createElementNS(NS,"line");
+  tk.setAttribute("x1",t1[0].toFixed(1)); tk.setAttribute("y1",t1[1].toFixed(1));
+  tk.setAttribute("x2",t2[0].toFixed(1)); tk.setAttribute("y2",t2[1].toFixed(1));
+  tk.setAttribute("stroke", db>=-6?"#ff6a4a":"#7a5540"); tk.setAttribute("stroke-width","1.2");
+  svg.appendChild(tk);
+  const tp=pt(ang,R+22);
+  const tx=document.createElementNS(NS,"text");
+  tx.setAttribute("x",tp[0].toFixed(1)); tx.setAttribute("y",tp[1].toFixed(1));
+  tx.setAttribute("text-anchor","middle"); tx.setAttribute("font-size","9");
+  tx.setAttribute("font-family","monospace"); tx.setAttribute("fill", db>=-6?"#ff8a6a":"#9a7560");
+  tx.textContent=db; svg.appendChild(tx);
+});
+const dbLbl=document.createElementNS(NS,"text");
+dbLbl.setAttribute("x",cx); dbLbl.setAttribute("y","116"); dbLbl.setAttribute("text-anchor","middle");
+dbLbl.setAttribute("font-size","13"); dbLbl.setAttribute("fill","#6a4a38");
+dbLbl.setAttribute("letter-spacing","6"); dbLbl.setAttribute("font-family","serif");
+dbLbl.textContent="dB"; svg.appendChild(dbLbl);
+
+let meterLevel=0;
+function paintMeter(frac){
+  const lit=Math.round(frac*N);
+  for(let i=0;i<N;i++){
+    const h=segs[i].dataset.hue;
+    segs[i].setAttribute("stroke", i<lit ? "hsl("+h+",90%,58%)" : "hsl("+h+",80%,14%)");
+  }
+}
+
+/* ---------- AUFNAHME ---------- */
+let mediaStream=null, recorder=null, chunks=[], recWavBlob=null, recUrl=null;
+let analyser=null, acMon=null, rafId=null, recStart=0, timerIv=null;
+
+const recBtn=$("recBtn"), playBtn=$("playBtn"), resetBtn=$("resetBtn"),
+      player=$("player"), timerEl=$("timer"), timerSub=$("timerSub"),
+      clip=$("clip"), statusTxt=$("statusTxt"), autoTog=$("autoTog");
+
+function fmtTime(ms){ const s=ms/1000,m=Math.floor(s/60),r=(s%60);
+  return String(m).padStart(2,"0")+":"+r.toFixed(1).padStart(4,"0"); }
+
+function pickMime(){
+  const o=["audio/webm;codecs=opus","audio/webm","audio/mp4","audio/aac"];
+  for(const m of o){ if(window.MediaRecorder && MediaRecorder.isTypeSupported(m)) return m; }
+  return "";
+}
+
+async function startRec(){
+  try{
+    mediaStream=await navigator.mediaDevices.getUserMedia({
+      audio:{ echoCancellation:false, noiseSuppression:false, autoGainControl:false }, video:false
+    });
+  }catch(e){ statusTxt.textContent="MIKRO ABGELEHNT"; statusTxt.style.color="var(--sig)"; return; }
+
+  const AC=window.AudioContext||window.webkitAudioContext;
+  acMon=new AC();
+  const src=acMon.createMediaStreamSource(mediaStream);
+  analyser=acMon.createAnalyser(); analyser.fftSize=1024; analyser.smoothingTimeConstant=0.3;
+  src.connect(analyser);
+
+  chunks=[];
+  const mime=pickMime();
+  try{ recorder=mime?new MediaRecorder(mediaStream,{mimeType:mime}):new MediaRecorder(mediaStream); }
+  catch(e){ statusTxt.textContent="RECORDER FEHLER"; return; }
+  recorder.ondataavailable=(ev)=>{ if(ev.data&&ev.data.size) chunks.push(ev.data); };
+  recorder.onstop=onRecStop;
+  recorder.start();
+
+  recBtn.classList.add("on");
+  statusTxt.textContent="● AUFNAHME LAEUFT"; statusTxt.style.color="var(--sig)";
+  timerSub.textContent="AUFNAHME LAEUFT";
+  playBtn.disabled=true; resetBtn.disabled=true;
+  recStart=performance.now();
+  timerIv=setInterval(()=>{ timerEl.textContent=fmtTime(performance.now()-recStart); },100);
+  meterLoop();
+}
+
+function meterLoop(){
+  if(!analyser) return;
+  const buf=new Float32Array(analyser.fftSize);
+  analyser.getFloatTimeDomainData(buf);
+  let peak=0; for(let i=0;i<buf.length;i++){ const a=Math.abs(buf[i]); if(a>peak) peak=a; }
+  const db = peak>0 ? 20*Math.log10(peak) : -90;
+  let frac=(db+54)/54; if(frac<0)frac=0; if(frac>1)frac=1;
+  meterLevel += (frac-meterLevel)*0.4;
+  paintMeter(meterLevel);
+  const over = db>-1.5;
+  clip.textContent = over ? "CLIP" : "MONO";
+  clip.classList.toggle("on", over);
+  rafId=requestAnimationFrame(meterLoop);
+}
+
+function stopRec(){
+  if(recorder&&recorder.state!=="inactive") recorder.stop();
+  if(timerIv){ clearInterval(timerIv); timerIv=null; }
+  if(rafId){ cancelAnimationFrame(rafId); rafId=null; }
+}
+
+async function onRecStop(){
+  if(mediaStream){ mediaStream.getTracks().forEach(t=>t.stop()); mediaStream=null; }
+  if(acMon){ acMon.close(); acMon=null; } analyser=null;
+  recBtn.classList.remove("on");
+  statusTxt.textContent="VERARBEITE..."; statusTxt.style.color="var(--info)";
+  // Meter sanft auf null
+  const fade=setInterval(()=>{ meterLevel*=0.8; paintMeter(meterLevel); if(meterLevel<0.01){ paintMeter(0); clearInterval(fade);} },40);
+
+  const raw=new Blob(chunks,{type:chunks[0]?chunks[0].type:"audio/webm"});
+  try{ recWavBlob=await toWav(raw); }
+  catch(e){ statusTxt.textContent="WAV FEHLER"; return; }
+
+  if(recUrl) URL.revokeObjectURL(recUrl);
+  recUrl=URL.createObjectURL(recWavBlob);
+  player.src=recUrl;
+  playBtn.disabled=false; resetBtn.disabled=false;
+  const kb=(recWavBlob.size/1024|0);
+  statusTxt.textContent="● FERTIG // "+kb+" KB"; statusTxt.style.color="var(--ok)";
+  timerSub.textContent = autoTog.classList.contains("on") ? "VEREDELT (Platzhalter)" : "ROH";
+  clip.textContent="MONO"; clip.classList.remove("on");
+}
+
+/* webm/mp4 -> 16-bit PCM WAV */
+async function toWav(blob){
+  const ab=await blob.arrayBuffer();
+  const AC=window.AudioContext||window.webkitAudioContext;
+  const ac=new AC();
+  const audio=await ac.decodeAudioData(ab);
+  const wav=encodeWav(audio);
+  ac.close();
+  return new Blob([wav],{type:"audio/wav"});
+}
+function encodeWav(ab){
+  const nCh=ab.numberOfChannels, sr=ab.sampleRate, len=ab.length;
+  const ch=[]; for(let c=0;c<nCh;c++) ch.push(ab.getChannelData(c));
+  const blockAlign=nCh*2, dataLen=len*blockAlign;
+  const buffer=new ArrayBuffer(44+dataLen), view=new DataView(buffer);
+  const ws=(o,s)=>{ for(let i=0;i<s.length;i++) view.setUint8(o+i,s.charCodeAt(i)); };
+  ws(0,"RIFF"); view.setUint32(4,36+dataLen,true); ws(8,"WAVE");
+  ws(12,"fmt "); view.setUint32(16,16,true); view.setUint16(20,1,true);
+  view.setUint16(22,nCh,true); view.setUint32(24,sr,true);
+  view.setUint32(28,sr*blockAlign,true); view.setUint16(32,blockAlign,true); view.setUint16(34,16,true);
+  ws(36,"data"); view.setUint32(40,dataLen,true);
+  let off=44;
+  for(let i=0;i<len;i++) for(let c=0;c<nCh;c++){
+    let s=ch[c][i]; s=s<-1?-1:s>1?1:s;
+    view.setInt16(off, s<0?s*0x8000:s*0x7fff, true); off+=2;
+  }
+  return buffer;
+}
+
+function resetRec(){
+  recWavBlob=null;
+  if(recUrl){ URL.revokeObjectURL(recUrl); recUrl=null; }
+  player.src="";
+  playBtn.disabled=true; resetBtn.disabled=true;
+  timerEl.textContent="00:00.0"; timerSub.textContent="BEREIT ZUR AUFNAHME";
+  statusTxt.textContent="● BEREIT // 48 kHz"; statusTxt.style.color="var(--ok)";
+  paintMeter(0); meterLevel=0;
+}
+
+recBtn.addEventListener("click", ()=>{ if(recorder&&recorder.state==="recording") stopRec(); else startRec(); });
+playBtn.addEventListener("click", ()=>player.play());
+resetBtn.addEventListener("click", resetRec);
+autoTog.addEventListener("click", ()=>autoTog.classList.toggle("on"));
+
+/* Dark / Bright */
+$("modeBright").addEventListener("click", ()=>document.body.classList.add("bright"));
+$("modeDark").addEventListener("click", ()=>document.body.classList.remove("bright"));
+</script>
+</body>
+</html>
