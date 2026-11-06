@@ -167,7 +167,7 @@
   .echips{display:grid; grid-template-columns:repeat(6,1fr); gap:6px;}
   .ech{height:40px; border:1px solid #1d1c22; background:transparent; color:#2a2830; font-family:"Oswald","Arial Narrow",sans-serif; font-weight:700; font-size:16px; cursor:pointer; padding:0;}
   .ech:disabled{cursor:default;}
-  .ewave{height:150px; flex:none; background:#050507; border:1px solid #1d3a30; position:relative;}
+  .ewave{height:150px; flex:none; background:#050507; border:1px solid #1d3a30; position:relative; touch-action:none;}
   .ewave canvas{width:100%; height:100%; display:block;}
   .erow{display:flex; align-items:center; gap:8px;}
   .erow .el{width:34px; font-family:"Space Mono",ui-monospace,monospace; font-size:11px; letter-spacing:2px; color:var(--t2);}
@@ -181,6 +181,15 @@
   .esm.mon{color:var(--pink); border-color:var(--pink); background:#2a1520;}
   .esm:disabled{opacity:.3; cursor:default;}
   .espace{flex:1;}
+  .etime{display:flex; gap:6px; flex:none;}
+  .etime button{flex:1; height:30px; border:1px solid #25232C; background:none; color:var(--t2); font-family:"Space Mono",ui-monospace,monospace; font-size:10px; letter-spacing:1px; cursor:pointer; padding:0;}
+  .etime button.on{color:var(--green); border-color:var(--green);}
+  .etime button:disabled{opacity:.3; cursor:default;}
+  .epre{display:flex; gap:6px; flex:1;}
+  .epre button{flex:1; height:30px; border:1px solid #25232C; background:none; color:var(--t2); font-family:"Space Mono",ui-monospace,monospace; font-size:10px; letter-spacing:1px; cursor:pointer; padding:0;}
+  .eeq{flex:1 1 130px; min-height:100px; max-height:170px; border:1px solid #1d3a30; background:#050507; position:relative; touch-action:none;}
+  .eeq canvas{width:100%; height:100%; display:block;}
+  .sheet-x.new{margin-left:auto; margin-right:8px; color:var(--green); border-color:#1d4d3b;}
   .etr{display:flex; gap:10px;}
   .etr button{flex:1; height:52px; border:1px solid #25232C; background:#15141a; color:var(--t1); font-family:"Space Mono",ui-monospace,monospace; font-size:12px; letter-spacing:2px; cursor:pointer;}
   .etr button.on{color:var(--green); border-color:#1d4d3b;}
@@ -351,21 +360,24 @@
     <div class="sheet-head"><input class="ename" id="eName" maxlength="20" spellcheck="false" autocomplete="off" aria-label="Take name"><span class="einfo" id="eInfo"></span><button class="sheet-x" id="editClose" aria-label="Close">CLOSE</button></div>
     <div class="echips" id="eChips"></div>
     <div class="ewave"><canvas id="eWave"></canvas></div>
-    <div class="erow"><span class="el">VOL</span><div class="efad" id="eVol"><s></s><i></i></div><button class="eval" id="eVolV">0.0</button><button class="esm" id="eMute">M</button><button class="esm" id="eEnh">ENH</button></div>
+    <div class="etime" id="eTime"><button data-a="auto">AUTO</button><button data-a="snap" class="on">SNAP</button><button data-a="copy">COPY</button><button data-a="del">DEL</button><button data-a="reset">RESET</button><button data-a="zoom">1X</button></div>
+    <div class="erow"><span class="el">VOL</span><div class="efad" id="eVol"><s></s><i></i></div><button class="eval" id="eVolV">0.0</button><button class="esm" id="eSolo">S</button><button class="esm" id="eMute">M</button><button class="esm" id="eEnh">ENH</button></div>
     <div class="erow"><span class="el">PAN</span><div class="efad" id="ePan"><b></b><s></s><i></i></div><button class="eval" id="ePanV">C</button><button class="esm" id="eDel" style="width:96px">DEL LAYER</button></div>
-    <div class="espace"></div>
+    <div class="erow"><span class="el">WID</span><div class="efad" id="eWid"><s></s><i></i></div><button class="eval" id="eWidV">0</button><span style="width:96px"></span></div>
+    <div class="erow"><span class="el">EQ</span><div class="epre" id="ePre"><button data-p="FLAT">FLAT</button><button data-p="WARM">WARM</button><button data-p="THIN">THIN</button><button data-p="BRIGHT">BRIGHT</button><button data-p="PHONE">PHONE</button></div></div>
+    <div class="eeq"><canvas id="eEq"></canvas></div>
     <div class="etr"><button id="ePlay">PLAY</button><button id="eLoop">LOOP</button></div>
   </div>
   <div class="sheet" id="takesSheet" aria-hidden="true">
-    <div class="sheet-head"><span>TAKES</span><button class="sheet-x" id="takesClose" aria-label="Close">CLOSE</button></div>
+    <div class="sheet-head"><span>TAKES</span><button class="sheet-x new" id="newLoop" aria-label="New loop">NEW LOOP</button><button class="sheet-x" id="takesClose" aria-label="Close">CLOSE</button></div>
     <div class="tlist" id="tlist"></div>
   </div>
 
-  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 0.72</span></div>
+  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 0.78</span></div>
 </div>
 
 <script type="module">
-/* DREX MB  REV 0.72  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
+/* DREX MB  REV 0.78  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
 const $=(id)=>document.getElementById(id);
 const device=$("device");
 const waveCanvas=$("wave"), wctx=waveCanvas.getContext("2d");
@@ -466,9 +478,9 @@ function laneRoot(){
   const r=rootOf(selTake()); return (r && r.mode==="LOOP") ? r : null;
 }
 function laneSteps(t){
-  const useE=!!(t.useEnh && t.enh), key=useE?"e2":"r2";
+  const useE=!!(t.useEnh && t.enh), key=(useE?"e2":"r2")+shiftKey(t);
   if(t._stK===key && t._st) return t._st;
-  const n=32, chs=useE?t.enh:t.ch, len=t.len, out=new Uint8Array(n);
+  const n=32, chs=srcChs(t), len=t.len, out=new Uint8Array(n);
   if(!chs || !chs.length){ t._st=out; t._stK=key; return out; }
   // 10-ms-Fenster RMS
   const win=Math.max(1,Math.round(t.sr*0.01)), nf=Math.floor(len/win), rms=new Float32Array(nf);
@@ -506,7 +518,7 @@ function drawRings(root, db, cx, cy, R, R0, a0, a1, fs, w){
   for(let l=0;l<MAX_LAYERS;l++){
     const t=stack[l], live=dub && l===stack.length;
     for(let i=0;i<32;i++){ const sa=a0+i*step; let col;
-      if(t){ const on=laneSteps(t)[i], m=stack.length>1&&t.muted; if(!on) continue;
+      if(t){ const on=laneSteps(t)[i], m=(stack.length>1&&t.muted) || (soloId && t.id!==soloId); if(!on) continue;
         if(ph<0) col="rgba("+LAYER_COLS[l]+","+(m?0.2:(t.id===selId?1:0.82))+")";
         else if(i===cur) col= m ? "rgba("+LAYER_COLS[l]+",.35)" : "rgb("+LAYER_COMP[l]+")";
         else col="rgba("+LAYER_COLS[l]+","+(m?0.2:(t.id===selId?1:0.82))+")"; }
@@ -530,7 +542,7 @@ function drawRings(root, db, cx, cy, R, R0, a0, a1, fs, w){
 }
 function arcLoop(){ drawArc(); requestAnimationFrame(arcLoop); }
 
-/* ================= ENGINE (REV 0.72) =================
+/* ================= ENGINE (REV 0.78) =================
    Eine Audio-Uhr fuer alles: Aufnahme, Count-in, Metronom, Abspielen.
    Aufnahme sampelgenau per AudioWorklet (Fallback ScriptProcessor), kein MediaRecorder mehr. */
 const AC=window.AudioContext||window.webkitAudioContext;
@@ -1016,30 +1028,106 @@ const DB={db:null};
 function dbOpen(){ return new Promise(res=>{ try{ const r=indexedDB.open("drexmb",1);
   r.onupgradeneeded=()=>{ if(!r.result.objectStoreNames.contains("takes")) r.result.createObjectStore("takes",{keyPath:"id"}); };
   r.onsuccess=()=>{ DB.db=r.result; res(true); }; r.onerror=()=>res(false); }catch(e){ res(false); } }); }
-function dbPut(t){ if(!DB.db) return; try{ DB.db.transaction("takes","readwrite").objectStore("takes").put({id:t.id,n:t.n,mode:t.mode,sr:t.sr,len:t.len,ch:t.ch,peaks:t.peaks,peaksEnh:t.peaksEnh||null,useEnh:!!t.useEnh,created:t.created,parent:t.parent||null,bpm:t.bpm||null,muted:!!t.muted,vol:t.vol||0,pan:t.pan||0,name:t.name||""}); }catch(e){} }
+function dbPut(t){ if(!DB.db) return; try{ DB.db.transaction("takes","readwrite").objectStore("takes").put({id:t.id,n:t.n,mode:t.mode,sr:t.sr,len:t.len,ch:t.ch,peaks:t.peaks,peaksEnh:t.peaksEnh||null,useEnh:!!t.useEnh,created:t.created,parent:t.parent||null,bpm:t.bpm||null,muted:!!t.muted,vol:t.vol||0,pan:t.pan||0,name:t.name||"",eq:t.eq||null,width:t.width||0,trimA:t.trimA||0,trimB:t.trimB||0,lc:t.lc||0,hc:t.hc||0,ph:t.ph||null}); }catch(e){} }
 function dbDel(id){ if(!DB.db) return; try{ DB.db.transaction("takes","readwrite").objectStore("takes").delete(id); }catch(e){} }
 function dbAll(){ return new Promise(res=>{ if(!DB.db) return res([]); try{ const r=DB.db.transaction("takes").objectStore("takes").getAll(); r.onsuccess=()=>res(r.result||[]); r.onerror=()=>res([]); }catch(e){ res([]); } }); }
 
 function selTake(){ return takes.find(t=>t.id===selId)||null; }
+/* ===== TIMING =====
+   Phrasen pro Spur: {a,b,o} in Samples (a..b = Lage im Original, o = Verschiebung). Nicht-destruktiv:
+   die Wiedergabe rechnet aus dem Original eine verschobene Fassung (Phrase am alten Platz mit 5-ms-Blenden
+   herausnehmen, am neuen Platz einsetzen; Loops laufen ueber das Ende hinaus wieder vorne herein). */
+function baseChs(t){ return (t.useEnh&&t.enh)?t.enh:t.ch; }
+function regKind(p){ return p.k||"move"; }
+function regActive(p){ const k=regKind(p); return k==="del" || k==="copy" || (k==="move" && p.o); }
+function shiftKey(t){ const ph=(t.ph||[]).filter(regActive); return ph.length ? ph.map(p=>regKind(p)[0]+p.a+":"+p.b+":"+p.o).join(",") : ""; }
+function srcChs(t){
+  const base=baseChs(t), sk=shiftKey(t); if(!sk||!base) return base;
+  const key=(t.useEnh&&t.enh?"e":"r")+sk; if(t._shK===key && t._shC) return t._shC;
+  const len=t.len, F=Math.max(1,Math.round(t.sr*0.005)), loop=t.mode==="LOOP", out=base.map(d=>Float32Array.from(d));
+  // move: am alten Platz raus, am neuen rein; copy: Original bleibt, Kopie kommt dazu; del: nur raus
+  for(const p of t.ph){ if(!regActive(p)) continue; const k=regKind(p), n=p.b-p.a; if(n<=2) continue;
+    for(let c=0;c<base.length;c++){ const src=base[c], dst=out[c];
+      for(let i=0;i<n;i++){ const w=Math.min(1, i/F, (n-1-i)/F), v=src[p.a+i]*w;
+        if(k!=="copy") dst[p.a+i]-=v;
+        if(k==="del") continue;
+        let j=p.a+p.o+i; if(loop){ j=((j%len)+len)%len; } else if(j<0||j>=len) continue; dst[j]+=v; } } }
+  t._shC=out; t._shK=key; return out;
+}
+/* Phrasen-Erkennung: erst an echter Stille trennen, dann innerhalb an Einsaetzen (Taeler zwischen zwei Toenen,
+   die deutlich leiser sind als die Toene links und rechts). Grenze = tiefster Punkt im Tal. FINE trennt feiner als COARSE. */
+let phSens="coarse"; try{ phSens=localStorage.getItem("drexmb_phsens")||"coarse"; }catch(e){}
+function detectPhrases(t){
+  // Erkennung immer auf RAW: Auto Enhance glaettet die Einbrueche zwischen den Toenen
+  const chs=t.ch, sr=t.sr, len=t.len, win=Math.max(1,Math.round(sr*0.01)), nf=Math.floor(len/win), out=[];
+  if(!chs||nf<4) return out;
+  const rms=new Float32Array(nf); for(let f=0;f<nf;f++){ let acc=0,c=0; for(const d of chs) for(let k=f*win;k<(f+1)*win;k+=2){ acc+=d[k]*d[k]; c++; } rms[f]=Math.sqrt(acc/Math.max(1,c)); }
+  const srt=Float32Array.from(rms).sort(), noise=srt[Math.floor(nf*0.1)]||0, peak=srt[Math.floor(nf*0.98)]||0;
+  // bei durchgehendem Gesang gibt es keine echte Stille: Schwelle dann hoechstens 30 % der Spitze
+  const on=Math.max(Math.min(noise*4, peak*0.3), peak*0.08, 0.003), off=on*0.6;
+  // 1) Stille-Abschnitte
+  const segs=[]; let st=-1, lastOn=-1;
+  for(let f=0;f<nf;f++){ if(st<0){ if(rms[f]>on){ st=f; lastOn=f; } } else { if(rms[f]>off) lastOn=f; else if(f-lastOn>6){ segs.push([st,lastOn+1]); st=-1; } } }
+  if(st>=0) segs.push([st,lastOn+1]);
+  // 2) Taeler innerhalb: geglaettete Huelle in dB
+  const db=new Float32Array(nf); for(let f=0;f<nf;f++){ let a=0,n=0; for(let k=-2;k<=2;k++){ const q=f+k; if(q>=0&&q<nf){ a+=rms[q]; n++; } } db[f]=20*Math.log10(a/n+1e-6); }
+  const fine=phSens==="fine", D=fine?3.5:6, minLen=fine?10:20, look=fine?20:30;
+  const res=[];
+  for(const [a,b] of segs){
+    const cuts=[];
+    for(let v=a+minLen; v<b-minLen; v++){
+      let isMin=true; for(let k=1;k<=3;k++){ if(db[v]>db[v-k]||db[v]>db[v+k]){ isMin=false; break; } } if(!isMin) continue;
+      let lp=-200, rp=-200; for(let k=1;k<=look;k++){ if(v-k>=a) lp=Math.max(lp,db[v-k]); if(v+k<b) rp=Math.max(rp,db[v+k]); }
+      const depth=Math.min(lp,rp)-db[v]; if(depth>=D) cuts.push({v,depth}); }
+    cuts.sort((x,y)=>y.depth-x.depth); const keep=[];
+    for(const c of cuts){ if(keep.every(k=>Math.abs(k-c.v)>=minLen)) keep.push(c.v); }
+    keep.sort((x,y)=>x-y);
+    const bounds=[a,...keep,b];
+    for(let k=0;k<bounds.length-1;k++){ const A=bounds[k], B=bounds[k+1]; if(B-A<4) continue; res.push([A,B, k===0, k===bounds.length-2]); } }
+  // Raender: an Stille etwas Luft (20 ms davor, 60 ms danach), an Taelern genau auf dem Tal
+  for(const [A,B,first,last] of res){ out.push({a:Math.max(0,(first?A-2:A)*win), b:Math.min(len,(last?B+6:B)*win), o:0}); }
+  for(let k=1;k<out.length;k++) if(out[k].a<out[k-1].b) out[k].a=out[k-1].b;
+  return out.filter(p=>p.b-p.a>sr*0.02);
+}
+function phrasesOf(t){ if(!t.ph) t.ph=[]; return t.ph; }
 function bufFor(t){
   if(!t) return null;
   if(!ac) wakeAudio();
-  if(t.useEnh && t.enh){
-    if(!t.bufE){ t.bufE=ac.createBuffer(t.enh.length, t.len, t.sr); t.enh.forEach((d,c)=>t.bufE.getChannelData(c).set(d)); }
-    return t.bufE;
-  }
-  if(!t.bufR){ t.bufR=ac.createBuffer(t.ch.length, t.len, t.sr); t.ch.forEach((d,c)=>t.bufR.getChannelData(c).set(d)); }
-  return t.bufR;
+  const chs=srcChs(t), key=(t.useEnh&&t.enh?"e":"r")+shiftKey(t);
+  if(t._bufK===key && t._buf) return t._buf;
+  const b=ac.createBuffer(chs.length, t.len, t.sr); chs.forEach((d,c)=>b.getChannelData(c).set(d));
+  t._buf=b; t._bufK=key; return b;
 }
 function ensureEnh(t){
   if(t.enh) return Promise.resolve();
-  if(!t._enhP) t._enhP=enhanceAsync(t.ch, t.sr, t.mode==="LOOP").then(out=>{ t.enh=out; t.peaksEnh=calcPeaks(out, t.len); t.bufE=null; t._enhP=null; });
+  if(!t._enhP) t._enhP=enhanceAsync(t.ch, t.sr, t.mode==="LOOP").then(out=>{ t.enh=out; t.peaksEnh=calcPeaks(out, t.len); t._buf=null; t._shC=null; t._enhP=null; });
   return t._enhP;
 }
 // liefert den passenden Puffer; rechnet die Veredelung bei Bedarf vorher fertig
 async function prepBuf(t){
   if(t.useEnh && !t.enh){ const old=tstatTx.textContent; tstatTx.textContent="ENHANCING"; await ensureEnh(t); if(recState==="idle") tstatTx.textContent=old==="ENHANCING"?"READY: "+modeName():old; }
-  return bufFor(t);
+  return trimmedBuf(t, bufFor(t));
+}
+function hasTrim(t){ return t && t.mode!=="LOOP" && !t.parent && t.trimB>t.trimA && (t.trimA>0 || t.trimB<t.len); }
+function trimmedBuf(t, b){
+  if(!hasTrim(t)) return b;
+  const key=(t.useEnh&&t.enh?"e":"r")+t.trimA+"-"+t.trimB+"|"+shiftKey(t);
+  if(t._tbK===key && t._tb) return t._tb;
+  const a=t.trimA, n=t.trimB-t.trimA, fd=Math.min(Math.floor(n/4), Math.round(t.sr*0.005));
+  const nb=ac.createBuffer(b.numberOfChannels, n, b.sampleRate);
+  for(let c=0;c<b.numberOfChannels;c++){ const src=b.getChannelData(c).subarray(a,a+n), dst=nb.getChannelData(c); dst.set(src);
+    for(let i=0;i<fd;i++){ const g=i/fd; dst[i]*=g; dst[n-1-i]*=g; } }
+  t._tb=nb; t._tbK=key; return nb;
+}
+// Vorschlag: Griffe an Anfang und Ende des Gesangs (80 ms davor, 150 ms danach)
+function suggestTrim(t){
+  const chs=(t.useEnh&&t.enh)?t.enh:t.ch, sr=t.sr, len=t.len, win=Math.max(1,Math.round(sr*0.01)), nf=Math.floor(len/win);
+  if(!chs||nf<4) return [0,len];
+  const rms=new Float32Array(nf); for(let f=0;f<nf;f++){ let acc=0,c=0; for(const d of chs) for(let k=f*win;k<(f+1)*win;k+=2){ acc+=d[k]*d[k]; c++; } rms[f]=Math.sqrt(acc/Math.max(1,c)); }
+  const srt=Float32Array.from(rms).sort(), noise=srt[Math.floor(nf*0.1)]||0, peak=srt[Math.floor(nf*0.98)]||0, thr=Math.max(noise*4, peak*0.1, 0.002);
+  let f0=-1, f1=-1; for(let f=0;f<nf;f++) if(rms[f]>thr){ if(f0<0) f0=f; f1=f; }
+  if(f0<0) return [0,len];
+  return [Math.max(0,(f0-8)*win), Math.min(len,(f1+1+15)*win)];
 }
 let autoEnh=true; try{ autoEnh=localStorage.getItem("drexmb_autoenh")!=="0"; }catch(e){}
 async function setEnhForTake(t, on){
@@ -1141,9 +1229,7 @@ tlist.addEventListener("click",(e)=>{
     if(rootOf(selTake())?.id!==id) selectTake(id);
     wakeAudio(); playSelected(playOffset); return;
   }
-  // Tipp auf die ausgewaehlte Aufnahme hebt die Auswahl auf (z. B. um einen neuen Loop zu beginnen)
-  if(rootOf(selTake())?.id===id){ selectTake(null); timerEl.textContent="00:00.0"; if(recState==="idle") showReady(); return; }
-  selectTake(id); if(recState==="idle") showReady();
+  if(rootOf(selTake())?.id!==id) selectTake(id); if(recState==="idle") showReady();
 });
 async function loadTakes(){
   if(!(await dbOpen())) { renderTakes(); return; }
@@ -1183,25 +1269,57 @@ function ensureMix(){
 }
 async function playBufsFor(t, forDub){
   const st=stackOf(t); if(!st.length) return [];
-  const list = st.length>1 ? st.filter(x=>!x.muted) : st;
+  let list = st.length>1 ? st.filter(x=>!x.muted) : st;
+  if(!forDub && soloId){ const so=st.find(x=>x.id===soloId); if(so) list=[so]; }
   const bufs=[]; for(const x of list){ const b=await prepBuf(x); bufs.push({b, t:x}); }
   return bufs;
 }
-let liveNodes={};
+let liveNodes={}, soloId=null;
 function layerGain(t){ return Math.pow(10,(t.vol||0)/20); }
+// EQ pro Spur: 6 Baender, 100 Low-Shelf, 300/800/2K/5K Peak, 10K High-Shelf, je -12..+12 dB
+// EQ pro Spur, Technik wie DRECKSLER: 8 Baender ISO 63 bis 8K, Low-Shelf / 6x Peak / High-Shelf, Q 1.41, je -12..+12 dB
+// 8 Baender in Oktaven 80 bis 10K (80 Low-Shelf breit, 10K High-Shelf), je -18..+18 dB
+// dazu steiler LOW CUT (20..1000 Hz) und HIGH CUT (1K..20K), je 24 dB/Okt (2 Butterworth-Stufen), ganz aussen = aus
+const EQ_F=[80,160,315,630,1250,2500,5000,10000], EQ_L=["80","160","315","630","1.2K","2.5K","5K","10K"], EQ_MAX=18;
+// kraeftige Vocal-Startpunkte (orientiert an Ableton-Voice-Presets: viel Hub, fast immer mit Low Cut)
+const EQ_PRE={FLAT:{g:[0,0,0,0,0,0,0,0],lc:0,hc:0}, WARM:{g:[3,4,2,0,-1,-2,-4,-6],lc:60,hc:12000}, THIN:{g:[0,-6,-6,-2,0,3,4,2],lc:400,hc:0},
+  BRIGHT:{g:[0,-1,-3,-1,0,3,6,8],lc:100,hc:0}, PHONE:{g:[0,0,0,4,8,6,0,0],lc:500,hc:2800}};
+function eqOf(t){ return (t.eq && t.eq.length===8) ? t.eq : EQ_PRE.FLAT.g; }
+const LC_OFF=20, HC_OFF=20000;
+function lcOf(t){ return (t.lc>LC_OFF)?t.lc:0; } function hcOf(t){ return (t.hc>0 && t.hc<HC_OFF)?t.hc:0; }
+function cutFreqs(t){ const ny=(ac?ac.sampleRate:48000)/2-200; return { lc: lcOf(t)||10, hc: Math.min(ny, hcOf(t)||ny) }; }
 function startSources(bufs, when, off, loop){
   const bus=ensureMix(), g=1/Math.sqrt(Math.max(1,bufs.length)), out=[];
   for(const it of bufs){ const b=it.b, t=it.t;
     const sN=ac.createBufferSource(); sN.buffer=b; sN.loop=loop;
-    const gn=ac.createGain(); gn.gain.value=g*layerGain(t); gn._base=g;
-    let pn=null; if(ac.createStereoPanner){ pn=ac.createStereoPanner(); pn.pan.value=t.pan||0; }
-    sN.connect(gn); if(pn){ gn.connect(pn); pn.connect(bus); } else gn.connect(bus);
-    liveNodes[t.id]={g:gn, p:pn};
+    // EQ
+    const cf=cutFreqs(t), cuts=[["highpass",0.541],["highpass",1.307],["lowpass",0.541],["lowpass",1.307]].map(([ty,q])=>{ const b=ac.createBiquadFilter(); b.type=ty; b.Q.value=q; b.frequency.value= ty==="highpass"?cf.lc:cf.hc; return b; });
+    const eq=EQ_F.map((f,k)=>{ const q=ac.createBiquadFilter(); q.type= k===0?"lowshelf":(k===7?"highshelf":"peaking"); q.frequency.value=f; q.Q.value= (k===0||k===7)?0.7:1.41; q.gain.value=eqOf(t)[k]; return q; });
+    let last=sN; for(const q of cuts.concat(eq)){ last.connect(q); last=q; }
+    const gn=ac.createGain(); gn.gain.value=g*layerGain(t); gn._base=g; last.connect(gn);
+    const san=ac.createAnalyser(); san.fftSize=2048; san.smoothingTimeConstant=0.8; last.connect(san);
+    // WIDTH: trocken auf beide Seiten, dazu zwei unterschiedlich verzoegerte, langsam modulierte Kopien links und rechts (Doppelung)
+    const mg=ac.createChannelMerger(2), dry=ac.createGain(), wA=ac.createGain(), wB=ac.createGain();
+    const dA=ac.createDelay(0.05), dB=ac.createDelay(0.05); dA.delayTime.value=0.012; dB.delayTime.value=0.019;
+    const lfo=ac.createOscillator(), lA=ac.createGain(), lB=ac.createGain(); lfo.frequency.value=0.3; lA.gain.value=0.0012; lB.gain.value=-0.0012;
+    lfo.connect(lA); lA.connect(dA.delayTime); lfo.connect(lB); lB.connect(dB.delayTime); lfo.start(when);
+    gn.connect(dry); dry.connect(mg,0,0); dry.connect(mg,0,1);
+    gn.connect(dA); dA.connect(wA); wA.connect(mg,0,0);
+    gn.connect(dB); dB.connect(wB); wB.connect(mg,0,1);
+    const ws=widthGains(t); dry.gain.value=ws.d; wA.gain.value=ws.w; wB.gain.value=ws.w;
+    let pn=null; if(ac.createStereoPanner){ pn=ac.createStereoPanner(); pn.pan.value=t.pan||0; mg.connect(pn); pn.connect(bus); } else mg.connect(bus);
+    liveNodes[t.id]={g:gn, p:pn, eq, cuts, dry, wA, wB, lfo, an:san};
+    sN.onended=()=>{ try{ lfo.stop(); }catch(e){} };
     sN.start(when, Math.max(0,Math.min(off, b.duration-0.001))); out.push(sN); }
   return out;
 }
-function applyLive(t){ const n=liveNodes[t.id]; if(!n||!ac) return; n.g.gain.setTargetAtTime(n.g._base*layerGain(t), ac.currentTime, 0.02); if(n.p) n.p.pan.setTargetAtTime(t.pan||0, ac.currentTime, 0.02); }
-function stopSources(list){ (list||[]).forEach(sN=>{ try{ sN.onended=null; sN.stop(); }catch(e){} }); }
+function widthGains(t){ const w=Math.max(0,Math.min(100,t.width||0))/100; return { d:1/(1+w*0.35), w:w*0.55/(1+w*0.35) }; }
+function applyLive(t){ const n=liveNodes[t.id]; if(!n||!ac) return; const T=ac.currentTime;
+  n.g.gain.setTargetAtTime(n.g._base*layerGain(t), T, 0.02); if(n.p) n.p.pan.setTargetAtTime(t.pan||0, T, 0.02);
+  if(n.eq) eqOf(t).forEach((v,k)=>n.eq[k].gain.setTargetAtTime(v, T, 0.02));
+  if(n.cuts){ const cf=cutFreqs(t); n.cuts.forEach((b,k)=>b.frequency.setTargetAtTime(k<2?cf.lc:cf.hc, T, 0.02)); }
+  if(n.dry){ const ws=widthGains(t); n.dry.gain.setTargetAtTime(ws.d,T,0.02); n.wA.gain.setTargetAtTime(ws.w,T,0.02); n.wB.gain.setTargetAtTime(ws.w,T,0.02); } }
+function stopSources(list){ (list||[]).forEach(sN=>{ try{ sN.stop(); }catch(e){} }); }
 function playPos(){ if(!playing||!playDur) return playOffset; const d=playDur; let pos=playBase+(ac.currentTime-playStartT); if(loopOn) pos=((pos%d)+d)%d; return Math.max(0,Math.min(d,pos)); }
 function startPlayBufs(bufs, from){
   if(!ac||!bufs.length) return;
@@ -1212,7 +1330,7 @@ function startPlayBufs(bufs, from){
   playSrcs=startSources(bufs, playStartT, off, loopOn);
   playing=true; playBtn.classList.add("playing");
   const first=playSrcs[0], mine=playSrcs;
-  first.onended=()=>{ if(playSrcs===mine){ stopSources(playSrcs); playSrcs=[]; playing=false; playOffset=0; playHead=-1; playBtn.classList.remove("playing"); renderTakes(); } };
+  const prevEnd=first.onended; first.onended=()=>{ if(prevEnd) prevEnd(); if(playSrcs===mine){ stopSources(playSrcs); playSrcs=[]; playing=false; playOffset=0; playHead=-1; playBtn.classList.remove("playing"); renderTakes(); } };
 }
 async function playSelected(from){
   const t=selTake(); if(!t||!ac) return;
@@ -1242,35 +1360,37 @@ loopBtn.addEventListener("click", ()=>{
 // Einstellungs-Panel
 const sheet=$("sheet"), sheetDim=$("sheetDim");
 const takesSheet=$("takesSheet"), editSheet=$("editSheet");
-let editOpen=false, editId=null, eWaveImg=null, eWaveKey="";
+let editOpen=false, editId=null, eWaveImg=null, eWaveKey="", eWaveMx=1, trimDrag=null;
 function openPanel(el){ closeSheet(); el.classList.add("open"); sheetDim.classList.add("open"); sheetDim.classList.toggle("clear", el===editSheet); el.setAttribute("aria-hidden","false"); }
-function closeSheet(){ editOpen=false; [sheet,takesSheet,editSheet].forEach(el=>{ el.classList.remove("open"); el.setAttribute("aria-hidden","true"); }); sheetDim.classList.remove("open"); }
+function closeSheet(){ if(soloId){ soloId=null; if(playing) playSelected(playPos()); } editOpen=false; [sheet,takesSheet,editSheet].forEach(el=>{ el.classList.remove("open"); el.setAttribute("aria-hidden","true"); }); sheetDim.classList.remove("open"); }
 function openSheet(){ openPanel(sheet); }
 $("modeGrid").addEventListener("click", openSheet);
 $("takesMod").addEventListener("click", ()=>{ openPanel(takesSheet); renderTakes(); });
 $("recMod").addEventListener("click", closeSheet);
 $("takesClose").addEventListener("click", closeSheet);
+$("newLoop").addEventListener("click", ()=>{ if(recState!=="idle") return; if(playing) stopPlay(); selectTake(null); timerEl.textContent="00:00.0"; if(!loopOn) loopBtn.click(); closeSheet(); showReady(); });
 $("editClose").addEventListener("click", closeSheet);
 
 /* ===== EDIT =====
    Oeffnet ueber die Mini-Welle in TAKES. Spurwahl (6 feste Plaetze in Platzfarben), Welle der Spur, VOL, PAN, M, ENH/RAW.
    Hoehe ist fest, nichts waechst mit dem Inhalt. */
-const eName=$("eName"), eDel=$("eDel"); let eDelArm=null, eDelT=null;
+const eName=$("eName"), eDel=$("eDel"), eSolo=$("eSolo"); let eDelArm=null, eDelT=null;
 const eChips=$("eChips"), eWave=$("eWave"), eInfo=$("eInfo"), eVol=$("eVol"), eVolV=$("eVolV"), ePan=$("ePan"), ePanV=$("ePanV"), eMute=$("eMute"), eEnh=$("eEnh"), ePlay=$("ePlay"), eLoop=$("eLoop");
 function editTake(){ return takes.find(x=>x.id===editId)||null; }
 function openEdit(id){
+  phSel=-1; phDrag=null; eZoom=1; eView=0;
   editId=id; if(selId!==id) selectTake(id);
-  openPanel(editSheet); editOpen=true; eWaveKey=""; renderEdit(); requestAnimationFrame(editLoop);
+  openPanel(editSheet); editOpen=true; eWaveKey=""; renderEdit(); requestAnimationFrame(()=>{ editLoop(); });
 }
 function renderEdit(){
   const t=editTake(); if(!t){ closeSheet(); return; }
   const root=rootOf(t), st=stackOf(t).slice(0,MAX_LAYERS), slot=Math.max(0,st.indexOf(t)), col=LAYER_COLS[slot];
   const bars=root.mode==="LOOP" ? Math.max(1,Math.round(root.len/root.sr/(4*60/(root.bpm||bpm)))) : 0;
   if(document.activeElement!==eName) eName.value=takeName(root);
-  eInfo.textContent= root.mode==="LOOP" ? ("LOOP "+bars+(bars>1?" BARS":" BAR")) : "ONE-SHOT";
+  eInfo.textContent= root.mode==="LOOP" ? (bars+(bars>1?" BARS":" BAR")) : "";
   eDel.disabled = !t.parent; if(eDelArm!==t.id){ eDel.textContent="DEL LAYER"; eDel.classList.remove("mon"); }
   let h=""; for(let i=0;i<MAX_LAYERS;i++){ const x=st[i], c=LAYER_COLS[i];
-    if(x){ const on=x.id===editId; h+='<button class="ech" data-i="'+i+'" style="border-color:rgba('+c+','+(on?1:.35)+');color:rgb('+c+');background:'+(on?'rgba('+c+',.12)':'transparent')+'">'+(st.length>1&&x.muted?'M':(i+1))+'</button>'; }
+    if(x){ const on=x.id===editId, dim=soloId && x.id!==soloId; h+='<button class="ech" data-i="'+i+'" style="opacity:'+(dim?0.35:1)+';border-color:rgba('+c+','+(on?1:.35)+');color:rgb('+c+');background:'+(on?'rgba('+c+',.12)':'transparent')+'">'+(soloId===x.id?'S':(st.length>1&&x.muted?'M':(i+1)))+'</button>'; }
     else h+='<button class="ech" disabled>-</button>'; }
   eChips.innerHTML=h;
   const v=t.vol||0, pn=t.pan||0, fv=(v+24)/30;
@@ -1278,12 +1398,17 @@ function renderEdit(){
   eVolV.textContent=(v>0?"+":"")+v.toFixed(1);
   ePan.style.color="rgb("+col+")"; const fp=(pn+1)/2; ePan.querySelector("i").style.left=(fp*100)+"%"; const sp=ePan.querySelector("s"); sp.style.left=Math.min(50,fp*100)+"%"; sp.style.width=Math.abs(fp*100-50)+"%";
   ePanV.textContent= Math.abs(pn)<0.01 ? "C" : ((pn<0?"L":"R")+Math.round(Math.abs(pn)*100));
+  eSolo.disabled=st.length<2; eSolo.classList.toggle("on", soloId===t.id);
   eMute.disabled=st.length<2; eMute.classList.toggle("mon", st.length>1 && !!t.muted);
   eEnh.textContent=t.useEnh?"ENH":"RAW"; eEnh.classList.toggle("on", !!t.useEnh);
-  eLoop.classList.toggle("on", loopOn);
+  eLoop.classList.toggle("on", loopOn); renderTimeBar();
+  const wv=t.width||0, fw=wv/100; eWid.style.color="rgb("+col+")"; eWid.querySelector("i").style.left=(fw*100)+"%"; const sw=eWid.querySelector("s"); sw.style.left="0"; sw.style.width=(fw*100)+"%"; eWidV.textContent=String(Math.round(wv));
+  const ev=eqOf(t); let preName=null; for(const k in EQ_PRE){ const P=EQ_PRE[k]; if(P.g.every((v,i)=>Math.abs(v-ev[i])<0.01) && (P.lc||0)===lcOf(t) && (P.hc||0)===hcOf(t)) preName=k; }
+  ePre.querySelectorAll("button").forEach(b=>{ const on=b.dataset.p===preName; b.style.color= on?"rgb("+col+")":""; b.style.borderColor= on?"rgb("+col+")":""; });
+  if(t.mode!=="LOOP" && !t.parent && !(t.trimB>t.trimA)){ const sg=suggestTrim(t); t.trimA=sg[0]; t.trimB=sg[1]; dbPut(t); }
 }
 function buildEditWave(t, w, h){
-  const useE=!!(t.useEnh&&t.enh), key=t.id+(useE?"e":"r")+w+"x"+h;
+  w=Math.round(w); const useE=!!(t.useEnh&&t.enh), key=t.id+(useE?"e":"r")+w+"x"+h+"|"+shiftKey(t);
   if(key===eWaveKey && eWaveImg) return eWaveImg;
   const root=rootOf(t), st=stackOf(t), slot=Math.max(0,st.indexOf(t)), col=LAYER_COLS[slot];
   const cv=document.createElement("canvas"), dpr=Math.min(2,window.devicePixelRatio||1); cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr);
@@ -1291,11 +1416,55 @@ function buildEditWave(t, w, h){
   if(root.mode==="LOOP"){ const bars=Math.max(1,Math.round(root.len/root.sr/(4*60/(root.bpm||bpm)))), beats=bars*4;
     for(let b=0;b<=beats;b++){ g.fillStyle= b%4 ? "rgba(172,166,178,.12)" : "rgba(172,166,178,.35)"; g.fillRect(Math.round(w*b/beats),0,1,h);
       if(b%4===0 && b<beats){ g.fillStyle="rgba(172,166,178,.8)"; g.font="10px 'Space Mono', ui-monospace, monospace"; g.fillText(String(b/4+1), w*b/beats+4, 12); } } }
-  const chs=useE?t.enh:t.ch, n=Math.floor(w/1.6), len=t.len, blk=Math.max(1,Math.floor(len/n)), pk=new Float32Array(n); let mx=0;
+  const chs=srcChs(t), n=Math.floor(w/1.6), len=t.len, blk=Math.max(1,Math.floor(len/n)), pk=new Float32Array(n); let mx=0;
   if(chs) for(let i=0;i<n;i++){ let p=0; const e=Math.min(len,(i+1)*blk); for(const d of chs){ for(let j=i*blk;j<e;j+=2){ const a=Math.abs(d[j]); if(a>p) p=a; } } pk[i]=p; if(p>mx) mx=p; }
   g.fillStyle="rgb("+col+")";
   for(let i=0;i<n;i++){ const a=Math.max(0.5, (mx>0?pk[i]/mx:0)*h*0.44); g.fillRect(i*1.6, h/2-a, 1, a*2); }
-  eWaveImg=cv; eWaveKey=key; return cv;
+  eWaveImg=cv; eWaveKey=key; eWaveMx=mx; return cv;
+}
+let phSel=-1, phDrag=null, phSnap=true, eZoom=1, eView=0, eXf=x=>x;
+function gridSamples(t){ const r=rootOf(t); return Math.round(r.sr*60/((r.bpm||bpm)*4)); }
+function regStart(t,p){ const len=t.len; if(regKind(p)==="del") return p.a; let s0=p.a+p.o; if(t.mode==="LOOP") s0=((s0%len)+len)%len; return s0; }
+function drawPhrases(g, t, W, H, dpr){
+  const ph=phrasesOf(t), slot=Math.max(0,stackOf(t).indexOf(t)), col=LAYER_COLS[slot], len=t.len, top=20*dpr, bot=H-20*dpr, X=eXf;
+  const rect=(s0,n,fill,stroke,lw,dash)=>{ const parts = s0+n<=len ? [[s0,s0+n]] : [[s0,len],[0,s0+n-len]];
+    for(const [a,b] of parts){ const x0=X(a), x1=X(b); if(x1<0||x0>W) continue;
+      if(fill){ g.fillStyle=fill; g.fillRect(x0,top,x1-x0,bot-top); } if(stroke){ g.strokeStyle=stroke; g.lineWidth=lw; if(dash) g.setLineDash([3*dpr,3*dpr]); g.strokeRect(x0+lw/2,top+lw/2,x1-x0-lw,bot-top-lw); g.setLineDash([]); } } };
+  g.font=(10*dpr)+"px 'Space Mono', ui-monospace, monospace"; g.textAlign="left";
+  ph.forEach((p,i)=>{ const sel=i===phSel, k=regKind(p), n=p.b-p.a, s0=regStart(t,p);
+    if(k==="del"){ rect(p.a, n, sel?"rgba(255,39,133,.10)":null, sel?"#FF2785":"rgba(172,166,178,.35)", dpr, true);
+      if(sel){ g.fillStyle="#FF2785"; g.fillText("DEL", X(p.a)+3*dpr, top+12*dpr); } return; }
+    if(sel && (p.o||k==="copy")) rect(p.a, n, null, "rgba("+col+",.55)", dpr, true);
+    rect(s0, n, "rgba("+col+","+(sel?0.22:0.09)+")", "rgba("+col+","+(sel?1:0.45)+")", (sel?1.5:1)*dpr);
+    if(k==="copy"){ g.fillStyle="rgba("+col+",.9)"; g.fillText("C", X(s0)+3*dpr, bot-5*dpr); }
+    if(sel){ g.fillStyle="rgb("+col+")"; g.fillRect(X(s0)-5*dpr, top, 10*dpr, 14*dpr); g.fillRect(X(Math.min(len,s0+n))-5*dpr, top, 10*dpr, 14*dpr); } });
+  if(phDrag && phDrag.mode==="draw"){ const a=Math.min(phDrag.s0,phDrag.s1), b=Math.max(phDrag.s0,phDrag.s1); rect(a, b-a, "rgba("+col+",.18)", "rgb("+col+")", 1.5*dpr, true); }
+  if(phDrag && phDrag.mode==="move" && phDrag.moved && phSel>=0){ const p=ph[phSel], x0=X(regStart(t,p));
+    if(phSnap){ g.fillStyle="#FF2785"; g.fillRect(Math.round(x0)-dpr, top-4*dpr, 2*dpr, bot-top+8*dpr); }
+    g.fillStyle="#F0EFF3"; g.font=(11*dpr)+"px 'Space Mono', ui-monospace, monospace"; g.fillText(fmtShift(t,p.o), x0+3*dpr, bot-6*dpr);
+    if(!phSnap) drawLoupe(g, t, regStart(t,p), W, H, dpr, fmtShift(t,p.o)); }
+  if(phDrag && (phDrag.mode==="ea"||phDrag.mode==="eb"||phDrag.mode==="draw") && !phSnap){ const p=phDrag.mode==="draw"?null:ph[phSel];
+    const at = p ? (phDrag.mode==="ea" ? regStart(t,p) : regStart(t,p)+p.b-p.a) : phDrag.s1; drawLoupe(g, t, Math.round(at), W, H, dpr); }
+}
+function fmtShift(t,o){ const gs=gridSamples(t); if(phSnap){ const n=Math.round(o/gs); return (n>0?"+":n<0?"-":"")+Math.abs(n)+"/16"; } const ms=Math.round(o/t.sr*1000); return (ms>0?"+":"")+ms+" MS"; }
+function renderTimeBar(){ const t=editTake(); const ph=t?phrasesOf(t):[], sel=phSel>=0?ph[phSel]:null;
+  eTime.querySelector('[data-a="snap"]').textContent = phSnap ? "SNAP" : "FREE";
+  eTime.querySelector('[data-a="snap"]').classList.toggle("on", true);
+  eTime.querySelector('[data-a="copy"]').disabled = !sel || regKind(sel)==="del";
+  eTime.querySelector('[data-a="del"]').disabled = !sel || regKind(sel)==="del";
+  eTime.querySelector('[data-a="zoom"]').textContent = eZoom+"X"; eTime.querySelector('[data-a="zoom"]').classList.toggle("on", eZoom>1); }
+// Lupe: 20-fach vergroesserter Ausschnitt rund um den gezogenen Griff
+function drawLoupe(g, t, at, W, H, dpr, note){
+  const chs=srcChs(t); if(!chs) return;
+  const lw=Math.min(W*0.46, 200*dpr), lh=58*dpr, span=Math.round(t.len/20), s0=at-span/2;
+  let lx=eXf(at)-lw/2; lx=Math.max(4*dpr, Math.min(W-lw-4*dpr, lx)); const ly=6*dpr;
+  g.fillStyle="#050507"; g.fillRect(lx,ly,lw,lh); g.strokeStyle="#FF2785"; g.lineWidth=dpr; g.strokeRect(lx+0.5,ly+0.5,lw,lh);
+  const cols=Math.floor(lw/(1.5*dpr)), per=Math.max(1,Math.floor(span/cols)), mxv=Math.max(1e-4,eWaveMx);
+  const slot=Math.max(0,stackOf(t).indexOf(t)); g.fillStyle="rgb("+LAYER_COLS[slot]+")";
+  for(let c=0;c<cols;c++){ const a=Math.round(s0+c*per); let p=0; for(const d of chs) for(let k=a;k<a+per;k++){ if(k<0||k>=t.len) continue; const v=Math.abs(d[k]); if(v>p) p=v; }
+    const hh=Math.max(0.5*dpr, p/mxv*lh*0.45); g.fillRect(lx+c*1.5*dpr, ly+lh/2-hh, dpr, hh*2); }
+  g.fillStyle="#FF2785"; g.fillRect(lx+lw/2-dpr, ly, 2*dpr, lh);
+  g.fillStyle="rgba(172,166,178,.95)"; g.font=(9*dpr)+"px 'Space Mono', ui-monospace, monospace"; g.textAlign="right"; g.fillText("x20"+(note?"  "+note:""), lx+lw-4*dpr, ly+lh-5*dpr); g.textAlign="left";
 }
 function editLoop(){
   if(!editOpen) return;
@@ -1303,13 +1472,162 @@ function editLoop(){
   if(t){ const r=eWave.getBoundingClientRect(), dpr=Math.min(2,window.devicePixelRatio||1);
     if(r.width){ const W=Math.round(r.width*dpr), H=Math.round(r.height*dpr); if(eWave.width!==W||eWave.height!==H){ eWave.width=W; eWave.height=H; }
       const g=eWave.getContext("2d"); g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,W,H);
-      g.drawImage(buildEditWave(t, r.width, r.height), 0, 0, W, H);
-      if(playing && playDur){ const x=Math.round(playPos()/playDur*W); g.fillStyle="#F0EFF3"; g.fillRect(x-dpr, 0, 2*dpr, H); } } }
+      const len=t.len, span=len/eZoom; eView=Math.max(0,Math.min(len-span,eView));
+      const X=s0=>(s0-eView)/span*W; eXf=X;
+      const img=buildEditWave(t, r.width*eZoom, r.height); g.drawImage(img, eView/len*img.width, 0, img.width/eZoom, img.height, 0, 0, W, H);
+      drawPhrases(g, t, W, H, dpr);
+      if(eZoom>1){ g.fillStyle="rgba(172,166,178,.18)"; g.fillRect(0,0,W,4*dpr); g.fillStyle="rgba(240,239,243,.75)"; g.fillRect(eView/len*W,0,W/eZoom,4*dpr); }
+      const trimOK = t.mode!=="LOOP" && !t.parent && t.trimB>t.trimA;
+      if(trimOK){ const xa=X(t.trimA), xb=X(t.trimB);
+        g.fillStyle="rgba(0,0,0,.6)"; g.fillRect(0,0,xa,H); g.fillRect(xb,0,W-xb,H);
+        g.fillStyle="#FF2785"; g.fillRect(xa-dpr,0,2*dpr,H); g.fillRect(xb-dpr,0,2*dpr,H);
+        const tw=14*dpr, th=24*dpr; g.fillRect(xa,H-th,tw,th); g.fillRect(xb-tw,H-th,tw,th);
+        if(trimDrag) drawLoupe(g, t, trimDrag.which==="a"?t.trimA:t.trimB, W, H, dpr); }
+      if(playing && playDur){ let sp=playPos()/playDur*len; if(trimOK) sp=t.trimA+playPos()*t.sr; const x=Math.round(X(sp)); if(x>=0&&x<=W){ g.fillStyle="#F0EFF3"; g.fillRect(x-dpr, 0, 2*dpr, H); } } } }
   ePlay.textContent= playing ? "PAUSE" : "PLAY";
+  drawEq();
   requestAnimationFrame(editLoop);
 }
+const eWid=$("eWid"), eWidV=$("eWidV"), ePre=$("ePre"), eEq=$("eEq");
+function fmtHz(f){ return f>=1000 ? (Math.round(f/100)/10)+"K" : String(Math.round(f)); }
+// EQ-Anzeige: log. Achse 20 Hz bis 20 kHz, echte Gesamtkurve (getFrequencyResponse), Live-Spektrum der Spur als Haarlinien
+const EQV={fmin:20, fmax:20000, dbv:20, pad:10, N:180}; let eqBank=null, eqFreqs=null, eqMag=null, eqPh=null, eqSum=null, eqKey="", eqDrag=-1, eqSpec=null;
+const fx2x=(f,w)=>Math.log(f/EQV.fmin)/Math.log(EQV.fmax/EQV.fmin)*w;
+const db2y=(db,h)=>h*0.5-db/EQV.dbv*(h*0.5-EQV.pad);
+const y2db=(y,h)=>(h*0.5-y)/(h*0.5-EQV.pad)*EQV.dbv;
+function eqCurve(gains, lc, hc){
+  if(!eqBank){ eqBank=EQ_F.map((f,k)=>{ const b=ac.createBiquadFilter(); b.type=k===0?"lowshelf":(k===7?"highshelf":"peaking"); b.frequency.value=f; b.Q.value=(k===0||k===7)?0.7:1.41; return b; });
+    eqBank.cuts=[["highpass",0.541],["highpass",1.307],["lowpass",0.541],["lowpass",1.307]].map(([ty,q])=>{ const b=ac.createBiquadFilter(); b.type=ty; b.Q.value=q; return b; });
+    eqFreqs=new Float32Array(EQV.N); eqMag=new Float32Array(EQV.N); eqPh=new Float32Array(EQV.N); eqSum=new Float32Array(EQV.N);
+    for(let k=0;k<EQV.N;k++) eqFreqs[k]=EQV.fmin*Math.pow(EQV.fmax/EQV.fmin,k/(EQV.N-1)); }
+  const key=gains.join(",")+"|"+lc+"|"+hc; if(key===eqKey) return eqSum; eqKey=key; eqSum.fill(0);
+  const add=b=>{ b.getFrequencyResponse(eqFreqs,eqMag,eqPh); for(let k=0;k<EQV.N;k++) eqSum[k]+=20*Math.log10(Math.max(1e-6,eqMag[k])); };
+  eqBank.forEach((b,i)=>{ b.gain.value=gains[i]; add(b); });
+  eqBank.cuts.forEach((b,k)=>{ b.frequency.value= k<2?lc:hc; add(b); });
+  for(let k=0;k<EQV.N;k++) eqSum[k]=Math.max(-EQV.dbv-4, eqSum[k]);
+  return eqSum;
+}
+function drawEq(){
+  const t=editTake(); if(!t||!ac) return; const r=eEq.getBoundingClientRect(); if(!r.width) return;
+  const dpr=Math.min(2,window.devicePixelRatio||1), W=Math.round(r.width*dpr), H=Math.round(r.height*dpr);
+  if(eEq.width!==W||eEq.height!==H){ eEq.width=W; eEq.height=H; }
+  const g=eEq.getContext("2d"), w=r.width, h=r.height; g.setTransform(dpr,0,0,dpr,0,0); g.clearRect(0,0,w,h);
+  const slot=Math.max(0,stackOf(t).indexOf(t)), col=LAYER_COLS[slot], gains=eqOf(t);
+  // Raster
+  g.fillStyle="rgba(172,166,178,.08)";
+  for(const f of [50,100,200,500,1000,2000,5000,10000]) g.fillRect(Math.round(fx2x(f,w)),0,1,h);
+  for(const db of [-12,-6,6,12]) g.fillRect(0,Math.round(db2y(db,h)),w,1);
+  g.fillStyle="rgba(172,166,178,.3)"; g.fillRect(0,Math.round(db2y(0,h)),w,1);
+  // Live-Spektrum der Spur: Haarlinien wie der Pegel-Bogen
+  const n=liveNodes[t.id]; if(playing && n && n.an){ const an=n.an, nb=an.frequencyBinCount; if(!eqSpec||eqSpec.length!==nb) eqSpec=new Uint8Array(nb); an.getByteFrequencyData(eqSpec);
+    // gefaerbt nach Lautstaerke wie der Pegel-Bogen: leise gruen, laut rosa, gedaempft hinter der Kurve
+    const binHz=ac.sampleRate/2/nb;
+    for(let x=1;x<w;x+=2.5){ const f=EQV.fmin*Math.pow(EQV.fmax/EQV.fmin,x/w), fb=Math.min(nb-1.001,f/binHz), b0=Math.floor(fb), fr=fb-b0; const v=(eqSpec[b0]*(1-fr)+eqSpec[b0+1]*fr)/255; const hh=v*v*(h-14); if(hh>0.5){ g.fillStyle=arcCol(v,0.4); g.fillRect(x,h-hh,0.8,hh); } } }
+  // Gesamtkurve
+  const cf=cutFreqs(t), c=eqCurve(gains, cf.lc, cf.hc), y0=db2y(0,h);
+  // Fuellung nur fuer den Bereich bis -6 dB, damit gesperrte Cut-Bereiche nicht als grosse Flaeche erscheinen
+  g.beginPath(); for(let k=0;k<EQV.N;k++){ const x=fx2x(eqFreqs[k],w), y=db2y(c[k]<-6?0:c[k],h); k?g.lineTo(x,y):g.moveTo(x,y); }
+  g.lineTo(w,y0); g.lineTo(0,y0); g.closePath(); g.fillStyle="rgba("+col+",.10)"; g.fill();
+  g.beginPath(); for(let k=0;k<EQV.N;k++){ const x=fx2x(eqFreqs[k],w), y=db2y(c[k],h); k?g.lineTo(x,y):g.moveTo(x,y); }
+  g.strokeStyle="rgb("+col+")"; g.lineWidth=1.5; g.stroke();
+  // Griffe: hohle Quadrate, gefuellt beim Ziehen
+  g.font="10px 'Space Mono', ui-monospace, monospace"; g.textBaseline="alphabetic";
+  EQ_F.forEach((f,i)=>{ const x=fx2x(f,w), y=db2y(gains[i],h), act=i===eqDrag, s=act?10:8;
+    g.fillStyle= act ? "rgb("+col+")" : "#050507"; g.fillRect(x-s/2,y-s/2,s,s); g.strokeStyle="rgb("+col+")"; g.lineWidth=1.2; g.strokeRect(x-s/2+0.5,y-s/2+0.5,s-1,s-1);
+    g.fillStyle="rgba(172,166,178,.9)"; g.textAlign="center"; g.fillText(EQ_L[i], Math.max(10,Math.min(w-12,x)), h-4); });
+  // Cut-Griffe: Rauten an der Grenzfrequenz, aus = am Rand
+  [["LC",lcOf(t)?fx2x(lcOf(t),w):6, 0],["HC",hcOf(t)?fx2x(hcOf(t),w):w-6, 1]].forEach(([lb,x,k])=>{ const on=k?hcOf(t):lcOf(t), act=eqDrag===(k?"hc":"lc"), y=db2y(-EQV.dbv*0.55,h), r=act?7:5.5;
+    g.fillStyle="rgba("+col+","+(on?0.35:0.12)+")"; g.fillRect(Math.round(x),EQV.pad,1,h-EQV.pad-16);
+    g.beginPath(); g.moveTo(x,y-r); g.lineTo(x+r,y); g.lineTo(x,y+r); g.lineTo(x-r,y); g.closePath();
+    g.fillStyle= act||on ? "rgb("+col+")" : "#050507"; g.fill(); g.strokeStyle="rgb("+col+")"; g.lineWidth=1.2; g.stroke();
+    g.fillStyle="rgba(172,166,178,.9)"; g.textAlign= k?"right":"left"; g.fillText(lb+(on?" "+fmtHz(on):""), k?x-9:x+9, y+4); });
+  g.textAlign="left"; g.fillStyle="rgba(172,166,178,.75)"; g.fillText("+18",4,db2y(18,h)+4); g.fillText("-18",4,db2y(-18,h)+4);
+  if(typeof eqDrag==="number" && eqDrag>=0){ const x=fx2x(EQ_F[eqDrag],w), y=db2y(gains[eqDrag],h), txt=(gains[eqDrag]>0?"+":"")+gains[eqDrag].toFixed(1)+" DB";
+    g.font="11px 'Space Mono', ui-monospace, monospace"; g.fillStyle="#F0EFF3"; const tw=g.measureText(txt).width; g.fillText(txt, Math.max(4,Math.min(w-tw-4,x+10)), Math.max(14,y-10)); }
+}
+{ let lastTap=0, lastBand=-1;
+  const x2f=(x,w)=>EQV.fmin*Math.pow(EQV.fmax/EQV.fmin, Math.max(0,Math.min(1,x/w)));
+  const bandAt=e=>{ const t=editTake(), r=eEq.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top, gains=eqOf(t);
+    const yc=db2y(-EQV.dbv*0.55,r.height), lx=lcOf(t)?fx2x(lcOf(t),r.width):6, hx=hcOf(t)?fx2x(hcOf(t),r.width):r.width-6;
+    if(Math.hypot(x-lx,y-yc)<22) return "lc"; if(Math.hypot(x-hx,y-yc)<22) return "hc";
+    let best=-1, bd=20; EQ_F.forEach((f,i)=>{ const d=Math.hypot(x-fx2x(f,r.width), y-db2y(gains[i],r.height)); if(d<bd){ bd=d; best=i; } });
+    if(best<0){ let hd=24; EQ_F.forEach((f,i)=>{ const d=Math.abs(x-fx2x(f,r.width)); if(d<hd){ hd=d; best=i; } }); } return best; };
+  const setB=(e)=>{ const t=editTake(); if(!t||eqDrag===-1) return; const r=eEq.getBoundingClientRect();
+    if(eqDrag==="lc"){ const f=x2f(e.clientX-r.left,r.width); t.lc= f<=28 ? 0 : Math.round(Math.min(1000,f)); }
+    else if(eqDrag==="hc"){ const f=x2f(e.clientX-r.left,r.width); t.hc= f>=16500 ? 0 : Math.round(Math.max(1000,f)/10)*10; }
+    else { t.eq=eqOf(t).slice(); t.eq[eqDrag]=Math.max(-EQ_MAX,Math.min(EQ_MAX,Math.round(y2db(e.clientY-r.top,r.height)*2)/2)); }
+    applyLive(t); renderEdit(); };
+  eEq.addEventListener("pointerdown", e=>{ const t=editTake(); if(!t) return; const b=bandAt(e); if(b===-1) return;
+    const now=Date.now(); if(now-lastTap<300 && lastBand===b){ if(b==="lc") t.lc=0; else if(b==="hc") t.hc=0; else { t.eq=eqOf(t).slice(); t.eq[b]=0; } applyLive(t); dbPut(t); renderEdit(); lastTap=0; return; } lastTap=now; lastBand=b;
+    eqDrag=b; try{ eEq.setPointerCapture(e.pointerId); }catch(_){} if(typeof b==="number") setB(e); });
+  eEq.addEventListener("pointermove", setB);
+  const end=()=>{ if(eqDrag===-1) return; eqDrag=-1; const t=editTake(); if(t) dbPut(t); };
+  eEq.addEventListener("pointerup", end); eEq.addEventListener("pointercancel", end); }
+fader(eWid, f=>{ const t=editTake(); if(!t) return; t.width=Math.round(f*100); applyLive(t); renderEdit(); });
+eWidV.addEventListener("click", ()=>{ const t=editTake(); if(!t) return; t.width=0; applyLive(t); dbPut(t); renderEdit(); });
+ePre.addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; const t=editTake(); if(!t) return; const P=EQ_PRE[b.dataset.p]; t.eq=P.g.slice(); t.lc=P.lc; t.hc=P.hc; applyLive(t); dbPut(t); renderEdit(); });
+
+// Welle: oben Leiste = Ausschnitt schieben (bei Zoom), Raender des gewaehlten Bereichs, Bereich ziehen = verschieben,
+// frei ziehen = neuen Bereich aufziehen, unten Schnitt-Griffe (nur One-Shots). FREE bewegt nur ein Viertel so weit (fein).
+const eTime=$("eTime");
+{ let lastTap=0;
+  const xs=e=>{ const r=eWave.getBoundingClientRect(); return {px:e.clientX-r.left, py:e.clientY-r.top, w:r.width, h:r.height}; };
+  const restart=()=>{ if(playing) playSelected(playPos()); };
+  const s2=(t,px,w)=>eView+px/w*(t.len/eZoom);
+  const snapS=(t,v)=>{ if(!phSnap) return v; const gs=gridSamples(t); return Math.round(v/gs)*gs; };
+  eWave.addEventListener("pointerdown", e=>{ const t=editTake(); if(!t) return; const p=xs(e), len=t.len, loop=t.mode==="LOOP", ph=phrasesOf(t), span=len/eZoom;
+    const cap=()=>{ try{ eWave.setPointerCapture(e.pointerId); }catch(_){} };
+    const XX=s0=>(s0-eView)/span*p.w;
+    if(eZoom>1 && p.py<16){ phDrag={mode:"pan", x0:p.px, v0:eView}; cap(); return; }
+    if(!loop && !t.parent && p.py>p.h-34){ const xa=XX(t.trimA), xb=XX(t.trimB), da=Math.abs(p.px-xa), db=Math.abs(p.px-xb);
+      if(Math.min(da,db)<=30){ trimDrag={which: da<=db?"a":"b", x0:p.px, v0: da<=db?t.trimA:t.trimB}; cap(); return; } }
+    if(phSel>=0 && p.py<52){ const q=ph[phSel]; if(q && regKind(q)!=="del"){ const s0=regStart(t,q), x0=XX(s0), x1=XX(s0+q.b-q.a);
+      if(Math.abs(p.px-x0)<=20){ phDrag={mode:"ea", x0:p.px, v0:q.a, vo:q.o}; cap(); return; }
+      if(Math.abs(p.px-x1)<=20){ phDrag={mode:"eb", x0:p.px, v0:q.b}; cap(); return; } } }
+    const sx=s2(t,p.px,p.w);
+    const inP=q=>{ const s0=regStart(t,q), n=q.b-q.a; return loop ? ((sx-s0+len)%len) <= n : (sx>=s0 && sx<=s0+n); };
+    let hit=-1; for(let k=ph.length-1;k>=0;k--) if(inP(ph[k])){ hit=k; if(k===phSel) break; }
+    if(hit>=0){ phSel=hit; phDrag={mode:"move", x0:p.px, v0:ph[hit].o, moved:false}; cap(); renderTimeBar(); return; }
+    phSel=-1; renderTimeBar();
+    const now=Date.now(); if(!loop && !t.parent && now-lastTap<300){ t.trimA=0; t.trimB=t.len; dbPut(t); restart(); lastTap=0; return; } lastTap=now;
+    const a0=snapS(t,Math.round(sx)); phDrag={mode:"draw", x0:p.px, s0:a0, s1:a0, moved:false}; cap(); });
+  eWave.addEventListener("pointermove", e=>{ const t=editTake(); if(!t) return; const p=xs(e), len=t.len, span=len/eZoom;
+    if(trimDrag){ let v=Math.round(trimDrag.v0+(p.px-trimDrag.x0)/p.w*span); const minLen=Math.round(t.sr*0.05);
+      if(trimDrag.which==="a") t.trimA=Math.max(0,Math.min(t.trimB-minLen,v)); else t.trimB=Math.min(len,Math.max(t.trimA+minLen,v)); return; }
+    if(!phDrag) return;
+    if(phDrag.mode==="pan"){ eView=Math.max(0,Math.min(len-span, phDrag.v0+(p.px-phDrag.x0)/p.w*len)); return; }
+    if(Math.abs(p.px-phDrag.x0)>3) phDrag.moved=true;
+    const fine=phSnap?1:0.25, d=Math.round((p.px-phDrag.x0)/p.w*span*fine);
+    if(phDrag.mode==="draw"){ if(!phDrag.moved) return; let v=phSnap ? snapS(t, Math.round(s2(t,p.px,p.w))) : phDrag.s0+d; phDrag.s1=Math.max(0,Math.min(len,v)); return; }
+    if(phSel<0) return; const q=t.ph[phSel]; if(!q) return;
+    if(phDrag.mode==="move"){ if(!phDrag.moved) return; let o=phDrag.v0+d;
+      if(phSnap){ const tgt=snapS(t,q.a+o); o=tgt-q.a; }
+      if(t.mode!=="LOOP") o=Math.max(-q.a, Math.min(len-q.b, o)); if(regKind(q)!=="del") q.o=o; }
+    else if(phDrag.mode==="ea"){ let a=phDrag.v0+d; if(phSnap) a=snapS(t,q.o+a)-q.o; q.a=Math.max(0, Math.min(q.b-Math.round(t.sr*0.03), a)); }
+    else if(phDrag.mode==="eb"){ let b=phDrag.v0+d; if(phSnap) b=snapS(t,q.o+b)-q.o; q.b=Math.min(len, Math.max(q.a+Math.round(t.sr*0.03), b)); } });
+  const end=()=>{ const t=editTake();
+    if(trimDrag){ trimDrag=null; if(t){ dbPut(t); if(playing) playSelected(0); } return; }
+    if(!phDrag) return; const d=phDrag; phDrag=null; if(!t) return;
+    if(d.mode==="pan") return;
+    if(d.mode==="draw"){ const a=Math.min(d.s0,d.s1), b=Math.max(d.s0,d.s1);
+      if(d.moved && b-a>t.sr*0.03){ t.ph=phrasesOf(t); t.ph.push({a,b,o:0,k:"move"}); phSel=t.ph.length-1; dbPut(t); renderTimeBar(); } return; }
+    if(d.mode!=="move" || d.moved){ dbPut(t); restart(); } };
+  eWave.addEventListener("pointerup", end); eWave.addEventListener("pointercancel", end); }
+eTime.addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b||b.disabled) return; const t=editTake(); if(!t) return; const ph=phrasesOf(t), a=b.dataset.a, sel=phSel>=0?ph[phSel]:null;
+  if(a==="snap") phSnap=!phSnap;
+  else if(a==="zoom"){ const z=eZoom===1?2:(eZoom===2?4:1), len=t.len; let c=eView+len/eZoom/2; if(sel) c=regStart(t,sel)+(sel.b-sel.a)/2; eZoom=z; eView=Math.max(0,Math.min(len-len/z, c-len/z/2)); eWaveKey=""; }
+  else if(a==="auto"){ t.ph=detectPhrases(t); phSel=-1; dbPut(t); if(playing) playSelected(playPos()); }
+  else if(a==="copy" && sel){ const len=t.len, n=sel.b-sel.a; let o=sel.o+n; if(phSnap){ const gs=gridSamples(t); o=Math.round((sel.a+o)/gs)*gs-sel.a; }
+    if(t.mode!=="LOOP") o=Math.max(-sel.a, Math.min(len-sel.b, o));
+    ph.push({a:sel.a,b:sel.b,o,k:"copy"}); phSel=ph.length-1; dbPut(t); if(playing) playSelected(playPos()); }
+  else if(a==="del" && sel){ if(regKind(sel)==="copy"){ ph.splice(phSel,1); phSel=-1; } else { sel.k="del"; sel.o=0; } dbPut(t); if(playing) playSelected(playPos()); }
+  else if(a==="reset"){ if(sel){ if(regKind(sel)==="copy"){ ph.splice(phSel,1); phSel=-1; } else { sel.k="move"; sel.o=0; } } else { t.ph=[]; } dbPut(t); if(playing) playSelected(playPos()); }
+  renderTimeBar(); });
 eChips.addEventListener("click", e=>{ const b=e.target.closest(".ech"); if(!b||b.disabled) return; const st=stackOf(editTake()); const x=st[+b.dataset.i]; if(!x) return;
-  editId=x.id; if(selId!==x.id) selectTake(x.id); eWaveKey=""; renderEdit(); });
+  editId=x.id; if(selId!==x.id) selectTake(x.id); phSel=-1; phDrag=null; eZoom=1; eView=0;
+  if(soloId && soloId!==x.id){ soloId=x.id; if(playing) playSelected(playPos()); }
+  eWaveKey=""; renderEdit(); });
+eSolo.addEventListener("click", ()=>{ const t=editTake(); if(!t||stackOf(t).length<2) return; soloId = soloId===t.id ? null : t.id; if(playing) playSelected(playPos()); renderEdit(); });
 function fader(el, onVal){
   let drag=false;
   const at=e=>{ const r=el.getBoundingClientRect(); return Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)); };
