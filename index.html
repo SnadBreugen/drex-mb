@@ -533,6 +533,8 @@
     <div class="srow"><span class="sl">LATENCY</span><span class="latbox"><span class="sv" id="latVal">0 ms</span><button class="sbtn alt" id="calBtn">CALIBRATE</button></span></div>
     <div class="sinfo" id="calInfo">HEADPHONES ON. TAP CALIBRATE, 4 HIGH CLICKS COUNT IN, THEN CLAP ON THE 8 CLICKS.</div>
     <div class="srow"><span class="sl">THEME</span><button class="sbtn alt" id="themeBtn">DARK</button></div>
+    <div class="srow"><span class="sl">FINGERPRINTS</span><button class="sbtn alt on" id="fpBtn">ON</button></div>
+    <div class="srow"><span class="sl">TOUCH TEST</span><span class="sl" id="fpDiag" style="color:var(--t2); letter-spacing:1px; font-size:10px">TAP ANYWHERE</span></div>
     <div class="sinfo" id="srInfo">INPUT SHOWS AFTER FIRST RECORDING</div>
   </div>
 
@@ -576,10 +578,8 @@
     <div class="fxknobs vknobs"><div class="fxk" id="kClar"><canvas></canvas><span>CLARITY<b>40</b></span></div><div class="fxk" id="kDry"><canvas></canvas><span>VOICE<b>0</b></span></div></div>
     </div>
     <div class="fxview" id="multiView" hidden>
-    <div class="fxspace"></div>
     <div class="fxdisc" id="mDisc"><canvas id="mCv"></canvas></div>
     <div class="fxbtns" id="mBtns"></div>
-    <div class="fxknobs" id="mKnobs"></div>
     </div>
     <div class="etr"><button id="fxPlay">PLAY</button><button id="fxLoop">LOOP</button><button id="fxOn" class="on">FX ON</button></div>
   </div>
@@ -631,7 +631,7 @@
 <p><b>Chain:</b> VOCODER, SNADPAD and MULTI. Tap a device to show it, the light shows if it is on. The arrows move the shown device left or right in the chain. The button at the bottom right turns it on or off. FX settings are saved with the take.</p>
 <p><b>SNADPAD MB:</b> the original SNADPAD engine. Tap and drag on the scope to play. Double tap sets a point, tap a point to hold it, double tap it to remove it, drag to move it. RUN travels the points, GLIDE smooths the way, RATE sets the speed. REC records your movement from the next bar (press PLAY first), LEN sets its length, DRIFT lets it change a little every round, STOP ends it. The arrows on the ring switch the set. CATCH and FLUSH work in the set CRUMBS. Knobs: drag up for more, double tap to reset.</p>
 <p><b>VOCODER:</b> your voice shapes a carrier. The top row picks it: CHORD plays a synth chord, DRONE a deep single tone, NOISE gives a whisper, SAMPLE picks any sound from your Audiotool library. Tap a note on the ring to set the key. MAJ, MIN and PWR set the chord and the scale. FOLLOW makes CHORD or DRONE follow your singing in that key, without it they hold the key note. OCT switches between LOW and MID. CLARITY brings out consonants, VOICE blends your own voice back in.</p>
-<p><b>MULTI:</b> MODULATION, ROBO, GRIT, DELAY and REVERB. Tap a button to switch an effect on or off, turn its knob for the amount. Hold a button and drag it left or right to change the order, the ring shows the chain. GRIT goes from fine grain over folded edges to broken micro grains.</p>
+<p><b>MULTI:</b> MODULATION, ROBO, GRIT, DELAY and REVERB. Tap a button to switch an effect on or off. Hold a button and drag it left or right to change the order, the ring shows the chain. Tap an effect name on the ring to pick it, then play it with your finger in the glass like an XY pad: left to right changes its character (RATE, PITCH, GRAIN, TIME, SIZE), bottom to top its intensity (DEPTH, MIX, AMOUNT, FEEDBACK, MIX). The point stays where you let go. GRIT goes from fine grain over folded edges to broken micro grains.</p>
 <p><b>Export</b> includes the whole chain in your order. On SNADPAD it includes what you recorded with REC, held points and RUN. Free playing without REC is live only.</p></details>
 
 <details><summary>EXPORT</summary>
@@ -646,6 +646,7 @@
 <details><summary>SETTINGS</summary>
 <p><b>CALIBRATE:</b> headphones on, four high clicks count in, then clap along to 8 clicks. Do this once per device and when you change headphones.</p>
 <p><b>AUTO ENHANCE:</b> when ON, every new recording is cleaned up and evened out automatically. OFF keeps it raw.</p>
+<p><b>FINGERPRINTS:</b> shows a glowing print wherever you touch, gone after a moment. A light tap leaves a fingertip, a held or dragged finger a full print. OFF switches it off.</p>
 <p><b>CLICK PITCH:</b> tunes the metronome to a note, so you can sing in key.</p>
 <p><b>THEME:</b> switches between dark and bright.</p></details>
 
@@ -665,11 +666,11 @@
     <div class="tlist" id="tlist"></div>
   </div>
 
-  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 0.96</span></div>
+  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 0.98</span></div>
 </div>
 
 <script type="module">
-/* DREX MB  REV 0.96  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
+/* DREX MB  REV 0.98  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
 const $=(id)=>document.getElementById(id);
 const device=$("device");
 const waveCanvas=$("wave"), wctx=waveCanvas.getContext("2d");
@@ -874,7 +875,7 @@ function drawRings(root, db, cx, cy, R, R0, a0, a1, fs, w){
 }
 function arcLoop(){ drawArc(); requestAnimationFrame(arcLoop); }
 
-/* ================= ENGINE (REV 0.96) =================
+/* ================= ENGINE (REV 0.98) =================
    Eine Audio-Uhr fuer alles: Aufnahme, Count-in, Metronom, Abspielen.
    Aufnahme sampelgenau per AudioWorklet (Fallback ScriptProcessor), kein MediaRecorder mehr. */
 const AC=window.AudioContext||window.webkitAudioContext;
@@ -2905,7 +2906,7 @@ const VocDSPClass=new Function(VOC_DSP_SRC+"; return VocDSP;")();
 /* GRIT: Koernung (Abtasten mit wackelnder Haltezeit), Falten (pegelunabhaengig), Mikro-Koerner 5 bis 30 ms (wiederholen, auslassen, rueckwaerts).
    Zufall aus Zaehlern, beim Start der Wiedergabe zurueckgesetzt, Export rechnet mit derselben Klasse. */
 const GRIT_SRC=`class GritDSP{
-  constructor(sr){ this.sr=sr; this.a=0.5; this.M=16384; this.bL=new Float32Array(this.M); this.bR=new Float32Array(this.M); this.w=0;
+  constructor(sr){ this.sr=sr; this.a=0.5; this.sz=0.5; this.M=16384; this.bL=new Float32Array(this.M); this.bR=new Float32Array(this.M); this.w=0;
     this.hL=0; this.hR=0; this.hc=0; this.hn=0; this.hi=0; this.e=0; this.eA=1-Math.exp(-1/(sr*0.004)); this.eR=1-Math.exp(-1/(sr*0.06));
     this.gs=0; this.gt=0; this.gl=1; this.rep=1; this.act=0; this.nact=0; this.prevAct=0; this.gi=-1; this.r=Math.max(8,Math.round(sr*0.0015)); this.lpL=0; this.lpR=0; }
   reset(){ this.hi=0; this.gi=-1; this.gt=0; this.gl=1; this.hc=0; this.act=0; this.prevAct=0; }
@@ -2914,7 +2915,7 @@ const GRIT_SRC=`class GritDSP{
     if(u<0.32*s3) return 1; if(u<0.46*s3) return 2; if(u<0.66*s3) return 3; return 0; }
   process(L,R,oL,oR,n){
     const a=this.a, sr=this.sr, s1=Math.min(1,a/0.4), s2=Math.max(0,Math.min(1,(a-0.3)/0.4)), s3=Math.max(0,Math.min(1,(a-0.6)/0.4));
-    const hb=1+s1*s1*11*(sr/48000), q=Math.pow(2,15-s1*8), drive=1+s2*5.5, M=this.M, msk=M-1;
+    const sz=this.sz, hb=1+s1*s1*11*(sr/48000)*(0.3+1.4*sz), q=Math.pow(2,15-s1*8), drive=1+s2*5.5, M=this.M, msk=M-1;
     for(let i=0;i<n;i++){ const xl=L[i], xr=R[i];
       // 1) Koernung: Abtasten mit wackelnder Haltezeit, grobere Stufen
       if(--this.hc<=0){ this.hi++; this.hc=Math.max(1,Math.round(hb*(0.4+1.2*this.h(this.hi,3)))); this.hL=Math.round(xl*q)/q; this.hR=Math.round(xr*q)/q; }
@@ -2925,7 +2926,7 @@ const GRIT_SRC=`class GritDSP{
       this.bL[this.w]=yl; this.bR[this.w]=yr;
       // 3) Mikro-Koerner: wiederholen, auslassen, rueckwaerts
       if(s3>0){
-        if(this.gt>=this.gl){ this.gi++; this.prevAct=this.act; this.gs=this.w; this.gt=0; this.gl=Math.round(sr*(0.005+0.025*this.h(this.gi,11)));
+        if(this.gt>=this.gl){ this.gi++; this.prevAct=this.act; this.gs=this.w; this.gt=0; this.gl=Math.round(sr*(0.003+0.012*sz+(0.01+0.03*sz)*this.h(this.gi,11)));
           this.act=this.pick(this.gi); this.nact=this.pick(this.gi+1); if(this.act===1||this.act===3) this.rep=this.gl; }
         let ol, or;
         if(this.act===0){ ol=yl; or=yr; }
@@ -2945,19 +2946,19 @@ const GRIT_SRC=`class GritDSP{
 }`;
 const GRIT_WORKLET=GRIT_SRC+`
 class GritProc extends AudioWorkletProcessor{
-  constructor(o){ super(); this.d=new GritDSP(sampleRate); const po=o&&o.processorOptions; if(po&&po.a!=null) this.d.a=po.a;
-    this.port.onmessage=m=>{ const q=m.data; if(q.a!=null) this.d.a=q.a; if(q.reset) this.d.reset(); }; }
+  constructor(o){ super(); this.d=new GritDSP(sampleRate); const po=o&&o.processorOptions; if(po&&po.a!=null) this.d.a=po.a; if(po&&po.sz!=null) this.d.sz=po.sz;
+    this.port.onmessage=m=>{ const q=m.data; if(q.a!=null) this.d.a=q.a; if(q.sz!=null) this.d.sz=q.sz; if(q.reset) this.d.reset(); }; }
   process(ins,outs){ const o=outs[0], n=o[0].length, i=ins[0]||[], L=i[0]||new Float32Array(n), R=i[1]||L; this.d.process(L,R,o[0],o[1]||new Float32Array(n),n); return true; }
 }
 registerProcessor("drex-grit", GritProc);`;
 const GritDSPClass=new Function(GRIT_SRC+"; return GritDSP;")();
-async function gritNode(ctx, a){
+async function gritNode(ctx, gs){ const a=gs.a, sz=gs.x;
   if(ctx.audioWorklet && typeof AudioWorkletNode!=="undefined"){
     try{ if(!ctx.__grit){ const url=URL.createObjectURL(new Blob([GRIT_WORKLET],{type:"application/javascript"})); ctx.__grit=ctx.audioWorklet.addModule(url); }
-      await ctx.__grit; return new AudioWorkletNode(ctx,"drex-grit",{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[2],channelCount:2,channelCountMode:"explicit",processorOptions:{a}}); }catch(e){ console.log("[GRIT]", e&&e.message); } }
+      await ctx.__grit; return new AudioWorkletNode(ctx,"drex-grit",{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[2],channelCount:2,channelCountMode:"explicit",processorOptions:{a,sz}}); }catch(e){ console.log("[GRIT]", e&&e.message); } }
   if(ctx instanceof OfflineAudioContext || !ctx.createScriptProcessor) return null;
-  const d=new GritDSPClass(ctx.sampleRate), sp=ctx.createScriptProcessor(1024,2,2); d.a=a;
-  sp.port={postMessage(q){ if(q.a!=null) d.a=q.a; if(q.reset) d.reset(); }};
+  const d=new GritDSPClass(ctx.sampleRate), sp=ctx.createScriptProcessor(1024,2,2); d.a=a; d.sz=sz;
+  sp.port={postMessage(q){ if(q.a!=null) d.a=q.a; if(q.sz!=null) d.sz=q.sz; if(q.reset) d.reset(); }};
   sp.onaudioprocess=ev=>{ const ib=ev.inputBuffer, L=ib.getChannelData(0), Rr=ib.numberOfChannels>1?ib.getChannelData(1):L; d.process(L,Rr,ev.outputBuffer.getChannelData(0),ev.outputBuffer.getChannelData(1),L.length); };
   return sp;
 }
@@ -2967,13 +2968,13 @@ const MULTI_FX=[["mod","MODULATION","MOD"],["robo","ROBO","ROBO"],["grit","GRIT"
 function fxDefault(){ return { order:["voc","pad","multi"], on:{voc:false,pad:true,multi:false},
   voc:{car:"chord",root:0,ch:"min",follow:1,reg:-12,clar:0.4,dry:0,cs:null,v2:1}, morder:MULTI_K.slice(),
   pad:null, padLoop:null, padLoopBars:0,
-  multi:{mod:{on:false,a:0.5},robo:{on:false,a:0.5},grit:{on:false,a:0.5},delay:{on:false,a:0.4},verb:{on:false,a:0.4}} }; }
+  multi:{mod:{on:false,a:0.5,x:0.4},robo:{on:false,a:0.5,x:0.5},grit:{on:false,a:0.5,x:0.5},delay:{on:false,a:0.4,x:0.5},verb:{on:false,a:0.4,x:0.45}} }; }
 let fxSt=fxDefault(), fxRootId=null, fxSaveT=0, fxVcMono=null, fxVcKey="";
 function fxSave(){ const r=rootOf(selTake()); if(!r) return; fxSt.pad=padP.slice(); r.fx=JSON.parse(JSON.stringify(fxSt)); clearTimeout(fxSaveT); fxSaveT=setTimeout(()=>dbPut(r),400); }
 function fxLoadFrom(r){
   const id=r?r.id:null; if(id===fxRootId) return; fxRootId=id;
   const d=fxDefault(); fxSt=r&&r.fx ? Object.assign(d, JSON.parse(JSON.stringify(r.fx))) : d;
-  fxSt.multi=Object.assign(fxDefault().multi, fxSt.multi||{}); fxSt.voc=Object.assign(fxDefault().voc, fxSt.voc||{});
+  fxSt.multi=Object.assign(fxDefault().multi, fxSt.multi||{}); { const dm=fxDefault().multi; MULTI_K.forEach(k=>{ fxSt.multi[k]=Object.assign({}, dm[k], fxSt.multi[k]); }); } fxSt.voc=Object.assign(fxDefault().voc, fxSt.voc||{});
   if(!r||!r.fx||!r.fx.voc||!r.fx.voc.v2){ fxSt.voc.clar=Math.max(fxSt.voc.clar||0,0.4); fxSt.voc.v2=1; }
   if(!Array.isArray(fxSt.morder) || fxSt.morder.length!==MULTI_K.length || !MULTI_K.every(k=>fxSt.morder.includes(k))) fxSt.morder=MULTI_K.slice();
   if(multiLive) multiLive.rewire(fxSt.morder);
@@ -3035,7 +3036,7 @@ async function ensureChain(){
   if(chainReady) return; if(!ac) wakeAudio(); ensureMix();
   if(!fxW.voc){ fxW.voc=fxWrap(ac); fxW.pad=fxWrap(ac); fxW.multi=fxWrap(ac); }
   if(!fxW.multi.dev){ multiLive=buildMulti(ac); fxW.multi.send.connect(multiLive.inp); multiLive.out.connect(fxW.multi.out); fxW.multi.dev=multiLive; fxWire();
-    gritNode(ac, fxSt.multi.grit.a).then(n=>{ if(n && multiLive && !multiLive.grit) multiLive.attachGrit(n); }); }
+    gritNode(ac, fxSt.multi.grit).then(n=>{ if(n && multiLive && !multiLive.grit) multiLive.attachGrit(n); }); }
   try{ const v=await ensureVoc(); if(!fxW.voc.dev){ fxW.voc.send.connect(v); v.connect(fxW.voc.out); fxW.voc.dev=v; fxWire(); } }catch(e){ console.log("[VOC]", e&&e.message); }
   try{ const p=await ensurePad(); if(!fxW.pad.dev){ fxW.pad.send.connect(p); p.connect(fxW.pad.out); fxW.pad.dev=p; fxWire(); } }catch(e){ console.log("[PAD]", e&&e.message); }
   chainReady=!!(fxW.voc.dev && fxW.pad.dev && fxW.multi.dev); fxApply();
@@ -3045,6 +3046,9 @@ function fxLayerDest(t, bus){ return (t.noFx || !fxIn) ? bus : fxIn; }
 /* ---- MULTI: Modulation, Robo, Grit, Delay, Reverb in frei sortierbarer Reihenfolge, je An/Aus und ein Hauptregler ---- */
 function verbIR(ctx, sec){ const sr=ctx.sampleRate, n=Math.round(sr*sec), b=ctx.createBuffer(2,n,sr); let s=777;
   for(let c=0;c<2;c++){ const d=b.getChannelData(c); for(let i=0;i<n;i++){ s=(s*1103515245+12345)&0x7fffffff; const t=i/n; d[i]=(s/0x3fffffff-1)*Math.pow(1-t,2.6)*(i<sr*0.012?i/(sr*0.012):1); } } return b; }
+const DELAY_BEATS=[0.25,0.5,0.75,1,1.5], DELAY_NAMES=["1/16","1/8","1/8 DOT","1/4","1/4 DOT"];
+function delayIdx(x){ return Math.max(0,Math.min(4,Math.round(x*4))); }
+const MULTI_AX={mod:["RATE","DEPTH"], robo:["PITCH","MIX"], grit:["GRAIN","AMOUNT"], delay:["TIME","FEEDBACK"], verb:["SIZE","MIX"]};
 function buildMulti(ctx){
   const inp=ctx.createGain(), out=ctx.createGain(), N={};
   const stage=(nm)=>{ const i=ctx.createGain(), dry=ctx.createGain(), wet=ctx.createGain(), o=ctx.createGain(); i.connect(dry); dry.connect(o); wet.connect(o); N[nm]={i,dry,wet,o}; return N[nm]; };
@@ -3060,19 +3064,20 @@ function buildMulti(ctx){
   const dl=stage("delay"); { const d1=ctx.createDelay(2), d2=ctx.createDelay(2), fb=ctx.createGain(), lp=ctx.createBiquadFilter(), mg=ctx.createChannelMerger(2); lp.type="lowpass"; lp.frequency.value=4200;
     dl.i.connect(d1); d1.connect(lp); lp.connect(fb); fb.connect(d1); lp.connect(d2); lp.connect(mg,0,0); d2.connect(mg,0,1); mg.connect(dl.wet); N.delay.x={d1,d2,fb}; }
   // REVERB: Faltungshall
-  const v=stage("verb"); { const cv=ctx.createConvolver(); cv.buffer=verbIR(ctx,2.6); v.i.connect(cv); cv.connect(v.wet); }
+  const v=stage("verb"); { const c1=ctx.createConvolver(), c2=ctx.createConvolver(), g1=ctx.createGain(), g2=ctx.createGain(); c1.buffer=verbIR(ctx,1.1); c2.buffer=verbIR(ctx,4.8);
+    v.i.connect(c1); v.i.connect(c2); c1.connect(g1); c2.connect(g2); g1.connect(v.wet); g2.connect(v.wet); N.verb.x={g1,g2}; }
   const rewire=(ord)=>{ try{ inp.disconnect(); }catch(_){} MULTI_K.forEach(k=>{ try{ N[k].o.disconnect(); }catch(_){} });
     let last=inp; (ord||MULTI_K).forEach(k=>{ last.connect(N[k].i); last=N[k].o; }); last.connect(out); };
   rewire(fxSt.morder);
   let an=null; if(!(ctx instanceof OfflineAudioContext)){ an=ctx.createAnalyser(); an.fftSize=1024; an.smoothingTimeConstant=0; out.connect(an); }
   const set=(p,v2)=>{ if(ctx instanceof OfflineAudioContext || !ctx.currentTime) p.value=v2; else p.setTargetAtTime(v2,ctx.currentTime,0.03); };
   const update=(st, root)=>{ const b=(root&&root.bpm)||bpm, rootN=fxSt.voc.root;
-    const mo=st.mod, a=mo.a; set(N.mod.dry.gain,1); set(N.mod.wet.gain,mo.on?0.6:0); set(N.mod.x.lfo.frequency,0.35+a*0.9);
-    const base=0.012-a*0.009; set(N.mod.x.dl.delayTime,base); set(N.mod.x.dr.delayTime,base*1.15); set(N.mod.x.dA.gain,base*0.45); set(N.mod.x.dB.gain,-base*0.45); set(N.mod.x.fb.gain,a>0.5?(a-0.5)*1.5:0);
-    const ro=st.robo; set(N.robo.dry.gain,ro.on?1-ro.a*0.85:1); set(N.robo.wet.gain,ro.on?ro.a*1.2:0); set(N.robo.x.osc.frequency,440*Math.pow(2,(36+rootN-69)/12)*(0.5+ro.a));
-    const gr=st.grit, gn=N.grit.x.node; set(N.grit.dry.gain,gr.on&&gn?0:1); set(N.grit.wet.gain,gr.on&&gn?1:0); if(gn) gn.port.postMessage({a:gr.a});
-    const de=st.delay, t8=Math.min(1.9,60/b*0.75); set(N.delay.dry.gain,1); set(N.delay.wet.gain,de.on?de.a*0.8:0); set(N.delay.x.d1.delayTime,t8); set(N.delay.x.d2.delayTime,Math.min(1.9,60/b*0.25)); set(N.delay.x.fb.gain,de.on?0.2+de.a*0.5:0);
-    const ve=st.verb; set(N.verb.dry.gain,1); set(N.verb.wet.gain,ve.on?ve.a*0.9:0);
+    const mo=st.mod, a=mo.a; set(N.mod.dry.gain,1); set(N.mod.wet.gain,mo.on?0.65*Math.min(1,0.15+a*1.2):0); set(N.mod.x.lfo.frequency,0.1*Math.pow(40,mo.x));
+    const base=0.012-a*0.009; set(N.mod.x.dl.delayTime,base); set(N.mod.x.dr.delayTime,base*1.15); set(N.mod.x.dA.gain,base*0.45*(0.3+0.7*a)); set(N.mod.x.dB.gain,-base*0.45*(0.3+0.7*a)); set(N.mod.x.fb.gain,a>0.55?(a-0.55)*1.6:0);
+    const ro=st.robo; set(N.robo.dry.gain,ro.on?1-ro.a*0.85:1); set(N.robo.wet.gain,ro.on?ro.a*1.2:0); set(N.robo.x.osc.frequency,440*Math.pow(2,(24+rootN-69)/12)*Math.pow(16,ro.x));
+    const gr=st.grit, gn=N.grit.x.node; set(N.grit.dry.gain,gr.on&&gn?0:1); set(N.grit.wet.gain,gr.on&&gn?1:0); if(gn) gn.port.postMessage({a:gr.a, sz:gr.x});
+    const de=st.delay, t8=Math.min(1.9,60/b*DELAY_BEATS[delayIdx(de.x)]); set(N.delay.dry.gain,1); set(N.delay.wet.gain,de.on?Math.min(0.8,0.25+de.a*0.6):0); set(N.delay.x.d1.delayTime,t8); set(N.delay.x.d2.delayTime,Math.min(1.9,t8/3)); set(N.delay.x.fb.gain,de.on?Math.min(0.78,0.05+de.a*0.75):0);
+    const ve=st.verb; set(N.verb.dry.gain,1); set(N.verb.wet.gain,ve.on?ve.a*0.9:0); set(N.verb.x.g1.gain,Math.cos(ve.x*Math.PI/2)); set(N.verb.x.g2.gain,Math.sin(ve.x*Math.PI/2)*0.85);
   };
   update(fxSt.multi, rootOf(selTake()));
   const res={inp, out, update, rewire, an, grit:null, connect(x){ out.connect(x); }};
@@ -3116,7 +3121,7 @@ async function exPad(b, sr, root){
 }
 async function exMulti(b, sr, root, total){
   const oc=new OfflineAudioContext(2,b.length,sr), src=oc.createBufferSource(); src.buffer=b;
-  const mu=buildMulti(oc); const gn=fxSt.multi.grit.on ? await gritNode(oc, fxSt.multi.grit.a) : null; if(gn) mu.attachGrit(gn);
+  const mu=buildMulti(oc); const gn=fxSt.multi.grit.on ? await gritNode(oc, fxSt.multi.grit) : null; if(gn) mu.attachGrit(gn);
   mu.rewire(fxSt.morder); mu.update(fxSt.multi, root); src.connect(mu.inp); mu.out.connect(oc.destination); src.start(0);
   return await oc.startRendering();
 }
@@ -3157,12 +3162,10 @@ fxKnob($("kClar"), ()=>fxSt.voc.clar, f=>vocSet({clar:f}), 0.4);
 fxKnob($("kDry"), ()=>fxSt.voc.dry, f=>vocSet({dry:f}), 0);
 
 /* ---- MULTI: Tasten (Tippen = an/aus, lange druecken und ziehen = Reihenfolge) und Knoepfe ---- */
-let mFocus="", mFocusT=0;
-(function(){ const bx=$("mBtns"), kx=$("mKnobs");
+let mSel="mod", mTouch=false;
+(function(){ const bx=$("mBtns");
   MULTI_FX.forEach(([k,name,sh])=>{
     const b=document.createElement("button"); b.className="fxb surf pk"; b.id="m_"+k; b.dataset.k=k; b.textContent=sh; bx.appendChild(b);
-    const d=document.createElement("div"); d.className="fxk"; d.id="mk_"+k; d.innerHTML='<canvas></canvas><span>'+sh+'<b>50</b></span>'; kx.appendChild(d);
-    fxKnob(d, ()=>fxSt.multi[k].a, f=>{ fxSt.multi[k].a=f; mFocus=k; mFocusT=performance.now(); fxApply(); fxSave(); fxRender(); }, fxDefault().multi[k].a);
     let md=null;
     b.addEventListener("pointerdown", e=>{ md={x:e.clientX, y:e.clientY, lift:false, cancel:false, t:setTimeout(()=>{ if(!md) return; md.lift=true; b.classList.add("lift"); try{ navigator.vibrate&&navigator.vibrate(12); }catch(_){} }, 380)};
       try{ b.setPointerCapture(e.pointerId); }catch(_){} });
@@ -3172,15 +3175,15 @@ let mFocus="", mFocusT=0;
       if(to!==from){ o.splice(from,1); o.splice(to,0,k); mOrderCss(); } });
     const end=(ok)=>{ if(!md) return; clearTimeout(md.t);
       if(md.lift){ b.classList.remove("lift"); if(multiLive) multiLive.rewire(fxSt.morder); fxSave(); }
-      else if(ok && !md.cancel){ fxSt.multi[k].on=!fxSt.multi[k].on; if(fxSt.multi[k].on && !fxSt.on.multi) fxSt.on.multi=true; mFocus=k; mFocusT=performance.now(); fxApply(); fxSave(); }
+      else if(ok && !md.cancel){ fxSt.multi[k].on=!fxSt.multi[k].on; if(fxSt.multi[k].on && !fxSt.on.multi) fxSt.on.multi=true; mSel=k; fxApply(); fxSave(); }
       md=null; fxRender(); };
     b.addEventListener("pointerup", ()=>end(true)); b.addEventListener("pointercancel", ()=>end(false));
     b.addEventListener("contextmenu", e=>e.preventDefault());
     b.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); fxSt.multi[k].on=!fxSt.multi[k].on; fxApply(); fxSave(); fxRender(); } });
   });
 })();
-function mOrderCss(){ fxSt.morder.forEach((k,i)=>{ $("m_"+k).style.order=i; $("mk_"+k).style.order=i; }); }
-function multiUi(){ mOrderCss(); MULTI_FX.forEach(([k])=>{ const st=fxSt.multi[k], el=$("mk_"+k); $("m_"+k).classList.toggle("on", !!st.on); pDrawKnob(el, st.a); el.querySelector("b").textContent=Math.round(st.a*100); }); }
+function mOrderCss(){ fxSt.morder.forEach((k,i)=>{ $("m_"+k).style.order=i; }); }
+function multiUi(){ mOrderCss(); MULTI_FX.forEach(([k])=>{ $("m_"+k).classList.toggle("on", !!fxSt.multi[k].on); }); }
 
 /* ---- Scheiben fuer VOCODER und MULTI (gleiche Bauart wie das Pad) ---- */
 const vD={el:$("vDisc"), cv:$("vCv"), mode:"full"}, mD={el:$("mDisc"), cv:$("mCv"), mode:"none"};
@@ -3231,33 +3234,51 @@ function vDraw(){
 vD.cv.addEventListener("pointerdown", e=>{ if(!vTonal()) return; const [x,y]=dPos(vD,e), dx=x-PC, dy=y-PC, d=Math.hypot(dx,dy); if(d<PR-4||d>296) return;
   let a=Math.atan2(dx,-dy)*180/Math.PI; if(a<0) a+=360; vocSet({root:Math.round(a/30)%12}); });
 let mScope=null;
+function mName(k){ return MULTI_FX.find(m=>m[0]===k)[1]; }
+function mVal(k,ax){ const st=fxSt.multi[k]; if(ax===0) return k==="delay" ? DELAY_NAMES[delayIdx(st.x)] : String(Math.round(st.x*100)); return String(Math.round(st.a*100)); }
 function mDraw(){
   if(!dLayout(mD)) return; const g=mD.g, br=PB(), on=!!fxSt.on.multi, ord=fxSt.morder;
+  if(ord.indexOf(mSel)<0) mSel=ord[0];
   g.clearRect(0,0,PS,PS); g.drawImage(mD.bz,0,0,PS,PS);
-  ord.forEach((k,idx)=>{ const st=fxSt.multi[k], c=idx*72, a0=(c-30-90)*Math.PI/180, a1=(c+30-90)*Math.PI/180, lit=on&&st.on;
+  const GR="rgb("+P_GOLD+")", GRB=br?"#0E9A64":GR;
+  ord.forEach((k,idx)=>{ const st=fxSt.multi[k], c=idx*72, a0=(c-30-90)*Math.PI/180, a1=(c+30-90)*Math.PI/180, lit=on&&st.on, sel=k===mSel;
+    if(sel){ g.strokeStyle=br?"rgba(14,154,100,.55)":"rgba(50,235,164,.45)"; g.lineWidth=17; g.beginPath(); g.arc(PC,PC,250,a0-0.02,a1+0.02); g.stroke(); }
     g.strokeStyle=br?"rgba(22,20,27,.28)":"#060607"; g.lineWidth=11; g.beginPath(); g.arc(PC,PC,250,a0,a1); g.stroke();
     if(st.a>0.005){ g.strokeStyle=lit?"rgb("+P_HOT+")":(br?"rgba(22,20,27,.3)":"rgba("+P_WARM+",.18)"); if(lit){ g.shadowColor="rgba(255,39,133,.8)"; g.shadowBlur=br?4:10; }
       g.lineWidth=7; g.beginPath(); g.arc(PC,PC,250,a0,a0+(a1-a0)*st.a); g.stroke(); g.shadowBlur=0; }
-    const top=!(c>90&&c<270), nm=MULTI_FX.find(m=>m[0]===k)[1];
+    const top=!(c>90&&c<270);
     g.save(); g.translate(PC,PC); g.rotate((top?c:c-180)*Math.PI/180); g.translate(-PC,-PC);
-    pArcText(g, nm, top?272:278, top, "700 12px SnadMono,monospace", lit?(br?"#C2125F":"rgb("+P_HOT+")"):(br?"rgba(22,20,27,.7)":"rgba("+P_WARM+",.7)"), 2.4, 56);
-    g.restore(); });
+    if(sel && !br){ g.shadowColor="rgba(50,235,164,.8)"; g.shadowBlur=10; }
+    pArcText(g, mName(k), top?272:278, top, "700 12px SnadMono,monospace", sel?GRB:lit?(br?"#C2125F":"rgb("+P_HOT+")"):(br?"rgba(22,20,27,.7)":"rgba("+P_WARM+",.7)"), 2.4, 56);
+    g.shadowBlur=0; g.restore(); });
   dGlassBg(g);
   const an=multiLive&&multiLive.an; if(an){ if(!mScope) mScope=new Float32Array(an.fftSize); an.getFloatTimeDomainData(mScope); }
-  const live=an&&playing&&on, M=256, gr=live&&fxSt.multi.grit.on;
-  for(let pass=0;pass<2;pass++){ g.beginPath();
-    for(let i=0;i<=M;i++){ const s0=live?Math.max(-1,Math.min(1,mScope[(i%M)*4]*(pass?1.6:1))):0, ang=i/M*360, p=pPolar(PR*(0.5+(pass?0.04:0))+s0*PR*0.36, ang); if(i) g.lineTo(p[0],p[1]); else g.moveTo(p[0],p[1]); }
-    const col=pass?(gr?P_HOT:P_GOLD):P_GOLD; g.strokeStyle="rgba("+col+","+(pass?(live?0.35:0.08):(live?0.9:0.3))+")"; g.lineWidth=pass?0.8:1.6;
-    if(live&&!pass&&!br){ g.shadowColor="rgba(50,235,164,.6)"; g.shadowBlur=10; } g.stroke(); g.shadowBlur=0; }
-  const recent=performance.now()-mFocusT<2200 && mFocus;
-  let l1, l2;
-  if(recent){ const st=fxSt.multi[mFocus]; l1=MULTI_FX.find(m=>m[0]===mFocus)[1]; l2=(st.on?"ON":"OFF")+"  "+Math.round(st.a*100); }
-  else { const n=ord.filter(k=>fxSt.multi[k].on).length; l1="MULTI"; l2=ord.map(k=>MULTI_FX.find(m=>m[0]===k)[2]).join(" > "); if(!n) l2="TAP TO SWITCH, HOLD TO MOVE"; }
-  dText(g, l1, PC, PC-8, "34px VT323, monospace", "rgb("+P_GOLD+")", br?null:"rgba(50,235,164,.55)");
-  dText(g, l2, PC, PC+20, "15px VT323, monospace", "rgba("+P_WARM+",.75)");
-  if(!on) dText(g, "MULTI OFF", PC, PC+44, "14px VT323, monospace", "rgba("+P_HOT+",.85)");
+  const live=an&&playing&&on, M=256;
+  g.beginPath(); for(let i=0;i<=M;i++){ const s0=live?Math.max(-1,Math.min(1,mScope[(i%M)*4])):0, p=pPolar(PR*0.5+s0*PR*0.36, i/M*360); if(i) g.lineTo(p[0],p[1]); else g.moveTo(p[0],p[1]); }
+  g.strokeStyle="rgba("+P_GOLD+","+(live?0.4:0.12)+")"; g.lineWidth=1.2; g.stroke();
+  const st=fxSt.multi[mSel], lit=on&&st.on, P=pToDisc(st.x,1-st.a), col=lit?P_HOT:P_GOLD;
+  g.setLineDash([3,5]); g.strokeStyle="rgba("+col+","+(lit?0.55:0.3)+")"; g.lineWidth=1; g.beginPath(); g.moveTo(PC-PR,P[1]); g.lineTo(PC+PR,P[1]); g.moveTo(P[0],PC-PR); g.lineTo(P[0],PC+PR); g.stroke(); g.setLineDash([]);
+  const gl=g.createRadialGradient(P[0],P[1],0,P[0],P[1],mTouch?40:28); gl.addColorStop(0,"rgba("+col+","+(lit?0.55:0.25)+")"); gl.addColorStop(1,"rgba("+col+",0)"); g.fillStyle=gl; g.fillRect(P[0]-40,P[1]-40,80,80);
+  g.fillStyle="rgba("+col+","+(lit?1:0.6)+")"; g.beginPath(); g.arc(P[0],P[1],mTouch?7:5.5,0,P2); g.fill();
+  const AX=MULTI_AX[mSel];
+  dText(g, mName(mSel), PC, PC-PR+56, "30px VT323, monospace", GR, br?null:"rgba(50,235,164,.55)");
+  dText(g, AX[0]+" "+mVal(mSel,0)+"   "+AX[1]+" "+mVal(mSel,1), PC, PC-PR+82, "16px VT323, monospace", "rgba("+P_WARM+",.8)");
+  dText(g, "<  "+AX[0]+"  >", PC, PC+PR-26, "15px VT323, monospace", "rgba("+P_WARM+",.5)");
+  g.save(); g.translate(PC-PR+24,PC); g.rotate(-Math.PI/2); dText(g, "<  "+AX[1]+"  >", 0, 0, "15px VT323, monospace", "rgba("+P_WARM+",.5)"); g.restore();
+  const hint=!on?"MULTI OFF":!st.on?"SWITCH "+MULTI_FX.find(m=>m[0]===mSel)[2]+" ON BELOW":"";
+  if(hint) dText(g, hint, PC, PC+PR-50, "14px VT323, monospace", "rgba("+P_HOT+",.85)");
   g.restore(); g.drawImage(mD.gl,0,0,PS,PS);
 }
+(function(){ const cv=mD.cv; let drag=false;
+  const put=e=>{ const [x,y]=dPos(mD,e), f=pFromDisc(x,y), st=fxSt.multi[mSel]; st.x=f[0]; st.a=1-f[1]; fxApply(); };
+  cv.addEventListener("pointerdown", e=>{ const [x,y]=dPos(mD,e), d=Math.hypot(x-PC,y-PC);
+    if(d>PR+2 && d<296){ let a=Math.atan2(x-PC,-(y-PC))*180/Math.PI; if(a<0) a+=360; mSel=fxSt.morder[Math.round(a/72)%MULTI_K.length]; fxRender(); return; }
+    if(d>PR) return; drag=true; mTouch=true; try{ cv.setPointerCapture(e.pointerId); }catch(_){} put(e); });
+  cv.addEventListener("pointermove", e=>{ if(drag) put(e); });
+  const end=()=>{ if(!drag) return; drag=false; mTouch=false; fxSave(); fxRender(); };
+  cv.addEventListener("pointerup", end); cv.addEventListener("pointercancel", end);
+  ["touchstart","touchmove"].forEach(ev=>cv.addEventListener(ev, e=>{ if(e.cancelable) e.preventDefault(); }, {passive:false}));
+})();
 function fxRender(){
   const st=fxStack();
   fxChainEl.innerHTML=fxSt.order.map((k,i)=>'<button class="fxslot'+(fxTab===k?' sel':'')+(fxSt.on[k]?' on':'')+'" data-k="'+k+'"><i></i>'+FX_NAMES[k]+'</button>').join("");
@@ -3293,6 +3314,95 @@ function padLoopCapture(ls){
   if(ls===3) setTimeout(()=>{ if(padLoop && padTel && Math.round(padTel[0])===3){ fxSt.padLoop=Array.from(padLoop); fxSt.padLoopBars=padTel[17]||1; fxSave(); } }, 700);
   else if(ls===0 && fxSt.padLoop){ fxSt.padLoop=null; fxSave(); }
 }
+
+/* ===== FINGERPRINTS: leuchtende Abdruecke an der Tippstelle, nach kurzer Zeit weg.
+   Linien nach dem Gabor-Verfahren (Orientierungsfeld einer Schleife, Rauschen entlang der Linien gefiltert), im Hintergrund vorgerechnet.
+   Fingerspitze oder voller Finger: Kontaktflaeche, wenn das Geraet sie meldet, sonst Haltedauer und Ziehen. ===== */
+const FP={on:true, tex:[], tint:{}, prints:[], ptr:{}, cv:null, g:null, raf:0, n:0, sized:false};
+try{ FP.on=localStorage.getItem("drexmb_fp")!=="0"; }catch(e){}
+const fpBtn=$("fpBtn"), fpDiag=$("fpDiag");
+function fpSync(){ fpBtn.textContent=FP.on?"ON":"OFF"; fpBtn.classList.toggle("on",FP.on); }
+fpBtn.addEventListener("click", ()=>{ FP.on=!FP.on; try{ localStorage.setItem("drexmb_fp",FP.on?"1":"0"); }catch(e){} fpSync(); if(!FP.on){ FP.prints=[]; fpPaint(); } });
+fpSync();
+function fpNoise(seed){ const P=new Float32Array(4096); let s=seed; for(let i=0;i<4096;i++){ s=(s*1103515245+12345)&0x7fffffff; P[i]=s/0x7fffffff; }
+  return (x,y)=>{ const xi=Math.floor(x), yi=Math.floor(y), fx=x-xi, fy=y-yi, u=fx*fx*(3-2*fx), v=fy*fy*(3-2*fy), g=(a,b)=>P[((b&63)*64+(a&63))];
+    return (g(xi,yi)*(1-u)+g(xi+1,yi)*u)*(1-v)+(g(xi,yi+1)*(1-u)+g(xi+1,yi+1)*u)*v; }; }
+function fpRidges(seed){
+  const S=150, SH=195, N=S*SH; let a=new Float32Array(N), b=new Float32Array(N), s=seed*9301+49297;
+  const rnd=()=>{ s=(s*1103515245+12345)&0x7fffffff; return s/0x7fffffff; };
+  for(let i=0;i<N;i++) a[i]=rnd()<0.08?(rnd()<0.5?-1:1):0;
+  const core=[S*(0.48+0.08*(rnd()-0.5)), SH*0.40], delta=[S*(0.8+0.1*(rnd()-0.5)), SH*0.8]; if(rnd()<0.5) delta[0]=S-delta[0];
+  const th=new Float32Array(N), nz=fpNoise(seed*3+1);
+  for(let y=0;y<SH;y++) for(let x=0;x<S;x++) th[y*S+x]=0.5*(Math.atan2(y-core[1],x-core[0])-Math.atan2(y-delta[1],x-delta[0]))+(nz(x*0.03,y*0.03)-0.5)*0.35+Math.PI/2;
+  const f=1/6.2, R=5, sg=2.8, K=[];
+  for(let q=0;q<32;q++){ const an=q/32*Math.PI, c=Math.cos(an), sn=Math.sin(an), k=new Float32Array((2*R+1)*(2*R+1)); let m=0;
+    for(let dy=-R;dy<=R;dy++) for(let dx=-R;dx<=R;dx++){ const xr=dx*c+dy*sn, yr=-dx*sn+dy*c; k[m++]=Math.exp(-(xr*xr+yr*yr)/(2*sg*sg))*Math.cos(2*Math.PI*f*xr); } K.push(k); }
+  const qi=new Uint8Array(N); for(let i=0;i<N;i++){ const an=((th[i]%Math.PI)+Math.PI)%Math.PI; qi[i]=Math.round(an/Math.PI*32)%32; }
+  for(let it=0;it<8;it++){
+    for(let y=0;y<SH;y++) for(let x=0;x<S;x++){ const k=K[qi[y*S+x]]; let acc=0, m=0;
+      for(let dy=-R;dy<=R;dy++){ const yy=y+dy; if(yy<0||yy>=SH){ m+=2*R+1; continue; } const row=yy*S; for(let dx=-R;dx<=R;dx++,m++){ const xx=x+dx; if(xx>=0&&xx<S) acc+=a[row+xx]*k[m]; } }
+      b[y*S+x]=acc; }
+    for(let i=0;i<N;i++) a[i]=Math.tanh(b[i]*1.6);
+  }
+  return {a,S,SH,seed};
+}
+function fpMask(rd, tip){
+  const W=tip?96:120, H=tip?92:156, c=document.createElement("canvas"); c.width=W; c.height=H;
+  const g=c.getContext("2d"), im=g.createImageData(W,H), d=im.data, n2=fpNoise(rd.seed*5+2+(tip?9:0)), n3=fpNoise(rd.seed*11+7), S=rd.S, SH=rd.SH, a=rd.a;
+  const y0=tip?-1:-1, y1=tip?0.15:1, x0=tip?-0.8:-1, x1=tip?0.8:1;
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++){
+    const X=(x/(W-1))*2-1, Y=(y/(H-1))*2-1, e=X*X+Y*Y*(Y>0?1.1:0.95), edge=1+(n2(x/W*6,y/H*6)-0.5)*0.35; if(e>edge) continue;
+    const u=((x0+(X+1)/2*(x1-x0))*0.5+0.5)*(S-1), v=((y0+(Y+1)/2*(y1-y0))*0.5+0.5)*(SH-1), ui=Math.floor(u), vi=Math.floor(v); if(ui<0||vi<0||ui>=S-1||vi>=SH-1) continue;
+    const fu=u-ui, fv=v-vi, p=a[vi*S+ui]*(1-fu)*(1-fv)+a[vi*S+ui+1]*fu*(1-fv)+a[(vi+1)*S+ui]*(1-fu)*fv+a[(vi+1)*S+ui+1]*fu*fv;
+    const press=Math.max(0,1-Math.pow(e/edge,2.2))*(0.55+0.45*n3(x/W*3,y/H*3)), al=Math.pow(Math.max(0,p),0.8)*press, i=(y*W+x)*4;
+    d[i]=d[i+1]=d[i+2]=255; d[i+3]=Math.round(255*Math.min(1,al)); }
+  g.putImageData(im,0,0); return c;
+}
+function fpBuild(){ if(FP.tex.length>=3) return; const rd=fpRidges(17+FP.tex.length*31); FP.tex.push({full:fpMask(rd,false), tip:fpMask(rd,true)}); if(FP.tex.length<3) setTimeout(fpBuild, 350); }
+setTimeout(fpBuild, 1500);
+function fpTint(ti, v, col){ const key=ti+v+col; if(FP.tint[key]) return FP.tint[key]; const src=FP.tex[ti][v], c=document.createElement("canvas"); c.width=src.width; c.height=src.height;
+  const g=c.getContext("2d"); g.drawImage(src,0,0); g.globalCompositeOperation="source-in"; g.fillStyle=col; g.fillRect(0,0,c.width,c.height); return FP.tint[key]=c; }
+function fpCanvas(){ if(FP.cv) return; const c=document.createElement("canvas"); c.id="fpLayer"; c.style.cssText="position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:9999";
+  document.body.appendChild(c); FP.cv=c; FP.g=c.getContext("2d"); fpSize(); window.addEventListener("resize", fpSize); }
+function fpSize(){ if(!FP.cv) return; const d=window.devicePixelRatio||1; FP.cv.width=Math.round(innerWidth*d); FP.cv.height=Math.round(innerHeight*d); FP.g.setTransform(d,0,0,d,0,0); }
+function fpRgb(str){ const m=str&&str.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?\)/); return m?[+m[1],+m[2],+m[3],m[4]==null?1:+m[4]]:null; }
+function fpSurface(x,y){
+  let el=document.elementFromPoint(x,y); if(el && el.tagName==="CANVAS" && el.closest(".fxdisc")) return "dark";
+  for(let k=0;el&&k<8;k++,el=el.parentElement){ const cs=getComputedStyle(el); let c=null;
+    if(cs.backgroundImage && cs.backgroundImage.indexOf("gradient")>=0) c=fpRgb(cs.backgroundImage); if(!c || c[3]<0.5){ const b=fpRgb(cs.backgroundColor); if(b && b[3]>0.5) c=b; }
+    if(!c || c[3]<0.5) continue;
+    const mx=Math.max(c[0],c[1],c[2]), mn=Math.min(c[0],c[1],c[2]), sat=mx?(mx-mn)/mx:0, lum=(0.3*c[0]+0.59*c[1]+0.11*c[2])/255;
+    if(sat>0.45 && mx>150) return "color"; return lum<0.5?"dark":"light"; }
+  return document.body.classList.contains("bright")?"light":"dark";
+}
+function fpColor(surf){ FP.n++; const pk=FP.n%2===1;
+  if(surf==="color") return ["#ffffff",0.5]; if(surf==="light") return [pk?"#E0186F":"#0FA772",0.6]; return [pk?"#FF4A9A":"#4DF2B4",0.72]; }
+function fpAdd(o){ FP.prints.push(o); if(FP.prints.length>40) FP.prints.shift(); if(!FP.raf) FP.raf=requestAnimationFrame(fpPaint); }
+function fpPaint(){
+  FP.raf=0; if(!FP.g) return; const g=FP.g, now=performance.now(); g.clearRect(0,0,innerWidth,innerHeight);
+  FP.prints=FP.prints.filter(p=>!p.end || now-p.end<1600);
+  for(const p of FP.prints){
+    if(p.live && !p.sized && p.v==="tip" && now-p.t0>260) p.v="full";
+    const k=p.end?Math.max(0,Math.min(1,1-(now-p.end)/1600)):1, al=p.al*k*k*(3-2*k), grow=Math.min(1,(now-p.t0)/90);
+    const src=fpTint(p.ti,p.v,p.col), full=p.v==="full", w=(full?p.w:p.w*0.82)*(0.85+0.15*grow), h=w*(full?1.3:0.96)*(p.sx||1);
+    g.save(); g.globalAlpha=al; g.translate(p.x,p.y); g.rotate(p.rot); g.drawImage(src,-w/2,full?-h*0.5:-h*0.75,w,h); g.restore(); }
+  if(FP.prints.length) FP.raf=requestAnimationFrame(fpPaint);
+}
+document.addEventListener("pointerdown", e=>{
+  const sz=Math.max(e.width||0,e.height||0);
+  if(fpDiag) fpDiag.textContent=(e.pointerType||"?").toUpperCase()+" W "+(e.width||0).toFixed(1)+" H "+(e.height||0).toFixed(1)+" P "+(e.pressure||0).toFixed(2);
+  if(!FP.on || !FP.tex.length) return; fpCanvas();
+  const sized=e.pointerType==="touch" && sz>2, surf=fpSurface(e.clientX,e.clientY), [col,al]=fpColor(surf);
+  const w=sized?Math.max(30,Math.min(72,sz*1.15)):44, tipNow=sized?sz<34:true;
+  const p={x:e.clientX, y:e.clientY, t0:performance.now(), w, rot:(Math.random()-0.5)*0.7, ti:Math.floor(Math.random()*FP.tex.length), v:tipNow?"tip":"full", col, al, live:true, sized};
+  FP.ptr[e.pointerId]={p, lx:e.clientX, ly:e.clientY, col, al}; fpAdd(p);
+}, true);
+document.addEventListener("touchstart", e=>{ const t=e.touches&&e.touches[0]; if(t && fpDiag) setTimeout(()=>{ fpDiag.textContent+="  R "+(t.radiusX||0).toFixed(1)+" F "+(t.force||0).toFixed(2); },0); }, {capture:true, passive:true});
+document.addEventListener("pointermove", e=>{ const q=FP.ptr[e.pointerId]; if(!q || !FP.on) return; const dx=e.clientX-q.lx, dy=e.clientY-q.ly, d=Math.hypot(dx,dy); if(d<12) return;
+  if(!q.p.sized) q.p.v="full"; q.lx=e.clientX; q.ly=e.clientY;
+  fpAdd({x:e.clientX, y:e.clientY, t0:performance.now(), end:performance.now(), w:q.p.w*0.75, sx:0.6, rot:Math.atan2(dy,dx)+Math.PI/2, ti:q.p.ti, v:"full", col:q.col, al:q.al*0.45, live:false, sized:true}); }, true);
+const fpUp=e=>{ const q=FP.ptr[e.pointerId]; if(!q) return; q.p.live=false; q.p.end=performance.now()+(q.p.v==="full"?250:120); delete FP.ptr[e.pointerId]; if(!FP.raf) FP.raf=requestAnimationFrame(fpPaint); };
+document.addEventListener("pointerup", fpUp, true); document.addEventListener("pointercancel", fpUp, true);
 
 loadTakes();
 </script>
