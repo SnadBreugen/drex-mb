@@ -617,10 +617,10 @@
     <div class="fxknobs"><div class="fxk" id="kLc"><canvas></canvas><span>LOW CUT<b>120</b></span></div><div class="fxk" id="kMix"><canvas></canvas><span>MIX<b>85</b></span></div><div class="fxk" id="kFb"><canvas></canvas><span>ECHO<b>0</b></span></div><div class="fxk" id="kVerb"><canvas></canvas><span>VERB<b>0</b></span></div><div class="fxk" id="kLvl"><canvas></canvas><span>LEVEL<b>80</b></span></div></div>
     </div>
     <div class="fxview" id="tuneView" hidden>
-    <div class="fxbtns b4" id="tMode"><button class="fxb surf" data-m="soft">SOFT</button><button class="fxb surf" data-m="hard">HARD</button><button class="fxb surf nolamp" id="tRand">RANDOM</button><button class="fxb surf nolamp" id="tScaleB">SCALE<b>MINOR</b></button></div>
+    <div class="fxbtns b4" id="tMode"><button class="fxb surf nolamp" id="tToneB">TONE<b>SAW</b></button><button class="fxb surf nolamp" id="tGlideB">GLIDE<b>OFF</b></button><button class="fxb surf nolamp" id="tResetB">CLEAR</button><button class="fxb surf nolamp" id="tScaleB">SCALE<b>MINOR</b></button></div>
     <div class="fxdisc" id="tDisc"><canvas id="tCv"></canvas></div>
     <div class="fxbtns b6" id="tLay"><button class="fxb surf pk" data-l="0">1</button><button class="fxb surf pk" data-l="1">2</button><button class="fxb surf pk" data-l="2">3</button><button class="fxb surf pk" data-l="3">4</button><button class="fxb surf pk" data-l="4">5</button><button class="fxb surf pk" data-l="5">6</button></div>
-    <div class="mknobs tknobs"><div></div><div></div><div class="fxk" id="kSpd"><canvas></canvas><span>SPEED<b>0</b></span></div><div></div><div class="fxk" id="kAmt"><canvas></canvas><span>AMOUNT<b>100</b></span></div><div></div><div></div></div>
+    <div class="mknobs tknobs"><div></div><div class="fxk" id="kHi"><canvas></canvas><span>HIGH<b>+12</b></span></div><div class="fxk" id="kMidT"><canvas></canvas><span>MID<b>0</b></span></div><div class="fxk" id="kLo"><canvas></canvas><span>LOW<b>-12</b></span></div><div></div><div class="fxk" id="kRMix"><canvas></canvas><span>MIX<b>0</b></span></div><div></div></div>
     </div>
     <div class="fxview" id="vocView" hidden>
     <div class="fxbtns b4" id="vCar"><button class="fxb surf" data-c="chord">CHORD</button><button class="fxb surf" data-c="drone">DRONE</button><button class="fxb surf" data-c="noise">NOISE</button><button class="fxb surf" data-c="sample">SAMPLE</button></div>
@@ -695,9 +695,9 @@
 
 <details><summary>FX</summary>
 <p>After EDIT everything is about the sum: all layers together go through the FX chain. The backing loop never does.</p>
-<p><b>Chain:</b> VOCODER, SNADPAD and MULTI. Tap a device to show it, the light shows if it is on. The arrows move the shown device left or right in the chain. Tap the tab of the page you are on (SNAP, VOCODER, SNADPAD, MULTI) to turn it on or off, the line in the tab lights up when it is on. FX settings are saved with the take.</p>
+<p><b>Chain:</b> VOCODER, SNADPAD and MULTI. Tap a device to show it, the light shows if it is on. The arrows move the shown device left or right in the chain. Tap the tab of the page you are on (ROBO, VOCODER, SNADPAD, MULTI) to turn it on or off, the line in the tab lights up when it is on. FX settings are saved with the take.</p>
 <p><b>SNADPAD MB:</b> the original SNADPAD engine. Tap and drag on the scope to play. Double tap sets a point, tap a point to hold it, double tap it to remove it, drag to move it. RUN travels the points, GLIDE smooths the way, RATE sets the speed. REC records your finger on the pad for exactly one round of LEN (1, 2 or 4 bars) and then stops by itself, the move loops right away. Press REC again for another round, it only replaces where you play. Every pass adds to the move: where you play, the new movement replaces the old one, the rest stays. UNDO and REDO step back and forth, LOOP pauses or plays the move, LEN sets its length (1, 2 or 4 bars), DRIFT lets it wander a little every round. The arrows on the ring switch the set. CATCH and FLUSH work in the set CRUMBS. Knobs: drag up for more, double tap to reset.</p>
-<p><b>SNAP:</b> pulls every layer into the scale, first tab in the FX bar, built on the pitch technique of THE DRECKSLER. SOFT corrects naturally: every note is moved as a whole onto the scale, your vibrato and slides stay. HARD snaps hard like trap vocals and breaks out onto other notes of a chord that fits what you sang, RANDOM rolls new breaks. SPEED makes the voice glide into the notes (0 = snaps right away), AMOUNT sets how much gets corrected. When you switch SNAP on it finds the key by itself (from the loop name, the backing loop or your singing) and shows it at the bottom. Tap a note on the ring to set the key yourself (shared with the VOCODER), then it stays, SCALE switches MAJOR, MINOR and CHROM. The boxes 1 to 6 pick which layers get snapped. While it plays, the glass shows the note it pulls to. SNAP is part of the export.</p>
+<p><b>ROBO:</b> the robot voice, first tab in the FX bar, switches on as soon as you open it. Every sixteenth note plays exactly one note, so the robot steps cleanly instead of wobbling. Inside the glass your take runs three times as rings, cut into steps (eighth notes, the numbers mark the bars): outside HIGH, middle MID, inside LOW. Every step starts in the middle. Drag a step outward or inward and it jumps into that ring, keep dragging along the ring to move a whole passage. Tap a ring to drop a step right there. The robot is one voice, hard and monophonic like Daft Punk: the energy comes from jumping, for example one word an octave down. Your melody sits inside the ring of its step, the playhead runs along. HIGH, MID and LOW below are the tuning wheels of the three rings (HIGH 0 to +24, MID -12 to +12, LOW -24 to 0 semitones, start one octave up, unchanged, one octave down) and land on notes of the scale. TONE picks SAW, SQUARE or SOFT, GLIDE lets notes slide, CLEAR puts all steps back in the middle. Your real voice is gone completely, even S, T and SH are rebuilt from noise in the color of your voice. While ROBO works it keeps playing the last robot result (the very first time the track is silent). MIX brings your real voice back underneath if you want it (starts at 0). The key is found by itself, tap a note on the outer note ring to set it yourself, SCALE switches MAJOR, MINOR and CHROM. ROBO works in the background (ROBO WORKING) once per setting, moving steps is instant. It is part of the export.</p>
 <p><b>VOCODER:</b> your voice shapes a carrier. The top row picks it: CHORD plays a synth chord, DRONE a deep single tone, NOISE gives a whisper, SAMPLE picks any sound from your Audiotool library. Tap a note on the ring to set the key. MAJ, MIN and PWR set the chord and the scale. FOLLOW makes CHORD or DRONE follow your singing in that key, without it they hold the key note. OCT switches between LOW and MID. CLARITY brings out consonants, VOICE blends your own voice back in.</p>
 <p><b>MULTI:</b> MODULATION, PULSE, CHOP, SHAPE, DELAY and REVERB. DELAY and REVERB have their own engines, MOD runs on the real STOMPINSKI engine. Tap a button to pick the effect (green frame), it lies in the glass and its knobs show below. Tap it again to switch it on or off (light on the button). Playing the glass switches the picked effect on. Hold a button and drag left or right to change the order, the ring shows the chain. HOLD is on by default: the effect stays where you leave it. With HOLD off the effect only sounds while your finger is on the glass, like a Kaoss Pad: tap a word into the delay and the echo rings out after you let go. HOLD on keeps the effect and the point where you left it. ROUTE switches the picked effect between SEND (your voice stays dry, the effect is added, MIX is the send level) and INSERT (the whole voice goes through it, MIX blends dry and effect). DELAY and REVERB start as SEND. The glass plays: MOD rate and depth, SHAPE curve and drive, REVERB size and level. DELAY is a clock: once around is one bar, the 1 sits at the top. Double tap the glass to place an echo (up to 8), drag it to move it, double tap on an echo removes it, further out is louder. GRID snaps to 1/16, 1/16 T, 1/32 or FREE. The delay works like a tape echo with several heads: FEEDBACK sends all echoes back onto the tape, so a few points grow into a rolling rhythm. TAPE adds wow, flutter and saturation that grows with every repeat, later repeats get softer and smear. DUCK pushes the echoes down while you sing and lets them bloom in the gaps. WIDTH spreads the echoes left and right and lets the repeats cross over. LOW CUT, HIGH CUT and RESO shape the echoes, every repeat gets thinner or darker. Echoes dragged into the outer ring (EDGE) get dirty. REVERB SOUND switches between VOCAL (filtered send, the reverb ducks while you sing and blooms in the gaps) and CLASSIC. PRE sets how late the reverb starts and stays put. PUMP pushes the reverb away on every beat and lets it swell back. EDGE: the right edge of the glass is the experimental zone (marked). In the middle everything stays clean, towards the edge REVERB gets scratched by a fuzz, DELAY saturates and starts to whistle, MOD turns metallic, The EDGE knob sets how strong the zone gets, 0 switches it off. The knobs below hold all other settings of the picked effect, the arrows page through them. MOD has four modes (CHORUS, FLANGER, PHASER, VIBE), DELAY switches between SYNC (note values) and FREE (milliseconds), TONE darkens the echoes, REVERB has ROOM (short and close), DARK HALL (long, dark, floating) and PLATE (bright and dense, the vocal classic). Everything else is set for vocals. PULSE makes the voice pulse in time. The glass works like a clock: around the circle sit note values from 1/4 to 1/64 (straight and triplets), the distance from the centre is how deep it pulses, the centre does nothing. DEPTH sets the maximum depth, SHAPE goes from SOFT edges to PUNCH, GATE sets how long each pulse stays open (short blips to long), PHASE turns the pulse into left and right movement at 180 DEG. Page 2 makes it sound like a synth: FILTER makes every pulse pluck a low pass filter like a synth bass (snaps open, then closes within the pulse), RESO makes it whistle, S&H gives every pulse its own random filter height, SWING pushes every second pulse later (up to a hard 75 percent swing). 1/64 gets so fast that it turns into a buzzing tone. The outer ring breathes with the pulse, left half for the left side, right half for the right side. REC, RUN and HOLD work like on the other effects. CHOP cuts your take into up to 16 syllables as soon as you open it, each with its own colour, numbered in the order you sang them. They sit in the inner ring: tap one to pick it (you hear it). The outer ring is one bar with 16 steps: tap a step to put the picked syllable there, tap it again to clear it, double tap to play it backwards. Drag a step outwards or inwards to change its pitch, drag along the ring to make it longer. Tap the centre for a suggestion, then change it step by step. CLEAR empties the pattern, UNDO and REDO step through your pattern changes. LEN makes the pattern 1, 2 or 4 bars long: new bars start as a copy, the small bar buttons at the top of the centre pick which bar the ring shows for editing, the playing bar lights up and the ring follows it while playing (it stays put for 4 seconds after you pick a bar or edit). STEP shows the pitch of the last step you touched and lets you turn it (on a computer the mouse wheel over a step does the same), TRANSPOSE moves everything up or down, GATE goes from short and choppy to letting each syllable ring, SWING pushes every second step later. Page 2 only shapes the suggestion: DENSITY how many steps, RANGE how far the melody jumps, EDGE octave jumps. CHOP always uses the main take, not its layers. If the VOCODER sits before MULTI in the chain and is on, CHOP cuts the vocoded voice (it takes a moment to update after vocoder changes); if it sits after MULTI, the chops go into the vocoder. SHAPE is a guitar fuzz: left to right the gain, bottom to top the feedback, from the middle on it starts to whistle and sing like a guitar in front of the amp and rings out a little after you stop singing. TONE sets the top end.</p>
 <p><b>MULTI REC AND RUN:</b> works like the SNADPAD. REC records your finger in the glass for exactly one round of LEN (1, 2 or 4 bars) and then stops by itself, the move loops right away. Press REC again for another round, it only replaces where you play. A ring around the glass shows how far the round is. LEN is set for each effect on its own. UNDO and REDO step back and forth, LOOP pauses or plays the move, LEN sets its length. Every effect keeps its own move, a red dot on the ring shows it. Double tap the glass to set up to 8 points, double tap a point to remove it, drag it to move it. RUN travels the points with playback, RATE sets how long each point lasts, GLIDE slides between them. Touch the glass any time to take over. Export plays all moves and runs along.</p>
@@ -737,11 +737,11 @@
     <div class="tlist" id="tlist"></div>
   </div>
 
-  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 1.38</span></div>
+  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 1.45</span></div>
 </div>
 
 <script type="module">
-/* DREX MB  REV 1.38  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
+/* DREX MB  REV 1.45  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
 const $=(id)=>document.getElementById(id);
 const device=$("device");
 const waveCanvas=$("wave"), wctx=waveCanvas.getContext("2d");
@@ -946,7 +946,7 @@ function drawRings(root, db, cx, cy, R, R0, a0, a1, fs, w){
 }
 function arcLoop(){ drawArc(); requestAnimationFrame(arcLoop); }
 
-/* ================= ENGINE (REV 1.38) =================
+/* ================= ENGINE (REV 1.45) =================
    Eine Audio-Uhr fuer alles: Aufnahme, Count-in, Metronom, Abspielen.
    Aufnahme sampelgenau per AudioWorklet (Fallback ScriptProcessor), kein MediaRecorder mehr. */
 const AC=window.AudioContext||window.webkitAudioContext;
@@ -1602,12 +1602,18 @@ function getEnhWorker(){
   if(enhWorker!==null) return enhWorker;
   try{
     const src="const RNN_B64=\""+RNN_B64+"\";\n"+[bq,runBq,tc,envF,fftInit,fft,rsCub,rnnDenoise,rnnRun,deEss,cleanCore,spectralGate,enhTonal,kLufs,enhanceTake,enhanceCore].map(f=>f.toString()).join("\n")+
-      "\nonmessage=(e)=>{ const d=e.data; const out=d.k==='clean'?cleanCore(d.chs,d.sr,d.dn,d.ds):enhanceTake(d.chs,d.sr,d.loop,d.s); postMessage({id:d.id,out:out.slice(),info:out.info||null},out.map(a=>a.buffer)); };";
+      "\nconst TUNE_SC="+JSON.stringify(TUNE_SC)+"; const f2m=(f)=>69+12*Math.log2(f/440), m2f=(m)=>440*Math.pow(2,(m-69)/12);\n"+[yinPitch,snapMidi,cleanPitchTrack,tuneNoteSegs,tuneAnalyze,roboEnv,tuneRender].map(f=>f.toString()).join("\n")+
+      "\nonmessage=(e)=>{ const d=e.data; const out=d.k==='clean'?cleanCore(d.chs,d.sr,d.dn,d.ds):d.k==='robo'?tuneRender(d.chs,d.sr,d.ts,d.root,d.loop,d.bpm,{}):enhanceTake(d.chs,d.sr,d.loop,d.s); postMessage({id:d.id,out:out.slice(),info:out.info||null,track:out.track||null},out.map(a=>a.buffer)); };";
     enhWorker=new Worker(wlUrl(src));
-    enhWorker.onmessage=(e)=>{ const r=enhPending.get(e.data.id); if(r){ enhPending.delete(e.data.id); const o=e.data.out; o.info=e.data.info; r.res(o); } };
-    enhWorker.onerror=()=>{ enhPending.forEach(r=>r.res(r.k==="clean"?cleanCore(r.chs,r.sr,r.dn,r.ds):enhanceTake(r.chs,r.sr,r.loop,r.s))); enhPending.clear(); enhWorker=false; };
+    enhWorker.onmessage=(e)=>{ const r=enhPending.get(e.data.id); if(r){ enhPending.delete(e.data.id); const o=e.data.out; o.info=e.data.info; if(e.data.track) o.track=e.data.track; r.res(o); } };
+    enhWorker.onerror=()=>{ enhPending.forEach(r=>r.res(r.k==="clean"?cleanCore(r.chs,r.sr,r.dn,r.ds):r.k==="robo"?tuneRender(r.chs,r.sr,r.ts,r.root,r.loop,r.bpm,{}):enhanceTake(r.chs,r.sr,r.loop,r.s))); enhPending.clear(); enhWorker=false; };
   }catch(e){ enhWorker=false; }
   return enhWorker;
+}
+function roboAsync(chs, sr, ts, root, loop, bpm){
+  const w=getEnhWorker();
+  if(!w) return new Promise(res=>setTimeout(()=>res(tuneRender(chs,sr,ts,root,loop,bpm,{})),20));
+  return new Promise(res=>{ const id=++enhSeq; enhPending.set(id,{res,chs,sr,ts,root,loop,bpm,k:"robo"}); w.postMessage({id, k:"robo", chs:chs.map(a=>a.slice()), sr, ts:JSON.parse(JSON.stringify(ts)), root, loop, bpm}); });
 }
 function cleanAsync(chs, sr, dn, ds){
   const w=getEnhWorker();
@@ -1643,7 +1649,7 @@ function selTake(){ return takes.find(t=>t.id===selId)||null; }
    Abweichung zum DRECKSLER: die Erkennung laeuft auf halber Abtastrate (gleiche Frequenzen, vierfach schneller am Handy). ===== */
 const TUNE_SC={maj:[0,2,4,5,7,9,11], min:[0,2,3,5,7,8,10], chr:[0,1,2,3,4,5,6,7,8,9,10,11]};
 const f2m=(f)=>69+12*Math.log2(f/440), m2f=(m)=>440*Math.pow(2,(m-69)/12);
-function tuneDefault(){ return {on:false, lay:[1,1,1,1,1,1], mode:"soft", scale:"min", amount:1, speed:0, seed:12345}; }
+function tuneDefault(){ return {on:false, lay:[1,1,1,1,1,1], mode:"robo", scale:"min", amount:1, speed:0, seed:12345, tone:"saw", hi:12, lo:-12, mid:0, rmix:0, steps:""}; }
 function tuneMask(ts, root){ const m=new Array(12).fill(0); (TUNE_SC[ts.scale]||TUNE_SC.chr).forEach(k=>m[(k+root)%12]=1); return m; }
   function yinPitch(frame, sr){
     const n=frame.length, half=n>>1;
@@ -1892,11 +1898,15 @@ function tuneMask(ts, root){ const m=new Array(12).fill(0); (TUNE_SC[ts.scale]||
       const accs=chs.map(()=>new Float32Array(hi-lo)), norm=new Float32Array(hi-lo);
       const maxP=Math.round(sr/50), clampP=v=>Math.max(8, Math.min(maxP, v));
       const ratioAt=(p)=>{ const k=Math.min(f0s.length-1, Math.max(0, Math.floor(p/hop))), f=f0s[k]; const t=tgtF(p); if(!t || !f || f<=0) return 1; return Math.max(0.5, Math.min(2, t/f)); };
-      let s=a0, jj=j0, guard=0, prevStep=0;
+      let s=a0, jj=j0, guard=0, prevStep=0; const edge=Math.round(0.025*sr);
       while (s<=aEnd && guard++<400000){
         while (jj<j1 && Math.abs(marks[jj+1]-s)<=Math.abs(marks[jj]-s)) jj++;
         const c=marks[jj], Lh=clampP(jj>0 ? c-marks[jj-1] : periodAt(jj)), Rh=clampP(jj<marks.length-1 ? marks[jj+1]-c : periodAt(jj));
-        const r=ratioAt(Math.round(s)), step=Rh/r, L=Math.max(Lh, Math.ceil(prevStep||0)), R=Math.max(Rh, Math.ceil(step)), sk=Math.round(s);
+        // 1.39: am Anfang und Ende eines Laufs (je 25 ms) geht das Verhaeltnis weich auf 1 und die Koerner rasten wieder auf die Original-Marken ein.
+        // So passt das Signal an der Uebergabe zum unbearbeiteten Teil exakt, sonst loeschen sich beide beim Ueberblenden teilweise aus (Delle = Knacks).
+        const eg=Math.min(1, (s-a0)/edge, (aEnd-s)/edge), r=1+(ratioAt(Math.round(s))-1)*Math.max(0,eg);
+        let step=Rh/r; if (aEnd-s<edge && jj<j1){ step=marks[jj+1]-s; if (step<Rh*0.5) step=Rh; }
+        const L=Math.max(Lh, Math.ceil(prevStep||0)), R=Math.max(Rh, Math.ceil(step)), sk=Math.round(s);
         for (let q=-L; q<R; q++){
           const si=c+q, oi=sk+q-lo;
           if (si<0||si>=n||oi<0||oi>=norm.length) continue;
@@ -1945,28 +1955,82 @@ function tuneChords(segs, sr, bpm, root, scale, seed, lo, hi){
         const step=(rng2()<0.5?-1:1)*(1+Math.floor(rng2()*2)); bi=Math.max(0,Math.min(notes.length-1,bi+step)); return {...sg, note:notes[bi]}; } }
     return sg; });
 }
+/* ===== ROBO (ab 1.39, ersetzt SNAP): die Stimme wird neu gebaut statt verbogen (Talkbox/Vocoder-Prinzip, Daft-Punk-Klang).
+   1. Melodie erkennen (YIN), Noten mit Hysterese auf die Tonart rasten (tuneNoteSegs), Oktave OCT, Gleiten SPEED.
+   2. Synth-Oszillator spielt diese Noten (SAW, SQUARE oder SOFT), dazu Harmonie-Stimmen aus der Tonart (3RD, 5TH, OCT darunter, CHORD).
+   3. Kreuzsynthese per FFT: Klangfarbe (Huellkurve aus dem Cepstrum, Formanten) der echten Stimme wird dem geweissten Synth aufgepraegt.
+   4. Stimmlose Laute (S, T, Atmer) kommen original durch, VOICE mischt die echte Stimme darunter. Kein Verschieben der echten Stimme = kein Knacksen. */
+function roboEnv(re, im, N, Fq, L, tmpR, tmpI){ const B=N/2+1; for(let b=0;b<N;b++){ const k=b<=N/2?b:N-b; tmpR[b]=Math.log(Math.sqrt(re[k]*re[k]+im[k]*im[k])+1e-7); tmpI[b]=0; }
+  fft(Fq,tmpR,tmpI,true); for(let q=0;q<N;q++){ if(q>L && q<N-L){ tmpR[q]=0; tmpI[q]=0; } else if(q===L||q===N-L){ tmpR[q]*=0.5; tmpI[q]*=0.5; } }
+  fft(Fq,tmpR,tmpI,false); const e=new Float64Array(B); for(let b=0;b<B;b++) e[b]=Math.exp(tmpR[b]); return e; }
 function tuneRender(chs, sr, ts, root, loop, bpm, cacheHolder){
+  // ROBO 1.42: rechnet drei Robo-Spuren (MID = gesungene Toene auf der Tonart, HIGH und LOW mit eigener Stimmung) und das Stimmhaft-Gewicht.
+  // Welche Spur wo klingt, entscheiden die Schritte im Glas (roboMix, ohne Neurechnen).
   const n0=chs[0].length, P=loop?Math.min(n0,Math.round(sr*0.6)):0;
   const src=chs.map(d=>{ if(!P) return d; const x=new Float32Array(n0+2*P); x.set(d.subarray(n0-P),0); x.set(d,P); x.set(d.subarray(0,P),P+n0); return x; });
-  const n=src[0].length, C=src.length;
-  let A=cacheHolder&&cacheHolder.a; if(!A || A.n!==n){ const mono=new Float32Array(n); for(const d of src) for(let i=0;i<n;i++) mono[i]+=d[i]/C; A=tuneAnalyze(mono, sr); A.n=n; if(cacheHolder) cacheHolder.a=A; }
-  const mode=ts.mode==="hard"?"hard":"soft", trk=A.f0, HOP=A.HOP, ivs=TUNE_SC[ts.scale]||TUNE_SC.chr, gl=ts.speed>0.01?0.005+ts.speed*0.4:0, am=Math.max(0,Math.min(1,ts.amount));
-  let lo=200, hi=0; for(const f of A.f0) if(f>0){ const m=f2m(f); if(m<lo) lo=m; if(m>hi) hi=m; } if(hi<=0){ lo=48; hi=72; } lo=Math.floor(lo)-2; hi=Math.ceil(hi)+2;
-  // SOFT = Politur (Zug bis 3 Halbtoene, kurze Fetzen verschmelzen), HARD = Einrasten und Ausbrueche auf Akkordtoene. SPEED = Hineingleiten, AMOUNT = Staerke.
-  const tp = mode==="hard" ? {strength:am, maxPull:12, minNote:0.035, ramp:0.004, glide:gl} : {strength:am, maxPull:12, minNote:0.09, ramp:0.03, glide:0};
-  let segs=tuneNoteSegs(trk, A.conf, sr, HOP, root, ivs, tp.strength, tp.maxPull, tp.minNote);
-  if(mode!=="hard") segs.keepVib=true;
-  if(mode==="hard") segs=tuneChords(segs, sr, bpm, root, ts.scale, ts.seed, lo, hi);
-  const out=psolaRender(src, sr, trk, HOP, segs, tp.strength, tp.maxPull, tp.ramp, null, tp.glide||0);
-  // Anzeige: gesungen und Ziel pro Rahmen
-  const nF=trk.length, det=new Float32Array(nF), tg=new Float32Array(nF); let si=0;
-  for(let k=0;k<nF;k++){ const p=k*HOP; det[k]=A.f0[k]>0?f2m(A.f0[k]):NaN; while(si<segs.length && segs[si].b<=p) si++; const sg=segs[si];
-    if(sg && p>=sg.a && trk[k]>0){ const m=f2m(trk[k]), lim=tp.maxPull, flat=sg.med+Math.max(-lim,Math.min(lim,sg.note-sg.med)); tg[k]=flat*tp.strength+m*(1-tp.strength); } else tg[k]=det[k]; }
-  const res=out.map(x=>P?x.slice(P,P+n0):x); res.track={hop:HOP, off:A.FR/2-P, det, out:tg}; return res;
+  const n=src[0].length, C=src.length, mono=new Float32Array(n); for(const d of src) for(let i=0;i<n;i++) mono[i]+=d[i]/C;
+  let A=cacheHolder&&cacheHolder.a; if(!A || A.n!==n){ A=tuneAnalyze(mono, sr); A.n=n; if(cacheHolder) cacheHolder.a=A; }
+  const HOP=A.HOP, nF=A.f0.length, sc=TUNE_SC[ts.scale]||TUNE_SC.chr;
+  const mm=new Float32Array(nF); for(let k=0;k<nF;k++) mm[k]=A.f0[k]>0?f2m(A.f0[k]):NaN;
+  const span=Math.max(3,Math.round(0.35*sr/HOP)), fix=Float32Array.from(mm);
+  for(let k=0;k<nF;k++){ if(isNaN(mm[k])) continue; const w=[]; for(let q=Math.max(0,k-span);q<=Math.min(nF-1,k+span);q++) if(!isNaN(mm[q])) w.push(mm[q]); w.sort((a,b)=>a-b); const md=w[w.length>>1]; let v=mm[k]; while(v-md>7) v-=12; while(md-v>7) v+=12; fix[k]=v; }
+  const sm=Float32Array.from(fix); for(let k=0;k<nF;k++){ if(isNaN(fix[k])) continue; const w=[]; for(let q=Math.max(0,k-2);q<=Math.min(nF-1,k+2);q++) if(!isNaN(fix[q])) w.push(fix[q]); w.sort((a,b)=>a-b); sm[k]=w[w.length>>1]; }
+  const f0c=new Float32Array(nF); for(let k=0;k<nF;k++) f0c[k]=isNaN(sm[k])?0:440*Math.pow(2,(sm[k]-69)/12);
+  const segs=tuneNoteSegs(f0c, A.conf, sr, HOP, root, sc, 1, 24, 0.06);
+  const tgt=new Float32Array(nF).fill(NaN), vf=new Float32Array(nF); let si=0;
+  for(let k=0;k<nF;k++){ const p=k*HOP; while(si<segs.length && segs[si].b<=p) si++; const sg=segs[si]; if(sg && p>=sg.a && f0c[k]>0){ tgt[k]=sg.note; vf[k]=1; } }
+  // ROBO 1.44: keine echte Stimme mehr. Pro Bild Pegel und Nulldurchgaenge: Zischlaute (S, T, SCH) bekommen spaeter nur ihren Hochton-Anteil, alles andere wird Robo.
+  const fRms=new Float32Array(nF), fZr=new Float32Array(nF); for(let k=0;k<nF;k++){ let z=0,e=0; const a0=k*HOP, e0=Math.min(n,a0+HOP); for(let i=a0+1;i<e0;i++){ e+=mono[i]*mono[i]; if((mono[i]>=0)!==(mono[i-1]>=0)) z++; } fRms[k]=Math.sqrt(e/Math.max(1,e0-a0)); fZr[k]=z/Math.max(1,e0-a0)*sr/2; }
+  // Toene halten: jede Luecke bekommt den letzten Ton (vorne den ersten)
+  { let f=NaN; for(let k=0;k<nF;k++) if(!isNaN(tgt[k])){ f=tgt[k]; break; } let c2=isNaN(f)?57:f; for(let k=0;k<nF;k++){ if(isNaN(tgt[k])) tgt[k]=c2; else c2=tgt[k]; } }
+  // ein Ton pro Sechzehntel: der Ton, der in diesem Abschnitt am laengsten klingt (Daft-Punk-Stufen statt Gezappel)
+  if(bpm>0){ const L16=sr*60/bpm/4, ctr=A.FR/2-P, nSl=Math.max(1,Math.round(n0/L16)), slot=k=>{ let s=(k*HOP+ctr)/L16; s=Math.floor(s); return loop?((s%nSl)+nSl)%nSl:Math.max(0,Math.min(nSl-1,s)); };
+    const cnt=Array.from({length:nSl},()=>new Map()); for(let k=0;k<nF;k++){ if(!vf[k]) continue; const m=cnt[slot(k)]; m.set(tgt[k],(m.get(tgt[k])||0)+fRms[k]); }
+    const best=new Float32Array(nSl).fill(NaN); for(let s=0;s<nSl;s++){ let bv=-1; for(const [m,c] of cnt[s]) if(c>bv){ bv=c; best[s]=m; } }
+    let c3=NaN; for(let s=0;s<nSl;s++){ if(!isNaN(best[s])){ c3=best[s]; break; } } for(let s=0;s<nSl;s++){ if(isNaN(best[s])) best[s]=c3; else c3=best[s]; }
+    if(!isNaN(c3)) for(let k=0;k<nF;k++) tgt[k]=best[slot(k)]; }
+  const pres=new Float32Array(nF), sibF=new Float32Array(nF); for(let k=0;k<nF;k++){ const r=fRms[k], pr=Math.max(0,Math.min(1,(r-0.0025)/0.004)), sb=(!vf[k] && fZr[k]>2500 && r>0.003)?1:0; pres[k]=pr*(1-sb); sibF[k]=sb*pr; }
+  const snapS=m=>snapMidi(m, root, sc), offs=[ts.mid|0, ts.hi==null?12:ts.hi, ts.lo==null?-12:ts.lo];
+  const tau=ts.speed>0.01?0.004+ts.speed*0.25:0.004, al=1-Math.exp(-1/(sr*tau)), DET=[-0.11,0,0.09];
+  const blep=(t,dt)=>{ if(t<dt){ t/=dt; return t+t-t*t-1; } if(t>1-dt){ t=(t-1)/dt; return t*t+t+t+1; } return 0; };
+  const lpa=1-Math.exp(-2*Math.PI*1400/sr), sq=ts.tone==="square", soft=ts.tone==="soft";
+  const N=1024, Hs=256, B=N/2+1, Fq=fftInit(N), win=new Float32Array(N); for(let i=0;i<N;i++) win[i]=0.5-0.5*Math.cos(2*Math.PI*i/N);
+  const xr=new Float64Array(N), xi=new Float64Array(N), cr=new Float64Array(N), ci=new Float64Array(N), tr=new Float64Array(N), ti=new Float64Array(N), Lq=Math.max(12,Math.round(34*sr/48000));
+  // Klangfarbe der Stimme einmal berechnen (zeitlich geglaettet)
+  const frames=[]; { const prev=new Float64Array(B).fill(NaN); for(let st=-N/2; st<n; st+=Hs){ for(let i=0;i<N;i++){ const k=st+i; xr[i]=(k>=0&&k<n)?mono[k]*win[i]:0; xi[i]=0; } fft(Fq,xr,xi,false);
+      const ex=roboEnv(xr,xi,N,Fq,Lq,tr,ti), e2=new Float32Array(B); for(let b=0;b<B;b++){ const lg=Math.log(ex[b]+1e-9), sl=isNaN(prev[b])?lg:0.6*lg+0.4*prev[b]; prev[b]=sl; e2[b]=Math.exp(sl); } frames.push(e2); } }
+  const robs=offs.map(off=>{ const car=new Float32Array(n), ph=DET.map((d,j)=>(0.13+j*0.29)%1); let cur=NaN, lp=0;
+    for(let i=0;i<n;i++){ const k=Math.min(nF-1,(i/HOP)|0), want=off?snapS(tgt[k]+off):tgt[k]; cur=isNaN(cur)?want:cur+(want-cur)*al; const f=440*Math.pow(2,(cur-69)/12); let o=0;
+      for(let d=0;d<3;d++){ const dt=Math.min(0.45,f*Math.pow(2,DET[d]/12)/sr); let t=ph[d]+dt; if(t>=1) t-=1; ph[d]=t; let s2=2*t-1-blep(t,dt); if(sq){ let t2=t+0.5; if(t2>=1) t2-=1; s2-=2*t2-1-blep(t2,dt); } o+=s2; }
+      let y=o*0.4; if(soft){ lp+=lpa*(y-lp); y=lp*2; } car[i]=Math.tanh(y*0.9); }
+    return xsyn(car, pres); });
+  // Zischlaute aus Rauschen mit der Klangfarbe der Stimme (keine echte Aufnahme)
+  const nzC=new Float32Array(n); { let s=12345; for(let i=0;i<n;i++){ s=(s*1103515245+12345)>>>0; nzC[i]=(s/4294967296)*2-1; } }
+  const nz=xsyn(nzC, sibF);
+  function xsyn(car, mask){
+    const rob=new Float32Array(n+N), ws=new Float32Array(n+N); let fi=0;
+    for(let st=-N/2; st<n; st+=Hs, fi++){ for(let i=0;i<N;i++){ const k=st+i; cr[i]=(k>=0&&k<n)?car[k]*win[i]:0; ci[i]=0; } fft(Fq,cr,ci,false); const ec=roboEnv(cr,ci,N,Fq,Lq,tr,ti), ex=frames[fi];
+      for(let b=0;b<B;b++){ const g=ex[b]/(ec[b]+1e-9); cr[b]*=g; ci[b]*=g; if(b>0&&b<N/2){ cr[N-b]=cr[b]; ci[N-b]=-ci[b]; } } fft(Fq,cr,ci,true);
+      for(let i=0;i<N;i++){ const k=st+i; if(k<0||k>=n) continue; rob[k]+=cr[i]*win[i]; ws[k]+=win[i]*win[i]; } }
+    let eR=0, eM=0; for(let i=0;i<n;i++){ rob[i]=ws[i]>1e-6?rob[i]/ws[i]:0; } for(let k=0;k<nF;k++) if(mask[k]>0.5) for(let i=k*HOP;i<Math.min(n,(k+1)*HOP);i++){ eR+=rob[i]*rob[i]; eM+=mono[i]*mono[i]; }
+    const g=eR>1e-9?Math.min(10,Math.sqrt(eM/eR))*(mask===pres?1.15:1):1; const o2=new Float32Array(n0); for(let i=0;i<n0;i++) o2[i]=rob[i+P]*g; return o2; }
+  // Gewichte je Sample (weich): Robo ueberall wo Stimme ist, Zischlaut-Gewicht fuer den Hochton-Anteil der echten Stimme
+  const smo=src0=>{ const vs=new Float32Array(nF), a2=Math.exp(-HOP/(sr*0.012)); let v=0; for(let k=0;k<nF;k++){ v=src0[k]+(v-src0[k])*a2; vs[k]=v; } v=vs[nF-1]; for(let k=nF-1;k>=0;k--){ v=vs[k]+(v-vs[k])*a2; vs[k]=Math.max(vs[k],v); }
+    const o=new Float32Array(n0); for(let i=0;i<n0;i++){ const fk=Math.min(nF-1,(i+P)/HOP), k0=Math.floor(fk), k1=Math.min(nF-1,k0+1); o[i]=vs[k0]+(vs[k1]-vs[k0])*(fk-k0); } return o; };
+  const vw=smo(pres), sw=smo(sibF);
+  const notes=[]; { let a=-1, m=NaN; const off=A.FR/2-P; for(let k=0;k<=nF;k++){ const on=k<nF && pres[k]>0.5, mk=k<nF?tgt[k]:NaN; if(a>=0 && (!on || mk!==m)){ notes.push({a:a*HOP+off, b:k*HOP+off, m}); a=-1; } if(on && a<0){ a=k; m=mk; } } }
+  const res=[robs[0], robs[1], robs[2], vw, sw, nz]; res.track={hop:HOP, off:A.FR/2-P, notes:notes.filter(x=>x.b>0&&x.a<n0), n0}; return res;
 }
+// Schritte (Achtel ueber den ganzen Take): 0 oder 1 = MID (Grundstellung), 2 = HIGH, 3 = LOW. Weiche Uebergaenge (8 ms), MIX = etwas echte Stimme fuer die Verstaendlichkeit.
+function roboMix(chs, comp, ts, sr, bpmR){ const n=chs[0].length, stepLen=sr*60/(bpmR||120)/2, st=String(ts.steps||""), mix=Math.max(0,Math.min(1,+ts.rmix||0));
+  const nS=Math.max(1,Math.ceil(n/stepLen)), sel=new Uint8Array(nS); for(let k=0;k<nS;k++){ sel[k]=+(st[k]||0)||1; }
+  const w=[new Float32Array(n),new Float32Array(n),new Float32Array(n)], xf=Math.max(1,Math.round(sr*0.008)), cur=[0,0,0];
+  for(let i=0;i<n;i++){ const k=Math.min(nS-1,Math.floor(i/stepLen)), s2=sel[k]; for(let v=0;v<3;v++){ const t=(s2===v+1)?1:0; cur[v]+= (t-cur[v])/xf; if(Math.abs(cur[v]-t)<1e-4) cur[v]=t; w[v][i]=cur[v]; } }
+  const vw=comp[3], sw=comp[4]||new Float32Array(n), nz=comp[5]||new Float32Array(n); return chs.map(d=>{ const o=new Float32Array(n); for(let i=0;i<n;i++){ const r=w[0][i]*comp[0][i]+w[1][i]*comp[1][i]+w[2][i]*comp[2][i];
+      o[i]=(r*vw[i] + nz[i]*sw[i])*(1-mix) + d[i]*mix; } return o; }); }
 function tuneSt(r){ return !r ? null : (r.id===fxRootId ? fxSt.tune : (r.fx&&r.fx.tune)); }
 function tuneKey(t){ const r=rootOf(t), ts=tuneSt(r); if(!ts || !ts.on || t.noFx) return ""; const idx=stackOf(t).indexOf(t); if(idx<0 || !(ts.lay||[])[idx]) return "";
-  const vo=(r.id===fxRootId?fxSt.voc:(r.fx&&r.fx.voc))||{}; return "T"+[vo.root|0, ts.mode, ts.scale, (+ts.amount).toFixed(3), (+ts.speed).toFixed(3), ts.mode==="hard"?ts.seed:"", r.bpm||0].join("|"); }
+  const vo=(r.id===fxRootId?fxSt.voc:(r.fx&&r.fx.voc))||{}; return "T"+[vo.root|0, "robo5", ts.scale, ts.tone, ts.mid|0, ts.hi, ts.lo, (+ts.speed).toFixed(2), r.bpm||0].join("|"); }
 /* ===== DOUBLE: echte Zweitstimmen pro Spur, offline gerechnet (wie Revoice "Doubler" und Melodyne "Random Deviations"):
    Kopie der Spur, Silbe fuer Silbe zeitlich verbogen (Einsaetze mal frueher, mal spaeter, Konsonanten enger als Vokale), pro Silbe minimal
    anders gestimmt, Lautstaerke schwankt. Atmer fliegen aus den Kopien, Zischlaute werden leiser (sonst flammen sie doppelt).
@@ -2027,13 +2091,21 @@ function ensureCln(t){ const k=clnKey(t); if(!k || clnOk(t)) return Promise.reso
   return t._clnP; }
 function baseChs(t){ const b=(autoEnh&&t.enh)?t.enh:(clnOk(t)?t.cln:rawChs(t)); if(!b) return b; let cur=b, k=(autoEnh&&t.enh?"e":"r"+(clnOk(t)?t._clnK:""));
   const tk=tuneKey(t);
-  if(tk){ const kk=k+tk; if(t._tnK===kk && t._tn) cur=t._tn; else { const r=rootOf(t), vo=(r.id===fxRootId?fxSt.voc:(r.fx&&r.fx.voc))||{}; const hk=k; if(!t._tnA || t._tnA.k!==hk) t._tnA={k:hk};
-      try{ t._tn=tuneRender(b, t.sr, tuneSt(r), vo.root|0, t.mode==="LOOP", r.bpm||bpm, t._tnA); t._tnK=kk; cur=t._tn; }catch(e){ console.log("[TUNE]", e&&e.message); } } k=kk; }
+  if(tk){ const kk=k+tk; if(t._tnK===kk && t._tn){ const mk=tuneMixKey(t), r=rootOf(t); if(t._tmK!==kk+mk || !t._tm){ t._tm=roboMix(b, t._tn, tuneSt(r), t.sr, r.bpm||bpm); t._tmK=kk+mk; } cur=t._tm; k=kk+mk; }
+    else { roboStart(t, b, kk); const mk=tuneMixKey(t), r=rootOf(t), sk="W"+(t._tnK||"0")+mk, ok=t._tn && t._tn[0].length===b[0].length;
+      if(ok){ if(t._tmK!==sk || !t._tm){ t._tm=roboMix(b, t._tn, tuneSt(r), t.sr, r.bpm||bpm); t._tmK=sk; } cur=t._tm; } else cur=b.map(d=>new Float32Array(d.length)); k=k+sk; } }
   const dk=dblKey(t);
   if(dk){ const kk=k+dk; if(t._dbK===kk && t._db) return t._db; if(!t._dbA || t._dbA.k!==k) t._dbA={k};
     try{ t._db=dblRender(cur, t.sr, dblCfg(rootOf(t)), t.mode==="LOOP", t._dbA); t._dbK=kk; return t._db; }catch(e){ console.log("[DOUBLE]", e&&e.message); } }
   return cur; }
-function ckey(t){ return (autoEnh&&t.enh?"e":"r"+(clnOk(t)?t._clnK:""))+tuneKey(t)+dblKey(t); }
+function ckey(t){ const k0=(autoEnh&&t.enh?"e":"r"+(clnOk(t)?t._clnK:"")), tk=tuneKey(t); return k0+(!tk?"":(t._tnK===k0+tk && t._tn)?tk+tuneMixKey(t):"W"+(t._tnK||"0")+tuneMixKey(t))+dblKey(t); }
+function tuneMixKey(t){ const r=rootOf(t), ts=tuneSt(r); return ts?"M"+(ts.steps||"")+"|"+(+(ts.rmix||0)).toFixed(2):""; }
+// ROBO rechnet im Hintergrund (Worker): bis es fertig ist, laeuft das letzte Robo-Ergebnis (beim ersten Mal Stille), nie die echte Aufnahme, danach wird an derselben Stelle weitergespielt
+function roboStart(t, b, kk){ if(t._tnPK===kk) return; t._tnPK=kk; const r=rootOf(t), vo=(r.id===fxRootId?fxSt.voc:(r.fx&&r.fx.voc))||{};
+  if(recState==="idle") tstatTx.textContent="ROBO...";
+  t._tnP=roboAsync(b, t.sr, tuneSt(r), vo.root|0, t.mode==="LOOP", r.bpm||bpm).then(out=>{ if(t._tnPK!==kk) return; t._tn=out; t._tnK=kk; t._tnPK=null; t._tnP=null; t._tm=null; t._buf=null; t._shC=null;
+    if(recState==="idle" && tstatTx.textContent==="ROBO...") tstatTx.textContent="ROBO READY"; if(playing && stackOf(selTake()).includes(t)) playSelected(playPos()); }).catch(e=>{ console.log("[ROBO]", e&&e.message); t._tnPK=null; }); }
+async function roboWait(t){ baseChs(t); if(t._tnP) await t._tnP; }
 function regKind(p){ return p.k||"move"; }
 function regActive(p){ const k=regKind(p); return k==="del" || k==="copy" || (k==="move" && p.o); }
 function shiftKey(t){ const ph=(t.ph||[]).filter(regActive); return ph.length ? ph.map(p=>regKind(p)[0]+p.a+":"+p.b+":"+p.o).join(",") : ""; }
@@ -2834,6 +2906,7 @@ async function renderLayers(layers, loop, lenS, sr){
   if(root && fxRootId!==root.id) fxLoadFrom(root);
   if(autoEnh) for(const t of layers) await ensureEnh(t);
   for(const t of layers) await ensureCln(t);
+  for(const t of layers) await roboWait(t);
   const anyFx=["voc","pad","multi"].some(k=>fxSt.on[k]);
   const dryL=anyFx?[]:layers, wetL=anyFx?layers:[];
   const dryB=dryL.length? await renderSet(dryL,loop,total,sr,g0) : null;
@@ -3231,7 +3304,7 @@ const PAD_SETS=[{"name":"LAB","crumbs":false,"specs":[{"name":"CHAPEL","x":0.15,
 const PAD_MODS=["RPT","FRG","GRN","FRZ","SHM","TAP","REV","SCR","RES","VOX","FLD","PMP"];
 const PAD_RATES=["2 BARS","1 BAR","1/2","1/4","1/8"];
 // SNADPAD-Farben in DREX-MB: GOLD = Gruen (Skala, Specimens), HOT = Pink (Finger, Punkte, aktiv), WARM = Text
-const P_GOLD="50,235,164", P_HOT="255,39,133", P_WARM="240,239,243";
+const P_GOLD="50,235,164", P_HOT="255,39,133", P_WARM="240,239,243", P_VIO="150,110,255";
 // Werte wie im SNADPAD (Klartext, wie die Engine sie liest). VERB per Default aus (Snad).
 const padP=new Array(55).fill(0); padP[0]=0.5; padP[1]=0.5; padP[5]=0.85; padP[7]=0; padP[8]=0.8; padP[14]=3; for(let i=16;i<32;i++) padP[i]=-1; padP[32]=1; padP[33]=0.527; padP[34]=padP[35]=padP[36]=0.5;
 let padNode=null, padLoading=null, padOn=true, padTel=null, padBuf=null, padGr=null, padLoop=null;
@@ -4232,7 +4305,7 @@ function fxLoadFrom(r){
   if(fxSt.mpath) delete fxSt.mpath.robo;
   const pp=fxSt.pad && fxSt.pad.length===55 ? fxSt.pad : null, o={};
   for(let i=0;i<55;i++){ const v=pp?pp[i]:PAD_DEF[i]; if(i===38||i===10) continue; o[i]=v; } o[2]=0; o[11]=0; padSet(o);
-  fxSt.tune=Object.assign(tuneDefault(), fxSt.tune||{}); if(!["soft","hard"].includes(fxSt.tune.mode)){ fxSt.tune.mode="soft"; fxSt.tune.amount=1; fxSt.tune.speed=0; } if(!TUNE_SC[fxSt.tune.scale]) fxSt.tune.scale="min"; if(!Array.isArray(fxSt.tune.lay)||fxSt.tune.lay.length!==6) fxSt.tune.lay=[1,1,1,1,1,1];
+  fxSt.tune=Object.assign(tuneDefault(), fxSt.tune||{}); if(fxSt.tune.mode!=="robo"){ fxSt.tune.mode="robo"; fxSt.tune.speed=0; } /* ab 1.39 ROBO statt SNAP */ if(!TUNE_SC[fxSt.tune.scale]) fxSt.tune.scale="min"; if(!Array.isArray(fxSt.tune.lay)||fxSt.tune.lay.length!==6) fxSt.tune.lay=[1,1,1,1,1,1];
   if(fxSt.fin==="wide") fxSt.fin="bright"; if(!FIN_K.includes(fxSt.fin)) fxSt.fin="raw"; finPost(); padPathPost();
   fxVcMono=null; fxVcKey=""; fxApply();
 }
@@ -4370,14 +4443,14 @@ async function exMulti(b, sr, root, total){
 }
 
 /* ---- UI: Kettenleiste, IN-Kaestchen, Geraete ---- */
-const FX_NAMES={voc:"VOCODER",pad:"SNADPAD",multi:"MULTI",tune:"SNAP"};
+const FX_NAMES={voc:"VOCODER",pad:"SNADPAD",multi:"MULTI",tune:"ROBO"};
 let fxTab="pad";
 const fxChainEl=$("fxChain"), vCv=$("vCv");
 function fxShow(k){ fxTab=k; $("padView").hidden=k!=="pad"; $("vocView").hidden=k!=="voc"; $("multiView").hidden=k!=="multi"; $("tuneView").hidden=k!=="tune";
   if(k==="pad"){ pG=null; pDPR=0; requestAnimationFrame(()=>padLayout()); } fxRender(); }
 // Reiter: erster Tipp zeigt die Seite, Tipp auf den Reiter der offenen Seite schaltet den Effekt an oder aus (wie die MULTI-Knoepfe)
 fxChainEl.addEventListener("click", e=>{ const b=e.target.closest("button[data-k]"); if(!b) return; const k=b.dataset.k;
-  if(k!==fxTab){ fxShow(k); return; }
+  if(k!==fxTab){ fxShow(k); if(k==="tune" && !fxSt.tune.on && selTake()) tuneSet({on:true}); return; }
   if(k==="tune"){ tuneSet({on:!fxSt.tune.on}); return; } fxSt.on[k]=!fxSt.on[k]; fxApply(); fxSave(); fxRender(); });
 function fxMove(dir){ const o=fxSt.order, i=o.indexOf(fxTab), j=i+dir; if(i<0||j<0||j>=o.length) return; [o[i],o[j]]=[o[j],o[i]]; fxWire(); fxSave(); fxRender(); }
 $("fxL").addEventListener("click", ()=>fxMove(-1)); $("fxR").addEventListener("click", ()=>fxMove(1));
@@ -4423,25 +4496,42 @@ function tuneSet(o){ const wasOn=!!fxSt.tune.on; Object.assign(fxSt.tune,o); if(
 function tuneRoot(){ return fxSt.voc.root|0; }
 const T_SCN={maj:"MAJOR",min:"MINOR",chr:"CHROM"};
 function tuneUi(){ const ts=fxSt.tune, n=fxStack().length;
-  [...$("tMode").querySelectorAll("button[data-m]")].forEach(b=>b.classList.toggle("on", b.dataset.m===ts.mode));
-  $("tRand").classList.toggle("dim", ts.mode!=="hard");
+  $("tToneB").innerHTML="TONE<b>"+String(ts.tone||"saw").toUpperCase()+"</b>"; $("tGlideB").innerHTML="GLIDE<b>"+(ts.speed>0.6?"LONG":ts.speed>0.2?"MID":ts.speed>0.01?"SHORT":"OFF")+"</b>";
+  const kn=(id,f,txt)=>{ $(id).querySelector("b").textContent=txt; pDrawKnob($(id),f); }; const hi=ts.hi==null?12:ts.hi, lo=ts.lo==null?-12:ts.lo;
+  const md=ts.mid|0; kn("kHi",hi/24,(hi>0?"+":"")+hi); kn("kLo",(lo+24)/24,String(lo)); kn("kMidT",(md+12)/24,(md>0?"+":"")+md); kn("kRMix",+ts.rmix||0,String(Math.round((+ts.rmix||0)*100)));
   [...$("tLay").children].forEach((b,i)=>{ b.classList.toggle("on", !!ts.lay[i] && i<n); b.classList.toggle("dim", i>=n); });
   $("tScaleB").innerHTML="SCALE<b>"+T_SCN[ts.scale]+"</b>";
-  $("kSpd").querySelector("b").textContent=String(Math.round(ts.speed*100)); pDrawKnob($("kSpd"),ts.speed);
-  $("kAmt").querySelector("b").textContent=String(Math.round(ts.amount*100)); pDrawKnob($("kAmt"),ts.amount); }
-$("tMode").addEventListener("click", e=>{ const b=e.target.closest("button[data-m]"); if(!b) return; tuneSet({mode:b.dataset.m, on:true}); });
-$("tRand").addEventListener("click", ()=>{ if(fxSt.tune.mode!=="hard") return; tuneSet({seed:(Math.random()*1e9)|0}); });
+}
+const T_HN={off:"OFF",third:"3RD",fifth:"5TH",octd:"OCT",chord:"CHORD"};
+$("tGlideB").addEventListener("click", ()=>{ const o=[0,0.15,0.4,0.8], c=fxSt.tune.speed||0; let i=o.findIndex(v=>Math.abs(v-c)<0.05); tuneSet({speed:o[(i+1)%o.length], on:true}); });
+$("tResetB").addEventListener("click", ()=>{ tuneSet({steps:""}); tMsg="ALL STEPS MID"; tMsgT=performance.now(); });
+$("tToneB").addEventListener("click", ()=>{ const o=["saw","square","soft"], c=fxSt.tune.tone||"saw"; tuneSet({tone:o[(o.indexOf(c)+1)%o.length], on:true}); });
 $("tScaleB").addEventListener("click", ()=>{ const o=["maj","min","chr"], sc=o[(o.indexOf(fxSt.tune.scale)+1)%3]; if(sc!=="chr") Object.assign(fxSt.voc,{ch:sc}); tuneSet({scale:sc, keyMan:true}); });
 $("tLay").addEventListener("click", e=>{ const b=e.target.closest("button[data-l]"); if(!b) return; const i=+b.dataset.l; if(i>=fxStack().length) return; const l=fxSt.tune.lay.slice(); l[i]=l[i]?0:1; tuneSet({lay:l}); });
-fxKnob($("kSpd"), ()=>fxSt.tune.speed, f=>tuneSet({speed:f}), 0);
-fxKnob($("kAmt"), ()=>fxSt.tune.amount, f=>tuneSet({amount:f}), 1);
-tD.cv.addEventListener("pointerdown", e=>{ const [x,y]=dPos(tD,e), dx=x-PC, dy=y-PC, d=Math.hypot(dx,dy); if(d<PR-4||d>296) return;
+// Stimmraeder: HIGH 0 bis +24, MID -12 bis +12, LOW -24 bis 0 Halbtoene, das Ergebnis rastet in der Tonart ein
+fxKnob($("kHi"), ()=>(fxSt.tune.hi==null?12:fxSt.tune.hi)/24, f=>{ const v=Math.round(f*24); if(v!==fxSt.tune.hi) tuneSet({hi:v}); }, 0.5);
+fxKnob($("kLo"), ()=>((fxSt.tune.lo==null?-12:fxSt.tune.lo)+24)/24, f=>{ const v=Math.round(f*24)-24; if(v!==fxSt.tune.lo) tuneSet({lo:v}); }, 0.5);
+fxKnob($("kRMix"), ()=>(+fxSt.tune.rmix||0), f=>tuneSet({rmix:f}), 0);
+fxKnob($("kMidT"), ()=>((fxSt.tune.mid|0)+12)/24, f=>{ const v=Math.round(f*24)-12; if(v!==(fxSt.tune.mid|0)) tuneSet({mid:v}); }, 0.5);
+tD.cv.addEventListener("pointerdown", e=>{ const [x,y]=dPos(tD,e), dx=x-PC, dy=y-PC, d=Math.hypot(dx,dy);
+  if(d<PR-4){ if(d<RB_LO[0]) return; const k=roboStepAt(x,y); if(k<0) return; tPaint={last:k, v:roboRingAt(d)}; roboSetStep(k,tPaint.v); try{ tD.cv.setPointerCapture(e.pointerId); }catch(_){} return; }
+  if(d>296) return;
   let a=Math.atan2(dx,-dy)*180/Math.PI; if(a<0) a+=360; Object.assign(fxSt.voc,{root:Math.round(a/30)%12}); fxApply(); tuneSet({keyMan:true}); });
-function tuneTrack(){ const ts=fxSt.tune, st=fxStack(); for(let i=0;i<st.length;i++){ const t=st[i]; if(ts.lay[i] && t._tn && t._tn.track) return {t, tr:t._tn.track}; } return null; }
-let tLastN=NaN, tLastT=0;
+function tuneTrack(){ const ts=fxSt.tune, st=fxStack(); for(let i=0;i<st.length;i++){ const t=st[i]; if(ts.lay[i] && t._tn && t._tn.track) return {t, tr:t._tn.track}; } for(let i=0;i<st.length;i++){ const t=st[i]; if(ts.lay[i]) return {t, tr:null}; } return null; }
+let tLastN=NaN, tLastT=0, tMsg="", tMsgT=0, tPaint=null;
+const ROBO_ST=["MID","MID","HIGH","LOW"];
+// drei Ringe: aussen HIGH, Mitte MID, innen LOW (Anteile von PR)
+const RB_HI=[PR*0.795,PR*0.97], RB_MID=[PR*0.605,PR*0.78], RB_LO=[PR*0.415,PR*0.59], RB=[null,RB_MID,RB_HI,RB_LO];
+function roboRingAt(d){ return d>=(RB_HI[0]+RB_MID[1])/2?2 : d>=(RB_MID[0]+RB_LO[1])/2?1 : 3; }
+function roboSteps(){ const r=rootOf(selTake()); if(!r) return 0; const stepLen=r.sr*60/(r.bpm||bpm)/2; return Math.max(1,Math.ceil(r.len/stepLen)); }
+function roboStepAt(x,y){ const nS=roboSteps(); if(!nS) return -1; let a=Math.atan2(x-PC,-(y-PC))/(2*Math.PI); if(a<0) a+=1; return Math.min(nS-1,Math.floor(a*nS)); }
+function roboSetStep(k,v){ const nS=roboSteps(); let st=String(fxSt.tune.steps||"").padEnd(nS,"1").slice(0,Math.max(nS,String(fxSt.tune.steps||"").length)); const cur=+(st[k]||0)||1; if(cur===v && fxSt.tune.on) return; st=st.slice(0,k)+v+st.slice(k+1); fxSt.tune.steps=st; if(!fxSt.tune.on){ fxSt.tune.on=true; tuneAutoKey(); } tMsg="STEP "+(k+1)+" "+ROBO_ST[v]; tMsgT=performance.now(); fxSave(); fxRender(); clearTimeout(tRestartT); tRestartT=setTimeout(()=>{ if(playing) playSelected(playPos()); }, 250); }
+tD.cv.addEventListener("pointermove", e=>{ if(!tPaint) return; const [x,y]=dPos(tD,e), d=Math.hypot(x-PC,y-PC); if(d<PR*0.3) return; const k=roboStepAt(x,y), v=roboRingAt(d); if(k<0) return;
+  if(k!==tPaint.last || v!==tPaint.v){ const nS=roboSteps(); let a=tPaint.last, dk=((k-a)%nS+nS)%nS; if(dk>nS/2) dk-=nS; if(Math.abs(dk)>8) dk=0; tPaint.v=v; for(let s=1;s<=Math.abs(dk);s++) roboSetStep(((a+Math.sign(dk)*s)%nS+nS)%nS,v); roboSetStep(k,v); tPaint.last=k; } });
+["pointerup","pointercancel"].forEach(ev=>tD.cv.addEventListener(ev, ()=>{ tPaint=null; }));
 function tDraw(){
   if(!dLayout(tD)) return; const g=tD.g, ts=fxSt.tune, br=PB(), on=!!ts.on, root=tuneRoot(), mk=tuneMask(ts,root), rr=rootOf(selTake()), now=performance.now();
-  const T=on&&playing?tuneTrack():null; let h=-1;
+  let T=on&&playing?tuneTrack():null; if(T&&(!T.tr||!T.tr.out)) T=null; let h=-1;
   if(T){ let pos=playPos(); if(hasTrim(T.t)) pos+=T.t.trimA/T.t.sr; h=Math.floor((pos*T.t.sr-T.tr.off)/T.tr.hop); const v=h>=0&&h<T.tr.out.length?T.tr.out[h]:NaN; if(isFinite(v)){ tLastN=Math.round(v); tLastT=now; } }
   const showN=on&&playing&&isFinite(tLastN)&&now-tLastT<450, tgt=showN?((tLastN%12)+12)%12:-1;
   g.clearRect(0,0,PS,PS); g.drawImage(tD.bz,0,0,PS,PS);
@@ -4451,28 +4541,29 @@ function tDraw(){
     g.font="700 14px SnadMono,monospace"; g.textAlign="center"; g.textBaseline="middle"; g.fillStyle=br?"rgba(255,255,255,.85)":"rgba(0,0,0,.9)"; g.fillText(VOC_NOTES[k],t[0],t[1]+1);
     dText(g, VOC_NOTES[k], t[0], t[1], "700 14px SnadMono,monospace", col, hot&&!br?"rgba(255,39,133,.8)":null); }
   dGlassBg(g);
-  // Radar: zwoelf Felder wie der Ring (Skala gruen), Zielton-Feld pink
-  const ang=m=>((m%12)+12)%12*Math.PI/6, R0=PR*0.34, R1=PR*0.95;
-  for(let k=0;k<12;k++){ const a0=(k-0.5)*Math.PI/6-Math.PI/2, a1=(k+0.5)*Math.PI/6-Math.PI/2, hot=k===tgt;
-    if(mk[k]||hot){ g.fillStyle=hot?"rgba("+P_HOT+",0.13)":"rgba("+P_GOLD+","+(k===root?0.07:0.035)+")"; g.beginPath(); g.arc(PC,PC,R1,a0,a1); g.arc(PC,PC,R0*0.82,a1,a0,true); g.closePath(); g.fill(); }
-    g.strokeStyle="rgba("+P_WARM+",0.07)"; g.lineWidth=1; g.beginPath(); g.moveTo(PC+Math.cos(a0)*R0*0.82,PC+Math.sin(a0)*R0*0.82); g.lineTo(PC+Math.cos(a0)*R1,PC+Math.sin(a0)*R1); g.stroke(); }
-  g.strokeStyle="rgba("+P_WARM+",0.08)"; g.setLineDash([1,5]); [R0*0.82,(R0+R1)/2].forEach(r=>{ g.beginPath(); g.arc(PC,PC,r,0,P2); g.stroke(); }); g.setLineDash([]);
-  // Spiralen: gesungen (fein) und gezogen (pink), innen jetzt, aussen 2 Sekunden alt
-  if(T && h>=0){ const span=Math.round(2*T.t.sr/T.tr.hop), N=T.tr.det.length;
-    for(const [arr,col,lw,dot] of [[T.tr.det,P_WARM,1,1.6],[T.tr.out,P_HOT,2,2.4]]){ let pen=false, last=null; g.lineWidth=lw;
-      for(let j=0;j<=span;j++){ const k=h-j; const v=k>=0&&k<N?arr[k]:NaN; if(!isFinite(v)){ pen=false; last=null; continue; }
-        const age=j/span, r=R0+(R1-R0)*age, a=ang(v)-Math.PI/2, x=PC+Math.cos(a)*r, y=PC+Math.sin(a)*r, al=(1-age)*(col===P_HOT?0.95:0.6);
-        if(last && Math.abs(v-last.v)<0.6){ g.strokeStyle="rgba("+col+","+al+")"; g.beginPath(); g.moveTo(last.x,last.y); g.lineTo(x,y); g.stroke(); }
-        if(j===0){ g.fillStyle="rgba("+col+",1)"; if(!br){ g.shadowColor="rgba("+col+",.9)"; g.shadowBlur=10; } g.beginPath(); g.arc(x,y,dot*2.2,0,P2); g.fill(); g.shadowBlur=0; }
-        last={x,y,v}; } }
-    // Bogen: wie weit die Stimme gerade gezogen wird
-    const d=T.tr.det[h], o=T.tr.out[h]; if(isFinite(d)&&isFinite(o)&&Math.abs(o-d)>0.03){ let a0=ang(d)-Math.PI/2, a1=ang(o)-Math.PI/2; if(a1-a0>Math.PI) a1-=P2; if(a0-a1>Math.PI) a1+=P2;
-      g.strokeStyle="rgba("+P_HOT+",0.85)"; g.lineWidth=3; if(!br){ g.shadowColor="rgba(255,39,133,.8)"; g.shadowBlur=8; } g.beginPath(); g.arc(PC,PC,R0*0.9,Math.min(a0,a1),Math.max(a0,a1)); g.stroke(); g.shadowBlur=0;
-      const ct=Math.round((o-d)*100); dText(g,(ct>0?"+":"")+ct+" CT",PC,PC+R0*0.62,"15px VT323, monospace","rgba("+P_HOT+",.9)"); } }
-  const gold="rgb("+P_GOLD+")", key=VOC_NOTES[root]+" "+T_SCN[ts.scale];
-  if(showN){ dText(g, VOC_NOTES[tgt]+(Math.floor(tLastN/12)-1), PC, PC-8, "60px VT323, monospace", "rgb("+P_HOT+")", br?null:"rgba(255,39,133,.6)"); dText(g, key, PC, PC+28, "15px VT323, monospace", "rgba("+P_WARM+",.7)"); }
-  else { dText(g, key, PC, PC-10, "32px VT323, monospace", gold, br?null:"rgba(50,235,164,.55)"); dText(g, ts.mode.toUpperCase(), PC, PC+18, "15px VT323, monospace", "rgba("+P_WARM+",.7)");
-    const l3=!rr?"SELECT A TAKE FIRST":!on?"SNAP OFF":!playing?"TAP THE RING FOR THE KEY":""; if(l3) dText(g, l3, PC, PC+R1*0.62, "14px VT323, monospace", "rgba("+P_HOT+",.85)"); }
+  // ROBO: drei Ringe (aussen HIGH, Mitte MID, innen LOW), jeder Schritt leuchtet in seinem Ring, die Melodie sitzt im Ring ihres Schritts
+  const TT=tuneTrack(), tr=TT&&TT.tr, gold="rgb("+P_GOLD+")", nS=roboSteps(), stS=String(ts.steps||""), SC=[null,P_GOLD,P_HOT,P_VIO], stv=k=>(+(stS[k]||0)||1);
+  let ppos=-1, n0=0; if(rr){ n0=rr.len; } if(TT && playing){ let pos=playPos(); if(hasTrim(TT.t)) pos+=TT.t.trimA/TT.t.sr; ppos=pos*TT.t.sr; if(n0) ppos=((ppos%n0)+n0)%n0; }
+  if(nS){ const gap=nS>48?0.004:0.012, hk=ppos>=0&&n0?Math.floor(ppos/n0*nS):-1;
+    for(let v=1;v<=3;v++){ const rb=RB[v]; g.lineWidth=rb[1]-rb[0];
+      for(let k=0;k<nS;k++){ const a0=k/nS*P2-Math.PI/2+gap, a1=(k+1)/nS*P2-Math.PI/2-gap, act=stv(k)===v, hot=act&&k===hk;
+        g.strokeStyle=act?"rgba("+SC[v]+","+(on?(hot?0.55:0.3):0.12)+")":"rgba("+P_WARM+","+(k%8===0?0.1:0.04)+")"; g.beginPath(); g.arc(PC,PC,(rb[0]+rb[1])/2,a0,a1); g.stroke(); } }
+    dText(g,"HIGH",PC,PC-(RB_HI[0]+RB_HI[1])/2,"12px VT323, monospace","rgba("+P_HOT+","+(on?0.75:0.35)+")");
+    dText(g,"MID",PC,PC-(RB_MID[0]+RB_MID[1])/2,"12px VT323, monospace","rgba("+P_GOLD+","+(on?0.75:0.35)+")");
+    dText(g,"LOW",PC,PC-(RB_LO[0]+RB_LO[1])/2,"12px VT323, monospace","rgba("+P_VIO+","+(on?0.75:0.35)+")");
+    for(let b=8;b<nS;b+=8){ const a=b/nS*P2-Math.PI/2; dText(g, String(b/8+1), PC+Math.cos(a)*(RB_LO[0]-9), PC+Math.sin(a)*(RB_LO[0]-9), "12px VT323, monospace", "rgba("+P_WARM+",0.45)"); } }
+  if(tr && tr.notes && tr.notes.length && n0 && nS){ let lo0=1e9, hi0=-1e9; for(const nt of tr.notes){ lo0=Math.min(lo0,nt.m); hi0=Math.max(hi0,nt.m); } if(hi0-lo0<6){ const c=(hi0+lo0)/2; lo0=c-3; hi0=c+3; }
+    const sl=n0/nS; for(const nt of tr.notes){ const fr=Math.max(0,Math.min(1,(nt.m-lo0)/(hi0-lo0))), hot=ppos>=nt.a&&ppos<nt.b;
+      for(let k=Math.max(0,Math.floor(nt.a/sl)); k<nS && k*sl<nt.b; k++){ const v=stv(k), rb=RB[v], s0=Math.max(nt.a,k*sl), s1=Math.min(nt.b,(k+1)*sl); if(s1<=s0) continue;
+        const r2=rb[0]+4+(rb[1]-rb[0]-8)*fr, a0=s0/n0*P2-Math.PI/2, a1=s1/n0*P2-Math.PI/2;
+        g.strokeStyle="rgba("+SC[v]+","+(on?(hot?1:0.85):0.35)+")"; g.lineWidth=hot?6:4; if(hot&&on&&!br){ g.shadowColor="rgba("+SC[v]+",.9)"; g.shadowBlur=12; }
+        g.beginPath(); g.arc(PC,PC,r2,a0,Math.max(a0+0.01,a1)); g.stroke(); g.shadowBlur=0; } } }
+  if(ppos>=0 && n0){ const a=ppos/n0*P2-Math.PI/2; g.strokeStyle="rgba("+P_HOT+",0.85)"; g.lineWidth=2; g.beginPath(); g.moveTo(PC+Math.cos(a)*RB_LO[0],PC+Math.sin(a)*RB_LO[0]); g.lineTo(PC+Math.cos(a)*PR*0.97,PC+Math.sin(a)*PR*0.97); g.stroke(); }
+  g.fillStyle="rgba(0,0,0,0.35)"; g.beginPath(); g.arc(PC,PC,PR*0.36,0,P2); g.fill();
+  const key=VOC_NOTES[root]+" "+T_SCN[ts.scale];
+  dText(g, key, PC, PC-12, "26px VT323, monospace", gold, br?null:"rgba(50,235,164,.55)"); dText(g, "ROBO", PC, PC+14, "15px VT323, monospace", "rgba("+P_WARM+",.7)");
+  const busy=TT&&TT.t._tnPK, l3=performance.now()-tMsgT<1800?tMsg:!rr?"SELECT A TAKE FIRST":!on?"ROBO OFF":busy?"ROBO WORKING":!stS.replace(/[01]/g,"")?"DRAG STEPS OUT OR IN":!tr?"PRESS PLAY":"";
+  if(l3){ g.font="13px VT323, monospace"; const tw=g.measureText(l3).width+14; g.fillStyle="rgba(10,10,14,0.85)"; g.fillRect(PC-tw/2,PC+38-10,tw,20); dText(g, l3, PC, PC+38, "13px VT323, monospace", "rgba("+P_HOT+",.9)"); }
   g.restore(); g.drawImage(tD.gl,0,0,PS,PS);
 }
 $("vCar").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; if(b.dataset.c==="sample"){ if(!selTake()) return; openLib("car"); return; } vocSet({car:b.dataset.c}); });
@@ -4956,7 +5047,7 @@ function mDrawTaps(g,br,on,st,lit,GR){
 })();
 function fxRender(){
   const st=fxStack();
-  fxChainEl.innerHTML='<button class="fxslot'+(fxTab==="tune"?' sel':'')+(fxSt.tune.on?' on':'')+'" data-k="tune"><i></i>SNAP</button>'+fxSt.order.map((k,i)=>'<button class="fxslot'+(fxTab===k?' sel':'')+(fxSt.on[k]?' on':'')+'" data-k="'+k+'"><i></i>'+FX_NAMES[k]+'</button>').join("");
+  fxChainEl.innerHTML='<button class="fxslot'+(fxTab==="tune"?' sel':'')+(fxSt.tune.on?' on':'')+'" data-k="tune"><i></i>ROBO</button>'+fxSt.order.map((k,i)=>'<button class="fxslot'+(fxTab===k?' sel':'')+(fxSt.on[k]?' on':'')+'" data-k="'+k+'"><i></i>'+FX_NAMES[k]+'</button>').join("");
   const i=fxSt.order.indexOf(fxTab); $("fxL").disabled=i<=0; $("fxR").disabled=i<0||i>=2;
   if(fxTab==="pad"){
     $("pRun").classList.toggle("on", !!padP[13]); $("pGlide").classList.toggle("on", !!padP[15]);
