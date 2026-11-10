@@ -737,11 +737,11 @@
     <div class="tlist" id="tlist"></div>
   </div>
 
-  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 1.45</span></div>
+  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 1.46</span></div>
 </div>
 
 <script type="module">
-/* DREX MB  REV 1.45  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
+/* DREX MB  REV 1.46  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
 const $=(id)=>document.getElementById(id);
 const device=$("device");
 const waveCanvas=$("wave"), wctx=waveCanvas.getContext("2d");
@@ -946,7 +946,7 @@ function drawRings(root, db, cx, cy, R, R0, a0, a1, fs, w){
 }
 function arcLoop(){ drawArc(); requestAnimationFrame(arcLoop); }
 
-/* ================= ENGINE (REV 1.45) =================
+/* ================= ENGINE (REV 1.46) =================
    Eine Audio-Uhr fuer alles: Aufnahme, Count-in, Metronom, Abspielen.
    Aufnahme sampelgenau per AudioWorklet (Fallback ScriptProcessor), kein MediaRecorder mehr. */
 const AC=window.AudioContext||window.webkitAudioContext;
@@ -1047,9 +1047,13 @@ function wakeAudio(){
   if(!ac){ ac=newAC(); }
   if(ac.state!=="running"){ try{ ac.resume(); }catch(e){} }
 }
+function setSess(ty){ try{ if(navigator.audioSession && navigator.audioSession.type!==ty) navigator.audioSession.type=ty; }catch(e){} }
+// Wiedergabe ohne Aufnahme: Mikro freigeben und Sitzung auf "playback", damit iOS normal laut ueber den Lautsprecher spielt
+function micRelease(){ if(recState!=="idle" || !micStream) return; try{ micStream.getTracks().forEach(tr=>tr.stop()); }catch(e){} micStream=null; if(micSrc){ try{ micSrc.disconnect(); }catch(e){} micSrc=null; } setSess("playback"); }
 async function ensureEngine(){
   const live=micStream && micStream.getAudioTracks().some(t=>t.readyState==="live");
   if(!live){
+    setSess("play-and-record");
     micStream=await navigator.mediaDevices.getUserMedia({ audio:{ echoCancellation:false, noiseSuppression:false, autoGainControl:false, channelCount:{ideal:2} }, video:false });
     if(micSrc){ try{ micSrc.disconnect(); }catch(e){} } micSrc=null;
   }
@@ -2363,7 +2367,7 @@ const FINAL_SRC=`class FinalDSP{
   set(p){
     // eq: breite Kuhschwanz/Glocken, glue: Bus-Kompressor, lo/hi: sanfte Bandkontrolle unter 200 Hz und ueber 4 kHz, sat: Bandfarbe, side: Seitenanteil erzeugen, sw: Seiten lauter, lu: Zielpegel
     const P={
-      raw:   {eq:[], glue:[-20,2,0.01,0.25], lo:null, hi:null, sat:0, side:0, sw:1, lu:null, mk:5},
+      raw:   {eq:[], glue:[-20,2,0.01,0.25], lo:null, hi:null, sat:0, side:0, sw:1, lu:-12, mk:5},
       // ab 1.33 nach "lieber zu stark": Pop-Lautheit, klar unterschiedliche Charaktere. ds = De-Esser [Frequenz, Schwelle]
       // CLEAN: straff und praesent, unter 100 Hz weg, -11 LUFS
       clean: {eq:[["hp",100,0.7,0],["pk",250,1,-2],["pk",3000,0.9,2],["hs",10000,0.7,2]], glue:[-28,3,0.005,0.12], lo:[-30,2.5,0.02,0.2], hi:[-32,2,0.004,0.12], sat:0.2, bias:0.1, side:0, sw:1, lu:-11, ds:[6500,0.5]},
@@ -2553,7 +2557,7 @@ function startPlayBufs(bufs, from){
   const prevEnd=first.onended; first.onended=()=>{ if(prevEnd) prevEnd(); if(playSrcs===mine){ stopSources(playSrcs); playSrcs=[]; playing=false; playOffset=0; playHead=-1; playBtn.classList.remove("playing"); fxTransport(); renderTakes(); } };
 }
 async function playSelected(from){
-  const t=selTake(); if(!t||!ac) return;
+  const t=selTake(); if(!t||!ac) return; micRelease();
   const bufs=await playBufsFor(t, false);
   if(!bufs.length) return;
   startPlayBufs(bufs, from);
@@ -4545,9 +4549,10 @@ function tDraw(){
   const TT=tuneTrack(), tr=TT&&TT.tr, gold="rgb("+P_GOLD+")", nS=roboSteps(), stS=String(ts.steps||""), SC=[null,P_GOLD,P_HOT,P_VIO], stv=k=>(+(stS[k]||0)||1);
   let ppos=-1, n0=0; if(rr){ n0=rr.len; } if(TT && playing){ let pos=playPos(); if(hasTrim(TT.t)) pos+=TT.t.trimA/TT.t.sr; ppos=pos*TT.t.sr; if(n0) ppos=((ppos%n0)+n0)%n0; }
   if(nS){ const gap=nS>48?0.004:0.012, hk=ppos>=0&&n0?Math.floor(ppos/n0*nS):-1;
-    for(let v=1;v<=3;v++){ const rb=RB[v]; g.lineWidth=rb[1]-rb[0];
-      for(let k=0;k<nS;k++){ const a0=k/nS*P2-Math.PI/2+gap, a1=(k+1)/nS*P2-Math.PI/2-gap, act=stv(k)===v, hot=act&&k===hk;
-        g.strokeStyle=act?"rgba("+SC[v]+","+(on?(hot?0.55:0.3):0.12)+")":"rgba("+P_WARM+","+(k%8===0?0.1:0.04)+")"; g.beginPath(); g.arc(PC,PC,(rb[0]+rb[1])/2,a0,a1); g.stroke(); } }
+    for(let v=1;v<=3;v++){ const rb=RB[v];
+      for(let k=0;k<nS;k++){ const a0=k/nS*P2-Math.PI/2+gap, a1=Math.max(a0+0.002,(k+1)/nS*P2-Math.PI/2-gap), act=stv(k)===v, hot=act&&k===hk;
+        g.fillStyle=act?"rgba("+SC[v]+","+(on?(hot?0.55:0.3):0.12)+")":"rgba("+P_WARM+","+(k%8===0?0.1:0.04)+")";
+        g.beginPath(); g.moveTo(PC+Math.cos(a0)*rb[0],PC+Math.sin(a0)*rb[0]); g.lineTo(PC+Math.cos(a0)*rb[1],PC+Math.sin(a0)*rb[1]); g.arc(PC,PC,rb[1],a0,a1,false); g.lineTo(PC+Math.cos(a1)*rb[0],PC+Math.sin(a1)*rb[0]); g.arc(PC,PC,rb[0],a1,a0,true); g.closePath(); g.fill(); } }
     dText(g,"HIGH",PC,PC-(RB_HI[0]+RB_HI[1])/2,"12px VT323, monospace","rgba("+P_HOT+","+(on?0.75:0.35)+")");
     dText(g,"MID",PC,PC-(RB_MID[0]+RB_MID[1])/2,"12px VT323, monospace","rgba("+P_GOLD+","+(on?0.75:0.35)+")");
     dText(g,"LOW",PC,PC-(RB_LO[0]+RB_LO[1])/2,"12px VT323, monospace","rgba("+P_VIO+","+(on?0.75:0.35)+")");
@@ -4561,7 +4566,7 @@ function tDraw(){
   if(ppos>=0 && n0){ const a=ppos/n0*P2-Math.PI/2; g.strokeStyle="rgba("+P_HOT+",0.85)"; g.lineWidth=2; g.beginPath(); g.moveTo(PC+Math.cos(a)*RB_LO[0],PC+Math.sin(a)*RB_LO[0]); g.lineTo(PC+Math.cos(a)*PR*0.97,PC+Math.sin(a)*PR*0.97); g.stroke(); }
   g.fillStyle="rgba(0,0,0,0.35)"; g.beginPath(); g.arc(PC,PC,PR*0.36,0,P2); g.fill();
   const key=VOC_NOTES[root]+" "+T_SCN[ts.scale];
-  dText(g, key, PC, PC-12, "26px VT323, monospace", gold, br?null:"rgba(50,235,164,.55)"); dText(g, "ROBO", PC, PC+14, "15px VT323, monospace", "rgba("+P_WARM+",.7)");
+  dText(g, key, PC, PC-12, "26px VT323, monospace", gold, br?null:"rgba(50,235,164,.55)"); dText(g, "ROBO", PC, PC+14, "15px VT323, monospace", "rgba("+P_WARM+",.7)"); dText(g, (nS||0)+" STEPS", PC, PC+60, "12px VT323, monospace", "rgba("+P_WARM+",.4)");
   const busy=TT&&TT.t._tnPK, l3=performance.now()-tMsgT<1800?tMsg:!rr?"SELECT A TAKE FIRST":!on?"ROBO OFF":busy?"ROBO WORKING":!stS.replace(/[01]/g,"")?"DRAG STEPS OUT OR IN":!tr?"PRESS PLAY":"";
   if(l3){ g.font="13px VT323, monospace"; const tw=g.measureText(l3).width+14; g.fillStyle="rgba(10,10,14,0.85)"; g.fillRect(PC-tw/2,PC+38-10,tw,20); dText(g, l3, PC, PC+38, "13px VT323, monospace", "rgba("+P_HOT+",.9)"); }
   g.restore(); g.drawImage(tD.gl,0,0,PS,PS);
