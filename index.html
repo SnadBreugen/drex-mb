@@ -569,6 +569,7 @@
   <div class="sheet-dim" id="sheetDim"></div>
   <div class="sheet" id="sheet" aria-hidden="true">
     <div class="sheet-head"><span>SETTINGS</span><button class="sheet-x new" id="manOpen" aria-label="Manual">MANUAL</button><button class="sheet-x" id="sheetClose" aria-label="Close">CLOSE</button></div>
+    <div class="srow"><span class="sl">LOOP</span><span class="latbox"><span class="sv" id="bkName" style="font-size:12px;max-width:96px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:1px">NONE</span><button class="sbtn alt" id="bkOpen">LIBRARY</button><button class="sbtn alt" id="bkRemove" hidden>REMOVE</button></span></div>
     <div class="srow"><span class="sl">CLICK PITCH</span>
       <span class="stepper"><button id="pitchDn" aria-label="Lower">&minus;</button><span id="pitchVal">A4</span><button id="pitchUp" aria-label="Higher">+</button></span></div>
     <div class="srow"><span class="sl">INPUT LEVEL</span><button class="sbtn alt" id="lvlBtn">SET LEVEL</button></div>
@@ -611,15 +612,15 @@
   <div class="sheet edit" id="fxSheet" aria-hidden="true">
     <div class="sheet-head"><button class="fxmv" id="fxL" aria-label="Move left">&lsaquo;</button><div class="fxchain" id="fxChain"></div><button class="fxmv" id="fxR" aria-label="Move right">&rsaquo;</button><span class="einfo" id="fxInfo" hidden></span><button class="sheet-x" id="fxClose" aria-label="Close">CLOSE</button></div>
     <div class="fxview" id="padView">
-    <div class="fxbtns"><button class="fxb surf" id="pRun">RUN</button><button class="fxb surf" id="pGlide">GLIDE</button><button class="fxb surf nolamp" id="pClear">CLEAR</button><button class="fxb surf nolamp" id="pRate">RATE<b>1/4</b></button><button class="fxb surf dim" id="pCatch">CATCH</button></div>
+    <div class="fxbtns"><button class="fxb surf" id="pRun">RUN</button><button class="fxb surf" id="pGlide">GLIDE</button><button class="fxb surf" id="pClear">CLEAR</button><button class="fxb surf" id="pRate">RATE<b>1/4</b></button><button class="fxb surf dim" id="pCatch">CATCH</button></div>
     <div class="fxdisc" id="fxDisc"><canvas id="fxCv"></canvas><button class="fxarr" id="fxPrev" aria-label="Previous set">&lsaquo;</button><button class="fxarr" id="fxNext" aria-label="Next set">&rsaquo;</button></div>
-    <div class="fxbtns b6"><button class="fxb surf pk" id="pRec">REC</button><button class="fxb surf pk nolamp" id="pLen">LEN<b>1 BAR</b></button><button class="fxb surf pk dim nolamp" id="pUndo">UNDO</button><button class="fxb surf pk dim nolamp" id="pRedo">REDO</button><button class="fxb surf pk dim" id="pStop">LOOP</button><button class="fxb surf pk" id="pDrift">DRIFT</button></div>
+    <div class="fxbtns b6"><button class="fxb surf pk" id="pRec">REC</button><button class="fxb surf pk" id="pLen">LEN<b>1 BAR</b></button><button class="fxb surf pk dim" id="pUndo">UNDO</button><button class="fxb surf pk dim" id="pRedo">REDO</button><button class="fxb surf pk dim" id="pStop">LOOP</button><button class="fxb surf pk" id="pDrift">DRIFT</button></div>
     <div class="fxknobs"><div class="fxk" id="kLc"><canvas></canvas><span>LOW CUT<b>120</b></span></div><div class="fxk" id="kMix"><canvas></canvas><span>MIX<b>85</b></span></div><div class="fxk" id="kFb"><canvas></canvas><span>ECHO<b>0</b></span></div><div class="fxk" id="kVerb"><canvas></canvas><span>VERB<b>0</b></span></div><div class="fxk" id="kLvl"><canvas></canvas><span>LEVEL<b>80</b></span></div></div>
     </div>
     <div class="fxview" id="tuneView" hidden>
-    <div class="fxbtns b4" id="tMode"><button class="fxb surf nolamp" id="tToneB">TONE<b>SAW</b></button><button class="fxb surf nolamp" id="tGlideB">GLIDE<b>OFF</b></button><button class="fxb surf nolamp" id="tResetB">CLEAR</button><button class="fxb surf nolamp" id="tScaleB">SCALE<b>MINOR</b></button></div>
+    <div class="fxbtns b4" id="tMode"><button class="fxb surf" id="tToneB">TONE<b>SAW</b></button><button class="fxb surf" id="tGlideB">GLIDE<b>OFF</b></button><button class="fxb surf" id="tResetB">CLEAR</button><button class="fxb surf" id="tScaleB">SCALE<b>MINOR</b></button></div>
     <div class="fxdisc" id="tDisc"><canvas id="tCv"></canvas></div>
-    <div class="fxbtns b6" id="tLay"><button class="fxb surf pk" data-l="0">1</button><button class="fxb surf pk" data-l="1">2</button><button class="fxb surf pk" data-l="2">3</button><button class="fxb surf pk" data-l="3">4</button><button class="fxb surf pk" data-l="4">5</button><button class="fxb surf pk" data-l="5">6</button></div>
+    <div class="fxbtns b3" id="tLay"><button class="fxb surf pk" id="fxUndoB">UNDO</button><button class="fxb surf pk" id="fxRedoB">REDO</button><button class="fxb surf pk" id="fxBounceB">AS LOOP</button></div>
     <div class="mknobs tknobs"><div></div><div class="fxk" id="kHi"><canvas></canvas><span>HIGH<b>+12</b></span></div><div class="fxk" id="kMidT"><canvas></canvas><span>MID<b>0</b></span></div><div class="fxk" id="kLo"><canvas></canvas><span>LOW<b>-12</b></span></div><div></div><div class="fxk" id="kRMix"><canvas></canvas><span>MIX<b>0</b></span></div><div></div></div>
     </div>
     <div class="fxview" id="vocView" hidden>
@@ -629,9 +630,9 @@
     <div class="fxknobs vknobs"><div class="fxk" id="kClar"><canvas></canvas><span>CLARITY<b>40</b></span></div><div class="fxk" id="kDry"><canvas></canvas><span>VOICE<b>0</b></span></div></div>
     </div>
     <div class="fxview" id="multiView" hidden>
-    <div class="fxbtns"><button class="fxb surf" id="mRunB">RUN</button><button class="fxb surf" id="mGlideB">GLIDE</button><button class="fxb surf dim nolamp" id="mPclrB">CLEAR</button><button class="fxb surf nolamp" id="mRateB">RATE<b>1/4</b></button><button class="fxb surf nolamp" id="mRouteB">ROUTE<b>SEND</b></button></div>
+    <div class="fxbtns"><button class="fxb surf" id="mRunB">RUN</button><button class="fxb surf" id="mGlideB">GLIDE</button><button class="fxb surf dim" id="mPclrB">CLEAR</button><button class="fxb surf" id="mRateB">RATE<b>1/4</b></button><button class="fxb surf" id="mRouteB">ROUTE<b>SEND</b></button></div>
     <div class="fxdisc" id="mDisc"><canvas id="mCv"></canvas></div>
-    <div class="fxbtns b6"><button class="fxb surf pk" id="mRecB">REC</button><button class="fxb surf pk nolamp" id="mLenB">LEN<b>1 BAR</b></button><button class="fxb surf pk dim nolamp" id="mUndoB">UNDO</button><button class="fxb surf pk dim nolamp" id="mRedoB">REDO</button><button class="fxb surf pk dim" id="mLoopB">LOOP</button><button class="fxb surf pk" id="mHoldB">HOLD</button></div>
+    <div class="fxbtns b6"><button class="fxb surf pk" id="mRecB">REC</button><button class="fxb surf pk" id="mLenB">LEN<b>1 BAR</b></button><button class="fxb surf pk dim" id="mUndoB">UNDO</button><button class="fxb surf pk dim" id="mRedoB">REDO</button><button class="fxb surf pk dim" id="mLoopB">LOOP</button><button class="fxb surf pk" id="mHoldB">HOLD</button></div>
     <div class="mknobs" id="mKnobs"></div>
     <div class="fxbtns" id="mBtns"></div>
     </div>
@@ -674,7 +675,7 @@
 
 <details><summary>SING OVER A TRACK</summary>
 <ol><li>In Audiotool, bounce the part of your track you want to sing over. It lands in your library.</li>
-<li>Open TAKES, tap LIBRARY and log in if asked.</li>
+<li>Open SETTINGS (the grid top right), go to LOOP, tap LIBRARY and log in if asked. REMOVE takes the loop out again.</li>
 <li>MY SAMPLES lists your own loops, newest first. SEARCH looks through the public library. The BPM key limits results to your tempo.</li>
 <li>Tap the play symbol to preview, USE to load it. DREX-MB takes over its tempo and shows READY: OVER BACKING.</li>
 <li>Tap RECORD. Your layers are exactly as long as the backing loop.</li></ol>
@@ -697,7 +698,7 @@
 <p>After EDIT everything is about the sum: all layers together go through the FX chain. The backing loop never does.</p>
 <p><b>Chain:</b> VOCODER, SNADPAD and MULTI. Tap a device to show it, the light shows if it is on. The arrows move the shown device left or right in the chain. Tap the tab of the page you are on (ROBO, VOCODER, SNADPAD, MULTI) to turn it on or off, the line in the tab lights up when it is on. FX settings are saved with the take.</p>
 <p><b>SNADPAD MB:</b> the original SNADPAD engine. Tap and drag on the scope to play. Double tap sets a point, tap a point to hold it, double tap it to remove it, drag to move it. RUN travels the points, GLIDE smooths the way, RATE sets the speed. REC records your finger on the pad for exactly one round of LEN (1, 2 or 4 bars) and then stops by itself, the move loops right away. Press REC again for another round, it only replaces where you play. Every pass adds to the move: where you play, the new movement replaces the old one, the rest stays. UNDO and REDO step back and forth, LOOP pauses or plays the move, LEN sets its length (1, 2 or 4 bars), DRIFT lets it wander a little every round. The arrows on the ring switch the set. CATCH and FLUSH work in the set CRUMBS. Knobs: drag up for more, double tap to reset.</p>
-<p><b>ROBO:</b> the robot voice, first tab in the FX bar, switches on as soon as you open it. Every sixteenth note plays exactly one note, so the robot steps cleanly instead of wobbling. Inside the glass your take runs three times as rings, cut into steps (eighth notes, the numbers mark the bars): outside HIGH, middle MID, inside LOW. Every step starts in the middle. Drag a step outward or inward and it jumps into that ring, keep dragging along the ring to move a whole passage. Tap a ring to drop a step right there. The robot is one voice, hard and monophonic like Daft Punk: the energy comes from jumping, for example one word an octave down. Your melody sits inside the ring of its step, the playhead runs along. HIGH, MID and LOW below are the tuning wheels of the three rings (HIGH 0 to +24, MID -12 to +12, LOW -24 to 0 semitones, start one octave up, unchanged, one octave down) and land on notes of the scale. TONE picks SAW, SQUARE or SOFT, GLIDE lets notes slide, CLEAR puts all steps back in the middle. Your real voice is gone completely, even S, T and SH are rebuilt from noise in the color of your voice. While ROBO works it keeps playing the last robot result (the very first time the track is silent). MIX brings your real voice back underneath if you want it (starts at 0). The key is found by itself, tap a note on the outer note ring to set it yourself, SCALE switches MAJOR, MINOR and CHROM. ROBO works in the background (ROBO WORKING) once per setting, moving steps is instant. It is part of the export.</p>
+<p><b>ROBO:</b> the robot voice, first tab in the FX bar, switches on as soon as you open it. Every sixteenth note plays exactly one note, so the robot steps cleanly instead of wobbling. Inside the glass your take runs three times as rings, cut into steps (eighth notes, the numbers mark the bars): outside HIGH, middle MID, inside LOW. Every step starts in the middle. Drag a step outward or inward and it jumps into that ring, keep dragging along the ring to move a whole passage. Tap a ring to drop a step right there. The robot is one voice, hard and monophonic like Daft Punk: the energy comes from jumping, for example one word an octave down. Your melody sits inside the ring of its step, the playhead runs along. HIGH, MID and LOW below are the tuning wheels of the three rings (HIGH 0 to +24, MID -12 to +12, LOW -24 to 0 semitones, start one octave up, unchanged, one octave down) and land on notes of the scale. TONE picks SAW, SQUARE or SOFT, GLIDE lets notes slide, CLEAR puts all steps back in the middle. Your real voice is gone completely, even S, T and SH are rebuilt from noise in the color of your voice. While ROBO works it keeps playing the last robot result (the very first time the track is silent). MIX brings your real voice back underneath if you want it (starts at 0). The key is found by itself, tap a note on the outer note ring to set it yourself, SCALE switches MAJOR, MINOR and CHROM. ROBO works in the background (ROBO WORKING) once per setting, moving steps is instant. It is part of the export. Below the glass: UNDO and REDO step back and forth through every effect change of this take (all tabs, steps, knobs, on and off). AS LOOP turns everything you hear right now (all layers with all effects, plus a background loop) into a new background loop, so you can sing on top of it. Your take stays as it is.</p>
 <p><b>VOCODER:</b> your voice shapes a carrier. The top row picks it: CHORD plays a synth chord, DRONE a deep single tone, NOISE gives a whisper, SAMPLE picks any sound from your Audiotool library. Tap a note on the ring to set the key. MAJ, MIN and PWR set the chord and the scale. FOLLOW makes CHORD or DRONE follow your singing in that key, without it they hold the key note. OCT switches between LOW and MID. CLARITY brings out consonants, VOICE blends your own voice back in.</p>
 <p><b>MULTI:</b> MODULATION, PULSE, CHOP, SHAPE, DELAY and REVERB. DELAY and REVERB have their own engines, MOD runs on the real STOMPINSKI engine. Tap a button to pick the effect (green frame), it lies in the glass and its knobs show below. Tap it again to switch it on or off (light on the button). Playing the glass switches the picked effect on. Hold a button and drag left or right to change the order, the ring shows the chain. HOLD is on by default: the effect stays where you leave it. With HOLD off the effect only sounds while your finger is on the glass, like a Kaoss Pad: tap a word into the delay and the echo rings out after you let go. HOLD on keeps the effect and the point where you left it. ROUTE switches the picked effect between SEND (your voice stays dry, the effect is added, MIX is the send level) and INSERT (the whole voice goes through it, MIX blends dry and effect). DELAY and REVERB start as SEND. The glass plays: MOD rate and depth, SHAPE curve and drive, REVERB size and level. DELAY is a clock: once around is one bar, the 1 sits at the top. Double tap the glass to place an echo (up to 8), drag it to move it, double tap on an echo removes it, further out is louder. GRID snaps to 1/16, 1/16 T, 1/32 or FREE. The delay works like a tape echo with several heads: FEEDBACK sends all echoes back onto the tape, so a few points grow into a rolling rhythm. TAPE adds wow, flutter and saturation that grows with every repeat, later repeats get softer and smear. DUCK pushes the echoes down while you sing and lets them bloom in the gaps. WIDTH spreads the echoes left and right and lets the repeats cross over. LOW CUT, HIGH CUT and RESO shape the echoes, every repeat gets thinner or darker. Echoes dragged into the outer ring (EDGE) get dirty. REVERB SOUND switches between VOCAL (filtered send, the reverb ducks while you sing and blooms in the gaps) and CLASSIC. PRE sets how late the reverb starts and stays put. PUMP pushes the reverb away on every beat and lets it swell back. EDGE: the right edge of the glass is the experimental zone (marked). In the middle everything stays clean, towards the edge REVERB gets scratched by a fuzz, DELAY saturates and starts to whistle, MOD turns metallic, The EDGE knob sets how strong the zone gets, 0 switches it off. The knobs below hold all other settings of the picked effect, the arrows page through them. MOD has four modes (CHORUS, FLANGER, PHASER, VIBE), DELAY switches between SYNC (note values) and FREE (milliseconds), TONE darkens the echoes, REVERB has ROOM (short and close), DARK HALL (long, dark, floating) and PLATE (bright and dense, the vocal classic). Everything else is set for vocals. PULSE makes the voice pulse in time. The glass works like a clock: around the circle sit note values from 1/4 to 1/64 (straight and triplets), the distance from the centre is how deep it pulses, the centre does nothing. DEPTH sets the maximum depth, SHAPE goes from SOFT edges to PUNCH, GATE sets how long each pulse stays open (short blips to long), PHASE turns the pulse into left and right movement at 180 DEG. Page 2 makes it sound like a synth: FILTER makes every pulse pluck a low pass filter like a synth bass (snaps open, then closes within the pulse), RESO makes it whistle, S&H gives every pulse its own random filter height, SWING pushes every second pulse later (up to a hard 75 percent swing). 1/64 gets so fast that it turns into a buzzing tone. The outer ring breathes with the pulse, left half for the left side, right half for the right side. REC, RUN and HOLD work like on the other effects. CHOP cuts your take into up to 16 syllables as soon as you open it, each with its own colour, numbered in the order you sang them. They sit in the inner ring: tap one to pick it (you hear it). The outer ring is one bar with 16 steps: tap a step to put the picked syllable there, tap it again to clear it, double tap to play it backwards. Drag a step outwards or inwards to change its pitch, drag along the ring to make it longer. Tap the centre for a suggestion, then change it step by step. CLEAR empties the pattern, UNDO and REDO step through your pattern changes. LEN makes the pattern 1, 2 or 4 bars long: new bars start as a copy, the small bar buttons at the top of the centre pick which bar the ring shows for editing, the playing bar lights up and the ring follows it while playing (it stays put for 4 seconds after you pick a bar or edit). STEP shows the pitch of the last step you touched and lets you turn it (on a computer the mouse wheel over a step does the same), TRANSPOSE moves everything up or down, GATE goes from short and choppy to letting each syllable ring, SWING pushes every second step later. Page 2 only shapes the suggestion: DENSITY how many steps, RANGE how far the melody jumps, EDGE octave jumps. CHOP always uses the main take, not its layers. If the VOCODER sits before MULTI in the chain and is on, CHOP cuts the vocoded voice (it takes a moment to update after vocoder changes); if it sits after MULTI, the chops go into the vocoder. SHAPE is a guitar fuzz: left to right the gain, bottom to top the feedback, from the middle on it starts to whistle and sing like a guitar in front of the amp and rings out a little after you stop singing. TONE sets the top end.</p>
 <p><b>MULTI REC AND RUN:</b> works like the SNADPAD. REC records your finger in the glass for exactly one round of LEN (1, 2 or 4 bars) and then stops by itself, the move loops right away. Press REC again for another round, it only replaces where you play. A ring around the glass shows how far the round is. LEN is set for each effect on its own. UNDO and REDO step back and forth, LOOP pauses or plays the move, LEN sets its length. Every effect keeps its own move, a red dot on the ring shows it. Double tap the glass to set up to 8 points, double tap a point to remove it, drag it to move it. RUN travels the points with playback, RATE sets how long each point lasts, GLIDE slides between them. Touch the glass any time to take over. Export plays all moves and runs along.</p>
@@ -733,15 +734,15 @@
     <div class="xstat"><span class="xl" id="lStat"></span></div>
   </div>
   <div class="sheet" id="takesSheet" aria-hidden="true">
-    <div class="sheet-head"><span>TAKES</span><button class="sheet-x new" id="libOpen" aria-label="Library">LIBRARY</button><button class="sheet-x new" style="margin-left:0" id="impBtn" aria-label="Import">IMPORT</button><button class="sheet-x new" style="margin-left:0" id="newLoop" aria-label="New loop">NEW LOOP</button><input type="file" id="impFile" accept="audio/*,.wav,.mp3,.aif,.aiff,.m4a,.ogg,.flac" hidden><button class="sheet-x" id="takesClose" aria-label="Close">CLOSE</button></div>
+    <div class="sheet-head"><span>TAKES</span><button class="sheet-x new" id="libOpen" aria-label="Library" hidden style="display:none">LIBRARY</button><button class="sheet-x new" style="margin-left:0" id="impBtn" aria-label="Import">IMPORT</button><button class="sheet-x new" style="margin-left:0" id="newLoop" aria-label="New loop">NEW LOOP</button><input type="file" id="impFile" accept="audio/*,.wav,.mp3,.aif,.aiff,.m4a,.ogg,.flac" hidden><button class="sheet-x" id="takesClose" aria-label="Close">CLOSE</button></div>
     <div class="tlist" id="tlist"></div>
   </div>
 
-  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 1.46</span></div>
+  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 1.48</span></div>
 </div>
 
 <script type="module">
-/* DREX MB  REV 1.46  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
+/* DREX MB  REV 1.48  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
 const $=(id)=>document.getElementById(id);
 const device=$("device");
 const waveCanvas=$("wave"), wctx=waveCanvas.getContext("2d");
@@ -946,7 +947,7 @@ function drawRings(root, db, cx, cy, R, R0, a0, a1, fs, w){
 }
 function arcLoop(){ drawArc(); requestAnimationFrame(arcLoop); }
 
-/* ================= ENGINE (REV 1.46) =================
+/* ================= ENGINE (REV 1.48) =================
    Eine Audio-Uhr fuer alles: Aufnahme, Count-in, Metronom, Abspielen.
    Aufnahme sampelgenau per AudioWorklet (Fallback ScriptProcessor), kein MediaRecorder mehr. */
 const AC=window.AudioContext||window.webkitAudioContext;
@@ -1044,7 +1045,7 @@ function newAC(){ let sr=0; try{ sr=+localStorage.getItem("drexmb_micsr")||0; }c
   const o={latencyHint:"balanced"}; if(sr>=22050 && sr<=96000) o.sampleRate=sr;
   try{ return new AC(o); }catch(e){ try{ return new AC({latencyHint:"balanced"}); }catch(e2){ return new AC(); } } }
 function wakeAudio(){
-  if(!ac){ ac=newAC(); }
+  if(!ac){ ac=newAC(); setTimeout(()=>{ try{ ensureMix(); ensureChain().catch(()=>{}); }catch(e){} }, 50); }
   if(ac.state!=="running"){ try{ ac.resume(); }catch(e){} }
 }
 function setSess(ty){ try{ if(navigator.audioSession && navigator.audioSession.type!==ty) navigator.audioSession.type=ty; }catch(e){} }
@@ -2026,14 +2027,18 @@ function tuneRender(chs, sr, ts, root, loop, bpm, cacheHolder){
   const res=[robs[0], robs[1], robs[2], vw, sw, nz]; res.track={hop:HOP, off:A.FR/2-P, notes:notes.filter(x=>x.b>0&&x.a<n0), n0}; return res;
 }
 // Schritte (Achtel ueber den ganzen Take): 0 oder 1 = MID (Grundstellung), 2 = HIGH, 3 = LOW. Weiche Uebergaenge (8 ms), MIX = etwas echte Stimme fuer die Verstaendlichkeit.
-function roboMix(chs, comp, ts, sr, bpmR){ const n=chs[0].length, stepLen=sr*60/(bpmR||120)/2, st=String(ts.steps||""), mix=Math.max(0,Math.min(1,+ts.rmix||0));
+function roboMix(chs, comp, ts, sr, bpmR, loop){ const out=roboMix0(chs, comp, ts, sr, bpmR);
+  // Loop: Ende und Anfang des Robo-Klangs passen nicht zusammen, darum an der Naht je 4 ms aus- und einblenden (sonst knackst es jede Runde)
+  if(loop){ const F=Math.round(sr*0.004); for(const o of out){ const n=o.length; if(n<4*F) continue; for(let i=0;i<F;i++){ const g=0.5-0.5*Math.cos(Math.PI*(i+0.5)/F); o[i]*=g; o[n-1-i]*=g; } } }
+  return out; }
+function roboMix0(chs, comp, ts, sr, bpmR){ const n=chs[0].length, stepLen=sr*60/(bpmR||120)/2, st=String(ts.steps||""), mix=Math.max(0,Math.min(1,+ts.rmix||0));
   const nS=Math.max(1,Math.ceil(n/stepLen)), sel=new Uint8Array(nS); for(let k=0;k<nS;k++){ sel[k]=+(st[k]||0)||1; }
   const w=[new Float32Array(n),new Float32Array(n),new Float32Array(n)], xf=Math.max(1,Math.round(sr*0.008)), cur=[0,0,0];
   for(let i=0;i<n;i++){ const k=Math.min(nS-1,Math.floor(i/stepLen)), s2=sel[k]; for(let v=0;v<3;v++){ const t=(s2===v+1)?1:0; cur[v]+= (t-cur[v])/xf; if(Math.abs(cur[v]-t)<1e-4) cur[v]=t; w[v][i]=cur[v]; } }
   const vw=comp[3], sw=comp[4]||new Float32Array(n), nz=comp[5]||new Float32Array(n); return chs.map(d=>{ const o=new Float32Array(n); for(let i=0;i<n;i++){ const r=w[0][i]*comp[0][i]+w[1][i]*comp[1][i]+w[2][i]*comp[2][i];
       o[i]=(r*vw[i] + nz[i]*sw[i])*(1-mix) + d[i]*mix; } return o; }); }
 function tuneSt(r){ return !r ? null : (r.id===fxRootId ? fxSt.tune : (r.fx&&r.fx.tune)); }
-function tuneKey(t){ const r=rootOf(t), ts=tuneSt(r); if(!ts || !ts.on || t.noFx) return ""; const idx=stackOf(t).indexOf(t); if(idx<0 || !(ts.lay||[])[idx]) return "";
+function tuneKey(t){ const r=rootOf(t), ts=tuneSt(r); if(!ts || !ts.on || t.noFx) return ""; const idx=stackOf(t).indexOf(t); if(idx<0) return "";
   const vo=(r.id===fxRootId?fxSt.voc:(r.fx&&r.fx.voc))||{}; return "T"+[vo.root|0, "robo5", ts.scale, ts.tone, ts.mid|0, ts.hi, ts.lo, (+ts.speed).toFixed(2), r.bpm||0].join("|"); }
 /* ===== DOUBLE: echte Zweitstimmen pro Spur, offline gerechnet (wie Revoice "Doubler" und Melodyne "Random Deviations"):
    Kopie der Spur, Silbe fuer Silbe zeitlich verbogen (Einsaetze mal frueher, mal spaeter, Konsonanten enger als Vokale), pro Silbe minimal
@@ -2095,9 +2100,9 @@ function ensureCln(t){ const k=clnKey(t); if(!k || clnOk(t)) return Promise.reso
   return t._clnP; }
 function baseChs(t){ const b=(autoEnh&&t.enh)?t.enh:(clnOk(t)?t.cln:rawChs(t)); if(!b) return b; let cur=b, k=(autoEnh&&t.enh?"e":"r"+(clnOk(t)?t._clnK:""));
   const tk=tuneKey(t);
-  if(tk){ const kk=k+tk; if(t._tnK===kk && t._tn){ const mk=tuneMixKey(t), r=rootOf(t); if(t._tmK!==kk+mk || !t._tm){ t._tm=roboMix(b, t._tn, tuneSt(r), t.sr, r.bpm||bpm); t._tmK=kk+mk; } cur=t._tm; k=kk+mk; }
+  if(tk){ const kk=k+tk; if(t._tnK===kk && t._tn){ const mk=tuneMixKey(t), r=rootOf(t); if(t._tmK!==kk+mk || !t._tm){ t._tm=roboMix(b, t._tn, tuneSt(r), t.sr, r.bpm||bpm, r.mode==="LOOP"); t._tmK=kk+mk; } cur=t._tm; k=kk+mk; }
     else { roboStart(t, b, kk); const mk=tuneMixKey(t), r=rootOf(t), sk="W"+(t._tnK||"0")+mk, ok=t._tn && t._tn[0].length===b[0].length;
-      if(ok){ if(t._tmK!==sk || !t._tm){ t._tm=roboMix(b, t._tn, tuneSt(r), t.sr, r.bpm||bpm); t._tmK=sk; } cur=t._tm; } else cur=b.map(d=>new Float32Array(d.length)); k=k+sk; } }
+      if(ok){ if(t._tmK!==sk || !t._tm){ t._tm=roboMix(b, t._tn, tuneSt(r), t.sr, r.bpm||bpm, r.mode==="LOOP"); t._tmK=sk; } cur=t._tm; } else cur=b.map(d=>new Float32Array(d.length)); k=k+sk; } }
   const dk=dblKey(t);
   if(dk){ const kk=k+dk; if(t._dbK===kk && t._db) return t._db; if(!t._dbA || t._dbA.k!==k) t._dbA={k};
     try{ t._db=dblRender(cur, t.sr, dblCfg(rootOf(t)), t.mode==="LOOP", t._dbA); t._dbK=kk; return t._db; }catch(e){ console.log("[DOUBLE]", e&&e.message); } }
@@ -2438,8 +2443,15 @@ const FINAL_SRC=`class FinalDSP{
 const FinalDSPClass=new Function(FINAL_SRC+"; return FinalDSP;")();
 const FINAL_WORKLET=FINAL_SRC+`
 class FinalProc extends AudioWorkletProcessor{
-  constructor(o){ super(); this.d=new FinalDSP(sampleRate); const p=o&&o.processorOptions&&o.processorOptions.pre; if(p) this.d.set(p); this.port.onmessage=m=>{ if(m.data&&m.data.pre) this.d.set(m.data.pre); }; }
-  process(ins,outs){ const o=outs[0], n=o[0].length, i=ins[0]||[], L=i[0]||new Float32Array(n), R=i[1]||L; this.d.process(L,R,o[0],o[1]||new Float32Array(n),n); return true; }
+  constructor(o){ super(); this.d=new FinalDSP(sampleRate); this.pre="raw"; const p=o&&o.processorOptions&&o.processorOptions.pre; if(p){ this.d.set(p); this.pre=p; } this.old=null; this.xn=0; this.XN=Math.round(sampleRate*0.06); this.XW=Math.round(sampleRate*0.1); this.tL=new Float32Array(128); this.tR=new Float32Array(128);
+    // Presetwechsel: neue Kette 100 ms unhoerbar mitlaufen lassen (Filter und Verzoegerungen fuellen sich), dann 60 ms ueberblenden (sonst springen Filter und Pegel hart um)
+    this.port.onmessage=m=>{ if(m.data&&m.data.pre && m.data.pre!==this.pre){ this.pre=m.data.pre; const nd=new FinalDSP(sampleRate); nd.set(m.data.pre); nd.prime(this.d.state()); nd.sig=0; nd.lu=0; this.old=this.d; this.d=nd; this.xn=0; } }; }
+  process(ins,outs){ const o=outs[0], n=o[0].length, i=ins[0]||[], L=i[0]||new Float32Array(n), R=i[1]||L, oR=o[1]||new Float32Array(n);
+    if(this.old){ if(this.tL.length<n){ this.tL=new Float32Array(n); this.tR=new Float32Array(n); } this.old.process(L,R,this.tL,this.tR,n); }
+    this.d.process(L,R,o[0],oR,n);
+    if(this.old){ for(let k=0;k<n;k++){ const g=Math.min(1,Math.max(0,(this.xn+k-this.XW)/this.XN)), a=0.5-0.5*Math.cos(Math.PI*g); o[0][k]=this.tL[k]+(o[0][k]-this.tL[k])*a; oR[k]=this.tR[k]+(oR[k]-this.tR[k])*a; }
+      this.xn+=n; if(this.xn>=this.XW+this.XN) this.old=null; }
+    return true; }
 }
 registerProcessor("drex-final", FinalProc);`;
 const FIN_K=["raw","clean","warm","bright","loud"];
@@ -2453,7 +2465,7 @@ async function ensureFinal(){
         node=new AudioWorkletNode(ac,"drex-final",{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[2],channelCount:2,channelCountMode:"explicit",processorOptions:{pre:finPre()}}); }catch(e){ console.log("[FINAL]", e&&e.message); node=null; } }
     // ohne Worklet rechnet der Finalizer live nicht mit (die Notloesung im Oberflaechen-Strang knackst), der Export wendet ihn trotzdem an
     if(!node) return null;
-    try{ finIn.disconnect(); }catch(_){} finIn.connect(node); node.connect(finOut); finNode=node; return node; })();
+    dipSwitch(()=>{ try{ finIn.disconnect(); }catch(_){} finIn.connect(node); node.connect(finOut); }); finNode=node; return node; })();
   return finLoading;
 }
 function finPost(){ if(finNode) finNode.port.postMessage({pre:finPre()}); }
@@ -2510,8 +2522,9 @@ function eqOf(t){ return (t.eq && t.eq.length===8) ? t.eq : EQ_PRE.FLAT.g; }
 const LC_OFF=20, HC_OFF=20000;
 function lcOf(t){ return (t.lc>LC_OFF)?t.lc:0; } function hcOf(t){ return (t.hc>0 && t.hc<HC_OFF)?t.hc:0; }
 function cutFreqs(t){ const ny=(ac?ac.sampleRate:48000)/2-200; return { lc: lcOf(t)||10, hc: Math.min(ny, hcOf(t)||ny) }; }
-function startSources(bufs, when, off, loop){
-  const bus=ensureMix(), g=1/Math.sqrt(Math.max(1,bufs.length)), out=[];
+const XF=0.03;
+function startSources(bufs, when, off, loop, fadeIn){
+  const bus=ensureMix(), g=1/Math.sqrt(Math.max(1,bufs.length)), out=[], xgs=[];
   for(const it of bufs){ const b=it.b, t=it.t;
     const sN=ac.createBufferSource(); sN.buffer=b; sN.loop=loop;
     // EQ
@@ -2531,11 +2544,13 @@ function startSources(bufs, when, off, loop){
     gn.connect(dA); dA.connect(wA); wA.connect(mg,0,0);
     gn.connect(dB); dB.connect(wB); wB.connect(mg,0,1);
     const ws=widthGains(t); dry.gain.value=ws.d; if(dryR) dryR.gain.value=ws.d; wA.gain.value=ws.w; wB.gain.value=ws.w;
-    let pn=null; if(ac.createStereoPanner){ pn=ac.createStereoPanner(); pn.pan.value=t.pan||0; mg.connect(pn); pn.connect(fxLayerDest(t,bus)); } else mg.connect(fxLayerDest(t,bus));
+    // xg: Ueberblend-Regler je Spur (neuer Klang blendet ein, alter aus, statt hart umzuschalten)
+    const xg=ac.createGain(), xo=ac.createGain(); xg.gain.value=0; /* Grundwert 0: sonst klingt das erste Sample vor dem geplanten Rampenstart voll */ xg.gain.setValueAtTime(0,when); xg.gain.linearRampToValueAtTime(1,when+(fadeIn?XF:0.006)); xg.connect(xo); xo.connect(fxLayerDest(t,bus)); xg._out=xo; xgs.push(xg);
+    let pn=null; if(ac.createStereoPanner){ pn=ac.createStereoPanner(); pn.pan.value=t.pan||0; mg.connect(pn); pn.connect(xg); } else mg.connect(xg);
     liveNodes[t.id]={g:gn, p:pn, eq, cuts, dry, dryR, wA, wB, lfo, an:san};
     sN.onended=()=>{ try{ lfo.stop(); }catch(e){} };
     sN.start(when, Math.max(0,Math.min(off, b.duration-0.001))); out.push(sN); }
-  return out;
+  out._xg=xgs; return out;
 }
 function widthGains(t){ const w=Math.max(0,Math.min(100,t.width||0))/100; return { d:1/(1+w*0.35), w:w*0.55/(1+w*0.35) }; }
 function applyLive(t){ const n=liveNodes[t.id]; if(!n||!ac) return; const T=ac.currentTime;
@@ -2543,24 +2558,35 @@ function applyLive(t){ const n=liveNodes[t.id]; if(!n||!ac) return; const T=ac.c
   if(n.eq) eqOf(t).forEach((v,k)=>n.eq[k].gain.setTargetAtTime(v, T, 0.02));
   if(n.cuts){ const cf=cutFreqs(t); n.cuts.forEach((b,k)=>b.frequency.setTargetAtTime(k<2?cf.lc:cf.hc, T, 0.02)); }
   if(n.dry){ const ws=widthGains(t); n.dry.gain.setTargetAtTime(ws.d,T,0.02); if(n.dryR) n.dryR.gain.setTargetAtTime(ws.d,T,0.02); n.wA.gain.setTargetAtTime(ws.w,T,0.02); n.wB.gain.setTargetAtTime(ws.w,T,0.02); } }
-function stopSources(list){ (list||[]).forEach(sN=>{ try{ sN.stop(); }catch(e){} }); }
+function stopSources(list){ if(list && list._xg && ac){ const t0=ac.currentTime+LA; srcFade(list, t0, t0+0.015); return; } (list||[]).forEach(sN=>{ try{ sN.stop(); }catch(e){} }); }
+// Ausblenden, dann stoppen: kein Knacks beim Stoppen und Umschalten. Alles mit Vorlauf LA geplant, weil die Audio-Uhr schon etwas voraus rechnet (sonst schrumpft die Rampe zum Sprung)
+const LA=0.03;
+function srcFade(list, tStart, tEnd){ const te=Math.max(tStart+0.008,tEnd);
+  (list._xg||[]).forEach(x=>{ const g=x._out.gain; g.setValueAtTime(1,tStart); g.linearRampToValueAtTime(0,te); });
+  list.forEach(sN=>{ try{ sN.stop(te+0.01); }catch(e){} }); }
 function playPos(){ if(!playing||!playDur) return playOffset; const d=playDur; let pos=playBase+(ac.currentTime-playStartT); if(loopOn) pos=((pos%d)+d)%d; return Math.max(0,Math.min(d,pos)); }
-function startPlayBufs(bufs, from){
+function startPlayBufs(bufs, from, live){
   if(!ac||!bufs.length) return;
   if(ac.state==="suspended"){ try{ ac.resume(); }catch(e){} }
-  stopPlay(true);
-  const d=Math.max(...bufs.map(it=>it.b.duration)); playDur=d; let off=from||0; if(off>=d-0.01) off=0;
-  playStartT=ac.currentTime+0.03; playBase=off;
-  playSrcs=startSources(bufs, playStartT, off, loopOn);
+  // laufende Wiedergabe mit neuem Klang: an der aktuellen Stelle weiter und 30 ms ueberblenden
+  const swap=live && playing && playSrcs.length, T=ac.currentTime+0.03;
+  if(swap){ const old=playSrcs; from=playPos()+0.03; srcFade(old, T, T+XF); playSrcs=[]; }
+  else stopPlay(true);
+  const d=Math.max(...bufs.map(it=>it.b.duration)); playDur=d; let off=from||0; if(loopOn&&swap) off=((off%d)+d)%d; if(off>=d-0.01) off=0;
+  playStartT=T; playBase=off;
+  playSrcs=startSources(bufs, playStartT, off, loopOn, !!swap);
   playing=true; playBtn.classList.add("playing"); fxTransport();
   const first=playSrcs[0], mine=playSrcs;
   const prevEnd=first.onended; first.onended=()=>{ if(prevEnd) prevEnd(); if(playSrcs===mine){ stopSources(playSrcs); playSrcs=[]; playing=false; playOffset=0; playHead=-1; playBtn.classList.remove("playing"); fxTransport(); renderTakes(); } };
 }
 async function playSelected(from){
   const t=selTake(); if(!t||!ac) return; micRelease();
+  const live=playing && from!=null && Math.abs(from-playPos())<0.06;
+  // erste Wiedergabe: Effektkette und Finalizer erst fertig einhaengen, damit nicht waehrend des Abspielens umgesteckt wird
+  if(!chainReady && !playing){ try{ await Promise.race([ensureChain(), new Promise(z=>setTimeout(z,1500))]); await Promise.race([ensureFinal(), new Promise(z=>setTimeout(z,800))]); }catch(e){} }
   const bufs=await playBufsFor(t, false);
   if(!bufs.length) return;
-  startPlayBufs(bufs, from);
+  startPlayBufs(bufs, from, live);
   renderTakes();
 }
 function pausePlay(){ if(!playing) return; playOffset=playPos(); stopPlay(true); }
@@ -3083,6 +3109,11 @@ async function libFetch(m){
 function openLib(mode){ libMode=mode||"bk"; libPreviewStop(); libRes=[]; openPanel(libSheet); renderLib(true); libQuery(); }
 function libBackToFx(){ libMode="bk"; libPreviewStop(); openPanel(fxSheet); fxShow("voc"); if(!pRaf) pRaf=requestAnimationFrame(padFrame); }
 $("libOpen").addEventListener("click", ()=>{ if(recState!=="idle") return; openLib("bk"); });
+// BACKGROUND LOOP in den Einstellungen: Library oeffnen, Name des geladenen Loops, REMOVE
+function bkInfo(){ const nm=pendingBk&&pendingBk.meta?(pendingBk.meta.title||pendingBk.meta.name||"LOOP"):"NONE"; $("bkName").textContent=String(nm).toUpperCase().slice(0,18); $("bkRemove").hidden=!pendingBk; }
+$("bkOpen").addEventListener("click", ()=>{ if(recState!=="idle") return; openLib("bk"); });
+$("bkRemove").addEventListener("click", ()=>{ if(recState!=="idle") return; pendingBk=null; bkInfo(); showReady(); });
+$("modeGrid").addEventListener("click", ()=>setTimeout(bkInfo,0));
 $("libClose").addEventListener("click", ()=>{ if(libMode==="car") libBackToFx(); else closeSheet(); });
 $("exportMod").addEventListener("click", ()=>{ if(recState!=="idle") return; openExport(); });
 $("exportClose").addEventListener("click", closeSheet);
@@ -3269,7 +3300,8 @@ const PAD_MIX_SRC=`class PadMix{
   constructor(sr){ this.sr=sr; this.ed=1e-4; this.ew=1e-4; this.gc=1; this.a=Math.exp(-1/(sr*0.3)); this.m=-1; this.lv=-1; this.ac=0; this.hd=0; }
   // act: Finger auf dem Pad, gehaltener Punkt oder laufende Bewegung. Ohne act (plus 2 s Nachklang) laesst das Pad die Stimme unveraendert durch.
   process(L,R,wL,wR,oL,oR,n,mix,lvl,act){ if(this.m<0){ this.m=mix; this.lv=lvl; } const a=this.a; let ed=this.ed, ew=this.ew, gc=this.gc;
-    if(act==null||act) this.hd=this.sr*2; else this.hd-=n; const tA=this.hd>0?1:0, kU=1/(this.sr*0.005), kD=1/(this.sr*0.4);
+    const on=(act==null||!!act); if(on && !this.pa) this.ac=Math.min(this.ac,0.0); /* neuer Fingerdruck: der neue Effektklang blendet weich ein statt hart umzuspringen */ this.pa=on;
+    if(on) this.hd=this.sr*2; else this.hd-=n; const tA=this.hd>0?1:0, kU=1/(this.sr*0.008), kD=1/(this.sr*0.4);
     for(let i=0;i<n;i++){ this.m+=(mix-this.m)*0.002; this.lv+=(lvl-this.lv)*0.002; this.ac+=(tA-this.ac)*(tA>this.ac?kU:kD); if(this.ac<1e-4 && tA===0) this.ac=0;
       ed=a*ed+(1-a)*(L[i]*L[i]+R[i]*R[i]); ew=a*ew+(1-a)*(wL[i]*wL[i]+wR[i]*wR[i]);
       if((i&15)===0){ const tg=(ed>1e-7&&ew>1e-10)?Math.min(6,Math.max(0.25,Math.sqrt(ed/ew))):gc; gc+=(tg-gc)*0.02; }
@@ -3288,7 +3320,7 @@ class SnadPadMB extends AudioWorkletProcessor{
   process(ins,outs){
     if(!this.z) this.z=new Float32Array(128);
     const o=outs[0], n=o[0].length, i=ins[0]||[], L=i[0]||this.z, R=i[1]||L;
-    if(!this.on){ o[0].set(L); if(o[1]) o[1].set(R); return true; }
+    if(!this.on && !(this.xo>0)){ this.xo=0; o[0].set(L); if(o[1]) o[1].set(R); return true; }
     const e=this.e, b=this.base; if(this.mb!==e.memory.buffer){ this.mb=e.memory.buffer; this.F=new Float32Array(this.mb); this.dv=new DataView(this.mb); }
     const F=this.F, dv=this.dv;
     if(this.play) this.pos=Math.max(0,(currentTime-this.t0)*this.bpm/60);
@@ -3298,6 +3330,7 @@ class SnadPadMB extends AudioWorkletProcessor{
     if(this.mb!==e.memory.buffer){ this.mb=e.memory.buffer; this.F=new Float32Array(this.mb); this.dv=new DataView(this.mb); }
     const G=this.F; this.wL.set(G.subarray(b/4+2*n, b/4+3*n)); this.wR.set(G.subarray(b/4+3*n, b/4+4*n));
     this.pm.process(L,R,this.wL,this.wR,o[0],o[1]||this.wR,n,this.p[5],this.p[8], this.p[2]>0.5||G[285760/4+6]>0.5);
+    if(this.xo==null) this.xo=this.on?1:0; { const tg=this.on?1:0; if(this.xo!==tg || tg<1){ const st=1/(sampleRate*0.03), oR2=o[1]; for(let k=0;k<n;k++){ this.xo+= tg>this.xo?Math.min(st,tg-this.xo):-Math.min(st,this.xo-tg); const a=this.xo; o[0][k]=L[k]+(o[0][k]-L[k])*a; if(oR2) oR2[k]=R[k]+(oR2[k]-R[k])*a; } } }
     if(++this.cnt>=12){ this.cnt=0; this.port.postMessage({tel:G.slice(285760/4,285760/4+20), buf:G.slice(285840/4,285840/4+40), gr:G.slice(286480/4,286480/4+36), loop:G.slice(287056/4,287056/4+128)}); }
     return true;
   }
@@ -3821,9 +3854,10 @@ class VocProc extends AudioWorkletProcessor{
     this.on=true; this.z=new Float32Array(128);
     this.port.onmessage=m=>{ const q=m.data; if(q.p) Object.assign(this.d.p,q.p); if(q.on!=null) this.on=q.on; if(q.smp!==undefined) this.d.smp=q.smp; if(q.t0!=null) this.t0=q.t0; if(q.play!=null) this.play=q.play; }; }
   process(ins,outs){ const o=outs[0], n=o[0].length, i=ins[0]||[], L=i[0]||this.z, R=i[1]||L;
-    if(!this.on){ o[0].set(L); if(o[1]) o[1].set(R); return true; }
+    if(!this.on && !(this.xo>0)){ this.xo=0; o[0].set(L); if(o[1]) o[1].set(R); return true; }
     if(this.play) this.d.pos=Math.round((currentTime-this.t0)*sampleRate);
     this.d.process(L,R,o[0],o[1]||this.z,n);
+    if(this.xo==null) this.xo=this.on?1:0; { const tg=this.on?1:0; if(this.xo!==tg || tg<1){ const st=1/(sampleRate*0.03), oR2=o[1]; for(let k=0;k<n;k++){ this.xo+= tg>this.xo?Math.min(st,tg-this.xo):-Math.min(st,this.xo-tg); const a=this.xo; o[0][k]=L[k]+(o[0][k]-L[k])*a; if(oR2) oR2[k]=R[k]+(oR2[k]-R[k])*a; } } }
     if(++this.cnt>=12){ this.cnt=0; this.port.postMessage({env:this.d.envOut.slice(), note:this.d.note}); }
     return true; }
 }
@@ -4234,16 +4268,19 @@ class MultiCore{
         let y=v2*c[7]; if(y>0.7) y=0.7+0.3*Math.tanh((y-0.7)/0.3); else if(y<-0.7) y=-0.7-0.3*Math.tanh((-y-0.7)/0.3); o[i]=y; } } }
   process(L,R,oL,oR,n,bpm,ppq,play){
     this.play=play; const st=this.st; if(!st){ oL.set(L.subarray(0,n)); oR.set(R.subarray(0,n)); return; }
-    const sr=this.sr, gA=1-Math.exp(-1/(sr*0.008)), gR=1-Math.exp(-1/(sr*0.06));
+    const sr=this.sr, gA=1-Math.exp(-1/(sr*0.006)), gR=1-Math.exp(-1/(sr*0.03)); if(!this.gate2) this.gate2={};
     for(let o=0;o<n;o+=128){ const m=Math.min(128,n-o), q=ppq+o/sr*bpm/60;
       let cL=L.subarray(o,o+m), cR=R.subarray(o,o+m), bi=0; const bufs=[this.t1,this.t2];
-      for(const k of st.order){ const on=!!st.on[k]; let g=this.gate[k]||0;
-        if(!on && g<1e-4){ this.gate[k]=0; continue; }
+      for(const k of st.order){ const on=!!st.on[k]; let g=this.gate[k]||0, h=this.gate2[k]||0;
+        if(!this.tail) this.tail={};
+        // erst ganz abschalten, wenn auch der Nachhall/die Echos verklungen sind (sonst wird der Rest hart abgeschnitten)
+        if(!on && g<1e-4 && h<1e-4 && !((this.tail[k]||0)>1e-4)){ this.gate[k]=0; this.gate2[k]=0; continue; }
         const v=this.vals(k,q,play), tg=on?v._g:0, snd=st.route&&st.route[k]==="snd", mx=v.mix, sL=this.sb[0], sR=this.sb[1], tb=bufs[bi];
         // Eingang in den Effekt: SEND mit Finger und Pegel, INSERT voll
-        const gs=this.gs; for(let i=0;i<m;i++){ g+=(tg-g)*(tg>g?gA:gR); gs[i]=g; } this.gate[k]=g;
+        const gs=this.gs; for(let i=0;i<m;i++){ g+=(tg-g)*(tg>g?gA:gR); h+=(g-h)*(tg>h?gA:gR); gs[i]=h; } this.gate[k]=g; this.gate2[k]=h; /* zwei Stufen: weicher Ein-/Ausstieg ohne Knick */
         if(snd){ for(let i=0;i<m;i++){ const a=gs[i]*mx; sL[i]=cL[i]*a; sR[i]=cR[i]*a; } } else { sL.set(cL); sR.set(cR); }
         const yL=this.y[0], yR=this.y[1]; this.wet(k,v,sL.subarray(0,m),sR.subarray(0,m),yL,yR,m,bpm,q,cL,cR);
+        { let pk=0; for(let i=0;i<m;i++){ const a=Math.abs(yL[i])+Math.abs(yR[i]); if(a>pk) pk=a; } this.tail[k]=snd?pk:pk*h; }
         if(snd){ for(let i=0;i<m;i++){ tb[0][i]=cL[i]+yL[i]; tb[1][i]=cR[i]+yR[i]; } }
         else { for(let i=0;i<m;i++){ const a=gs[i]*mx; tb[0][i]=cL[i]+(yL[i]-cL[i])*a; tb[1][i]=cR[i]+(yR[i]-cR[i])*a; } }
         cL=tb[0].subarray(0,m); cR=tb[1].subarray(0,m); bi^=1; }
@@ -4280,7 +4317,16 @@ function fxDefault(){ return { tune:tuneDefault(), order:["voc","pad","multi"], 
   pad:null, padPath:null, padLoopOn:true, padDrift:false, padLen:1,
   multi:Object.fromEntries(MULTI_K.map(k=>[k,Object.assign({on:false, v:mDefV(k), route:M_SND[k]?"snd":"ins", hold:true}, k==="delay"?{taps:MX.mDlDefTaps()}:k==="dbl"?{taps:MX.mDblDefTaps()}:k==="chop"?{cs:{seed:1234, steps:null, bars:1}}:{})])), mpath:{}, mloop:{}, mrun:{}, mlen:1, fin:"raw", m2:1, m3:1, m4:1, m5:1 }; }
 let fxSt=fxDefault(), fxRootId=null, fxSaveT=0, fxVcMono=null, fxVcKey="";
-function fxSave(){ const r=rootOf(selTake()); if(!r) return; fxSt.pad=padP.slice(); r.fx=JSON.parse(JSON.stringify(fxSt)); clearTimeout(fxSaveT); fxSaveT=setTimeout(()=>dbPut(r),400); }
+function fxSave(){ const r=rootOf(selTake()); if(!r) return; fxSt.pad=padP.slice(); const s=JSON.stringify(fxSt); r.fx=JSON.parse(s); fxHistNote(r.id,s); clearTimeout(fxSaveT); fxSaveT=setTimeout(()=>dbPut(r),400); }
+// Verlauf aller Effekt-Einstellungen pro Take: Aenderungen kurz hintereinander (Malen, Drehen) zaehlen als ein Schritt
+const fxHist={id:null,u:[],r:[],last:null,t:0,busy:false};
+function fxHistNote(id,s){ if(fxHist.busy) return; const now=performance.now();
+  if(fxHist.id!==id){ fxHist.id=id; fxHist.u=[]; fxHist.r=[]; fxHist.last=s; fxHist.t=0; return; }
+  if(s===fxHist.last) return; if(now-fxHist.t>600){ fxHist.u.push(fxHist.last); if(fxHist.u.length>60) fxHist.u.shift(); } fxHist.r=[]; fxHist.last=s; fxHist.t=now; try{ fxLamps(); }catch(e){} }
+function fxHistGo(dir){ const r=rootOf(selTake()); if(!r || fxHist.id!==r.id) return false; const from=dir<0?fxHist.u:fxHist.r, to=dir<0?fxHist.r:fxHist.u; if(!from.length) return false;
+  to.push(fxHist.last); const s=from.pop(); fxHist.last=s; fxHist.t=0; fxHist.busy=true;
+  try{ r.fx=JSON.parse(s); fxRootId=null; fxLoadFrom(r); const pd=fxSt.pad; if(Array.isArray(pd)) for(let i=0;i<pd.length&&i<padP.length;i++) padP[i]=pd[i]; fxApply(); mPost(); fxSave(); fxRender(); if(playing) playSelected(playPos()); } finally{ fxHist.busy=false; }
+  return true; }
 function fxLoadFrom(r){
   const id=r?r.id:null; if(id===fxRootId) return; fxRootId=id;
   const d=fxDefault(); fxSt=r&&r.fx ? Object.assign(d, JSON.parse(JSON.stringify(r.fx))) : d;
@@ -4318,7 +4364,11 @@ const PAD_DEF=padP.slice();
 /* ---- Live-Kette ---- */
 let fxIn=null, fxW={}, vocNode=null, vocLoading=null, multiLive=null, chainReady=false, vocEnv=null, vocNote=-1;
 function fxWrap(ctx){ const inG=ctx.createGain(), send=ctx.createGain(), byp=ctx.createGain(), out=ctx.createGain(); inG.connect(send); inG.connect(byp); byp.connect(out); return {inG,send,byp,out,dev:null}; }
-function fxWire(){
+// Umstecken im Signalweg (Effekt-Reihenfolge, nachgeladene Worklets) bei laufender Wiedergabe: Summe kurz aus- und wieder einblenden statt hart umzuschalten
+function dipSwitch(fn){ if(!ac || !finOut || !playing){ fn(); return; } const g=finOut.gain, T=ac.currentTime+0.03; g.cancelScheduledValues(T); g.setValueAtTime(1,T); g.linearRampToValueAtTime(0,T+0.012);
+  setTimeout(()=>{ fn(); const T2=ac.currentTime+0.03; g.cancelScheduledValues(T2); g.setValueAtTime(0,T2); g.linearRampToValueAtTime(1,T2+0.02); }, 75); }
+function fxWire(){ if(!fxIn || !mixBus) return; dipSwitch(fxWire0); }
+function fxWire0(){
   if(!fxIn || !mixBus) return;
   try{ fxIn.disconnect(); }catch(_){} for(const k in fxW){ try{ fxW[k].out.disconnect(); }catch(_){} }
   let last=fxIn; for(const k of fxSt.order){ const w=fxW[k]; if(!w || !w.dev) continue; last.connect(w.inG); last=w.out; }
@@ -4503,7 +4553,6 @@ function tuneUi(){ const ts=fxSt.tune, n=fxStack().length;
   $("tToneB").innerHTML="TONE<b>"+String(ts.tone||"saw").toUpperCase()+"</b>"; $("tGlideB").innerHTML="GLIDE<b>"+(ts.speed>0.6?"LONG":ts.speed>0.2?"MID":ts.speed>0.01?"SHORT":"OFF")+"</b>";
   const kn=(id,f,txt)=>{ $(id).querySelector("b").textContent=txt; pDrawKnob($(id),f); }; const hi=ts.hi==null?12:ts.hi, lo=ts.lo==null?-12:ts.lo;
   const md=ts.mid|0; kn("kHi",hi/24,(hi>0?"+":"")+hi); kn("kLo",(lo+24)/24,String(lo)); kn("kMidT",(md+12)/24,(md>0?"+":"")+md); kn("kRMix",+ts.rmix||0,String(Math.round((+ts.rmix||0)*100)));
-  [...$("tLay").children].forEach((b,i)=>{ b.classList.toggle("on", !!ts.lay[i] && i<n); b.classList.toggle("dim", i>=n); });
   $("tScaleB").innerHTML="SCALE<b>"+T_SCN[ts.scale]+"</b>";
 }
 const T_HN={off:"OFF",third:"3RD",fifth:"5TH",octd:"OCT",chord:"CHORD"};
@@ -4511,7 +4560,7 @@ $("tGlideB").addEventListener("click", ()=>{ const o=[0,0.15,0.4,0.8], c=fxSt.tu
 $("tResetB").addEventListener("click", ()=>{ tuneSet({steps:""}); tMsg="ALL STEPS MID"; tMsgT=performance.now(); });
 $("tToneB").addEventListener("click", ()=>{ const o=["saw","square","soft"], c=fxSt.tune.tone||"saw"; tuneSet({tone:o[(o.indexOf(c)+1)%o.length], on:true}); });
 $("tScaleB").addEventListener("click", ()=>{ const o=["maj","min","chr"], sc=o[(o.indexOf(fxSt.tune.scale)+1)%3]; if(sc!=="chr") Object.assign(fxSt.voc,{ch:sc}); tuneSet({scale:sc, keyMan:true}); });
-$("tLay").addEventListener("click", e=>{ const b=e.target.closest("button[data-l]"); if(!b) return; const i=+b.dataset.l; if(i>=fxStack().length) return; const l=fxSt.tune.lay.slice(); l[i]=l[i]?0:1; tuneSet({lay:l}); });
+
 // Stimmraeder: HIGH 0 bis +24, MID -12 bis +12, LOW -24 bis 0 Halbtoene, das Ergebnis rastet in der Tonart ein
 fxKnob($("kHi"), ()=>(fxSt.tune.hi==null?12:fxSt.tune.hi)/24, f=>{ const v=Math.round(f*24); if(v!==fxSt.tune.hi) tuneSet({hi:v}); }, 0.5);
 fxKnob($("kLo"), ()=>((fxSt.tune.lo==null?-12:fxSt.tune.lo)+24)/24, f=>{ const v=Math.round(f*24)-24; if(v!==fxSt.tune.lo) tuneSet({lo:v}); }, 0.5);
@@ -4521,7 +4570,7 @@ tD.cv.addEventListener("pointerdown", e=>{ const [x,y]=dPos(tD,e), dx=x-PC, dy=y
   if(d<PR-4){ if(d<RB_LO[0]) return; const k=roboStepAt(x,y); if(k<0) return; tPaint={last:k, v:roboRingAt(d)}; roboSetStep(k,tPaint.v); try{ tD.cv.setPointerCapture(e.pointerId); }catch(_){} return; }
   if(d>296) return;
   let a=Math.atan2(dx,-dy)*180/Math.PI; if(a<0) a+=360; Object.assign(fxSt.voc,{root:Math.round(a/30)%12}); fxApply(); tuneSet({keyMan:true}); });
-function tuneTrack(){ const ts=fxSt.tune, st=fxStack(); for(let i=0;i<st.length;i++){ const t=st[i]; if(ts.lay[i] && t._tn && t._tn.track) return {t, tr:t._tn.track}; } for(let i=0;i<st.length;i++){ const t=st[i]; if(ts.lay[i]) return {t, tr:null}; } return null; }
+function tuneTrack(){ const ts=fxSt.tune, st=fxStack(); for(let i=0;i<st.length;i++){ const t=st[i]; if(t._tn && t._tn.track) return {t, tr:t._tn.track}; } for(let i=0;i<st.length;i++){ const t=st[i]; if(ts.lay[i]) return {t, tr:null}; } return null; }
 let tLastN=NaN, tLastT=0, tMsg="", tMsgT=0, tPaint=null;
 const ROBO_ST=["MID","MID","HIGH","LOW"];
 // drei Ringe: aussen HIGH, Mitte MID, innen LOW (Anteile von PR)
@@ -5050,7 +5099,38 @@ function mDrawTaps(g,br,on,st,lit,GR){
     const k=chopEd*16+chopStepAt(x,y), st=fxSt.multi.chop.cs.steps, en=st&&st[k]; if(!en) return; const np=Math.max(-12,Math.min(12,en.p+(e.deltaY<0?1:-1))); if(np===en.p) return;
     chopSnapT(); en.p=np; chopStp=k; chopEdT=performance.now(); mPost(); fxSave(); mFlash("STEP "+(k%16+1)+"  "+(np>0?"+":"")+np+" SEMITONES"); fxRender(); }, {passive:false});
 })();
-function fxRender(){
+// Leuchtstreifen: Zustandsknoepfe leuchten, wenn ihr Effekt bzw. ihre Einstellung aktiv ist; CLEAR blitzt beim Tippen
+function fxLamps(){ if(typeof mSel==="undefined") return; const ts=fxSt.tune, L=(id,on)=>{ const b=$(id); if(b && !b._fl) b.classList.toggle("on",!!on); };
+  L("tToneB",ts.on); L("tScaleB",ts.on); L("tGlideB",ts.on && ts.speed>0.01);
+  const r=rootOf(selTake()), hOk=r && fxHist.id===r.id; L("fxUndoB",hOk&&fxHist.u.length); L("fxRedoB",hOk&&fxHist.r.length);
+  $("fxUndoB").classList.toggle("dim",!(hOk&&fxHist.u.length)); $("fxRedoB").classList.toggle("dim",!(hOk&&fxHist.r.length)); $("fxBounceB").classList.toggle("dim",!selTake());
+  L("pRate",fxSt.on.pad); L("pLen",fxSt.on.pad); L("pUndo",!$("pUndo").classList.contains("dim")); L("pRedo",!$("pRedo").classList.contains("dim"));
+  const ms=fxSt.multi&&fxSt.multi[mSel]; L("mRateB",fxSt.on.multi&&ms&&ms.on); L("mRouteB",fxSt.on.multi&&ms&&ms.on); L("mLenB",fxSt.on.multi&&ms&&ms.on);
+  L("mUndoB",!$("mUndoB").classList.contains("dim")); L("mRedoB",!$("mRedoB").classList.contains("dim")); }
+function fxFlash(id){ const b=$(id); if(!b) return; b.classList.add("on"); b._fl=1; setTimeout(()=>{ b._fl=0; b.classList.remove("on"); fxLamps(); },260); }
+["tResetB","pClear","mPclrB"].forEach(id=>$(id).addEventListener("pointerdown",()=>fxFlash(id)));
+$("fxUndoB").addEventListener("click",()=>{ if(!fxHistGo(-1)){ tMsg="NOTHING TO UNDO"; tMsgT=performance.now(); } else { tMsg="UNDO"; tMsgT=performance.now(); } });
+$("fxRedoB").addEventListener("click",()=>{ if(!fxHistGo(1)){ tMsg="NOTHING TO REDO"; tMsgT=performance.now(); } else { tMsg="REDO"; tMsgT=performance.now(); } });
+$("fxBounceB").addEventListener("click",()=>bounceToLoop());
+// AS LOOP: alles, was gerade klingt (alle Spuren mit Effekten, dazu ein Backing), wird der neue Hintergrund-Loop zum Drueber-Singen. Der Take bleibt.
+let bounceBusy=false;
+async function bounceToLoop(){ const t0=selTake(), r=t0&&rootOf(t0); if(!r || recState!=="idle" || bounceBusy) return; bounceBusy=true;
+  tMsg="BOUNCING..."; tMsgT=performance.now(); $("fxBounceB").classList.add("on");
+  try{ wakeAudio(); stopPlay();
+    const o=await renderLayers(stackOf(r), r.mode==="LOOP", r.len, r.sr), n=o.length;
+    const L=Float32Array.from(o.getChannelData(0)), Rt=Float32Array.from(o.numberOfChannels>1?o.getChannelData(1):o.getChannelData(0));
+    const bk=(r.backing && !r.bkMuted)? await bkBuf(r) : null;
+    if(bk){ const bl=bk.getChannelData(0), br=bk.numberOfChannels>1?bk.getChannelData(1):bl, m=bk.length, g=0.708; for(let i=0;i<n;i++){ L[i]+=bl[i%m]*g; Rt[i]+=br[i%m]*g; } }
+    let pk=0; for(let i=0;i<n;i++){ const a=Math.max(Math.abs(L[i]),Math.abs(Rt[i])); if(a>pk) pk=a; } const s=pk>0.891?0.891/pk:1;
+    const ab=ac.createBuffer(2,n,r.sr); for(let i=0;i<n;i++){ L[i]*=s; Rt[i]*=s; } ab.copyToChannel(L,0); ab.copyToChannel(Rt,1);
+    const sBpm=r.bpm||bpm; setBpm(sBpm);
+    pendingBk={ buf:seamFix(ab), data:encodeWav(ab), bpm:Math.round(sBpm), meta:{ name:"bounce", title:("BOUNCE "+(r.name||"")).trim().slice(0,40), bpm:Math.round(sBpm), dur:ab.duration } };
+    if(!loopOn) loopBtn.click(); selectTake(null); closeSheet();
+    tstatTx.textContent="READY: OVER BACKING"; timerEl.textContent=fmtTime(ab.duration*1000);
+  }catch(e){ console.error("[BOUNCE]", e); tMsg="COULD NOT BOUNCE"; tMsgT=performance.now(); }
+  bounceBusy=false; $("fxBounceB").classList.remove("on"); }
+function fxRender(){ fxRender0(); try{ fxLamps(); }catch(e){} }
+function fxRender0(){
   const st=fxStack();
   fxChainEl.innerHTML='<button class="fxslot'+(fxTab==="tune"?' sel':'')+(fxSt.tune.on?' on':'')+'" data-k="tune"><i></i>ROBO</button>'+fxSt.order.map((k,i)=>'<button class="fxslot'+(fxTab===k?' sel':'')+(fxSt.on[k]?' on':'')+'" data-k="'+k+'"><i></i>'+FX_NAMES[k]+'</button>').join("");
   const i=fxSt.order.indexOf(fxTab); $("fxL").disabled=i<=0; $("fxR").disabled=i<0||i>=2;
