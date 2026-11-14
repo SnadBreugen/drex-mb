@@ -211,6 +211,7 @@
   .efad s{position:absolute; top:15px; height:2px; background:currentColor; text-decoration:none;}
   .efad b{position:absolute; top:6px; bottom:6px; left:50%; width:1px; background:#3a3744;}
   .eval{width:50px; height:34px; border:1px solid #25232C; background:none; color:var(--t1); font-family:"Space Mono",ui-monospace,monospace; font-size:11px; cursor:pointer; padding:0;}
+  .epit{display:flex; width:96px; gap:0;} .epit .esm{width:24px;} .epit .esm.epv{width:48px; font-size:7px; letter-spacing:.5px; line-height:1.1; display:flex; flex-direction:column; align-items:center; justify-content:center; border-left:none; border-right:none;} .epit .esm.epv b{font-size:12px; color:var(--t1); font-weight:normal;} .epit .esm.epv.on b{color:#FF2785;}
   .esm{width:44px; height:34px; border:1px solid #25232C; background:none; color:var(--t2); font-family:"Space Mono",ui-monospace,monospace; font-size:11px; letter-spacing:1px; cursor:pointer; padding:0;}
   .esm.on{color:var(--green); border-color:var(--green);}
   .esm.mon{color:var(--pink); border-color:var(--pink); background:#2a1520;}
@@ -218,6 +219,50 @@
   .espace{flex:1;}
   .cpop{position:fixed; inset:0; z-index:9000; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(4,4,6,.72);}
   .cpop[hidden]{display:none;}
+
+  /* TOUR + FEEDBACK */
+  #tourL{position:fixed; inset:0; z-index:10000; display:none; pointer-events:none;}
+  #tourL.on{display:block;}
+  #tourL .tsh{position:fixed; background:rgba(6,6,9,.78); pointer-events:auto; touch-action:none;}
+  #tourL .thole{position:fixed; border:2px solid #FF2785; border-radius:4px; pointer-events:none; box-shadow:0 0 18px rgba(255,39,133,.75), inset 0 0 12px rgba(255,39,133,.35); animation:tpu 1.6s ease-in-out infinite;}
+  @keyframes tpu{50%{box-shadow:0 0 30px rgba(255,39,133,1), inset 0 0 16px rgba(255,39,133,.5);}}
+  #tourCard{position:fixed; left:14px; right:14px; max-width:460px; margin:0 auto; pointer-events:auto; background:#0d0c11; border:1px solid #2a2832; border-top:3px solid #FF2785; padding:14px 16px 12px; color:#e9e8ee; box-shadow:0 10px 30px rgba(0,0,0,.6); transition:top .25s ease, border-color .2s;}
+  #tourCard.ok{border-top-color:#32EBA4;}
+  #tourCard.shk{animation:tsk .3s;}
+  @keyframes tsk{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  #tourCard .tch{font-family:"VT323",monospace; font-size:17px; color:#32EBA4; letter-spacing:1px; display:flex; justify-content:space-between; text-shadow:0 0 8px rgba(50,235,164,.5);}
+  #tourCard .ttx{font-family:"Anton",Impact,sans-serif; font-size:26px; letter-spacing:1px; line-height:1.08; margin:8px 0 6px; text-transform:uppercase;}
+  #tourCard .tsub{font-family:"Space Mono",ui-monospace,monospace; font-size:11px; letter-spacing:1px; color:#a19eac; line-height:1.55; text-transform:uppercase;}
+  #tourCard .trw{display:flex; justify-content:flex-end; gap:8px; margin-top:12px;}
+  #tourL .tb{font-family:"SnadMono","Space Mono",monospace; font-weight:700; font-size:11px; letter-spacing:2px; padding:9px 14px; border:1px solid #34313d; color:#cfcdd6; background:transparent; cursor:pointer;}
+  #tourL .tb.pk{background:#FF2785; border-color:#FF2785; color:#fff;}
+  #tourCard .tst{display:flex; align-items:center; gap:10px; margin:8px 0; font-family:"Space Mono",monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#e9e8ee;}
+  #tourCard .tst b{font-family:"VT323",monospace; font-size:22px; color:#FF2785; width:14px; font-weight:normal;}
+  #tourCard .tic{width:38px; height:38px; flex:none; display:flex; align-items:center; justify-content:center; border:1px solid #34313d; color:#32EBA4;}
+  #tourCard .tmb{font-family:"Anton",sans-serif; font-size:14px; color:#FF2785;}
+  #tourL .ticon{position:fixed; display:none; border-radius:22%; pointer-events:none; box-shadow:0 0 0 2px #FF2785, 0 0 30px rgba(255,39,133,.8); animation:tib 1.4s ease-in-out infinite;}
+  @keyframes tib{50%{transform:scale(1.05)}}
+  #tourL.icon .tsh{background:rgba(6,6,9,.88);}
+  #tourL .tptr{position:fixed; left:0; right:0; display:none; flex-direction:column; align-items:center; gap:4px; pointer-events:none; font-family:"VT323",monospace; font-size:18px; color:#FF2785; letter-spacing:1px; text-shadow:0 0 8px rgba(255,39,133,.8);}
+  #tourL .tptr.down{bottom:8px;} #tourL .tptr.up{top:8px; flex-direction:column-reverse; align-items:flex-end; padding-right:18px;}
+  #tourL .tptr i{width:0; height:0; border-left:12px solid transparent; border-right:12px solid transparent; border-top:16px solid #FF2785; animation:tbo 1s ease-in-out infinite;}
+  #tourL .tptr.up i{border-top:none; border-bottom:16px solid #FF2785;}
+  @keyframes tbo{50%{transform:translateY(5px)}}
+  #tourMenu{position:fixed; inset:0; pointer-events:auto; background:rgba(6,6,9,.94); display:flex; flex-direction:column; padding:max(40px,env(safe-area-inset-top)) 18px 20px; overflow-y:auto; color:#e9e8ee;}
+  #tourMenu[hidden]{display:none;}
+  #tourMenu h1{font-family:"Anton",sans-serif; font-weight:400; font-size:44px; letter-spacing:2px; margin:0;} #tourMenu h1 em{color:#FF2785; font-style:normal;}
+  #tourMenu .tms{font-family:"Space Mono",monospace; font-size:11px; letter-spacing:2px; color:#a19eac; margin:6px 0 16px;}
+  #tourMenu .tit{display:flex; align-items:center; gap:12px; padding:11px 12px; border:1px solid #25232c; background:#121117; margin-bottom:7px; font-family:"Space Mono",monospace; font-size:13px; letter-spacing:2px; color:#e9e8ee; text-align:left; cursor:pointer; flex:none;}
+  #tourMenu .tit b{font-family:"VT323",monospace; font-size:20px; color:#6d6a78; width:26px; font-weight:normal;}
+  #tourMenu .tit span{margin-left:auto; font-family:"VT323",monospace; font-size:17px; color:#6d6a78;}
+  #tourMenu .tit.done b, #tourMenu .tit.done span{color:#32EBA4; text-shadow:0 0 6px rgba(50,235,164,.6);}
+  #tourMenu .tit.next{border-color:#FF2785; box-shadow:0 0 12px rgba(255,39,133,.35);} #tourMenu .tit.next span{color:#FF2785;}
+  #tourMenu .tclose{margin-top:10px; align-self:center; flex:none;}
+  #fbPop{z-index:10001;}
+  #fbPop input, #fbPop textarea{display:block; width:100%; box-sizing:border-box; margin:0 0 8px; background:#0a0a0d; border:1px solid #25232C; color:var(--t1); font-family:"Space Mono",monospace; font-size:16px; padding:9px 10px; border-radius:0;}
+  #fbPop textarea{height:120px; resize:none;}
+  #fbPop .fbl{font-family:"VT323",monospace; font-size:15px; color:var(--t2); letter-spacing:1px; margin:2px 0 3px;}
+  #fbStat{font-family:"VT323",monospace; font-size:17px; color:#32EBA4; min-height:20px; letter-spacing:1px; margin-top:8px; text-align:center;}
   .cbox{width:100%; max-width:340px; background:#121117; border:1px solid #25232C; padding:22px 18px 18px; box-shadow:0 20px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06);}
   .cbox .ct{font-family:Oswald,sans-serif; font-size:22px; letter-spacing:2px; color:#32EBA4; margin-bottom:10px;}
   .cbox p{font-family:"Space Mono",monospace; font-size:12px; line-height:1.55; color:var(--t1); margin:0 0 18px;}
@@ -577,6 +622,7 @@
     <div class="sinfo" id="calInfo">HEADPHONES ON. TAP CALIBRATE, 4 HIGH CLICKS COUNT IN, THEN CLAP ON THE 8 CLICKS.</div>
     <div class="srow"><span class="sl">THEME</span><button class="sbtn alt" id="themeBtn">DARK</button></div>
     <div class="srow"><span class="sl">FINGERPRINTS</span><button class="sbtn alt on" id="fpBtn">ON</button></div>
+    <div class="srow" id="helpRow"><span class="sl">HELP</span><span class="latbox"><button class="sbtn alt" id="tourBtn">TOUR</button><button class="sbtn alt" id="fbBtn">FEEDBACK</button></span></div>
     <div class="sinfo" id="srInfo">INPUT SHOWS AFTER FIRST RECORDING</div>
   </div>
 
@@ -587,7 +633,7 @@
     <div class="etime" id="eTime"><button data-a="auto">AUTO</button><button data-a="snap" class="on">SNAP</button><button data-a="copy">COPY</button><button data-a="del">DEL</button><button data-a="reset">RESET</button><button data-a="zoom">1X</button></div>
     <div class="erow"><span class="el">VOL</span><div class="efad" id="eVol"><s></s><i></i></div><button class="eval" id="eVolV">0.0</button><button class="esm" id="eSolo">S</button><button class="esm" id="eMute">M</button></div>
     <div class="erow"><span class="el">PAN</span><div class="efad" id="ePan"><b></b><s></s><i></i></div><button class="eval" id="ePanV">C</button><button class="esm" id="eDel" style="width:96px">DEL LAYER</button></div>
-    <div class="erow"><span class="el">WID</span><div class="efad" id="eWid"><s></s><i></i></div><button class="eval" id="eWidV">0</button><span style="width:96px"></span></div>
+    <div class="erow"><span class="el">WID</span><div class="efad" id="eWid"><s></s><i></i></div><button class="eval" id="eWidV">0</button><span class="epit" id="ePit"><button class="esm" id="ePitDn" aria-label="Pitch down">&minus;</button><button class="esm epv" id="ePitV">PITCH<b>0</b></button><button class="esm" id="ePitUp" aria-label="Pitch up">+</button></span></div>
     <div class="erow"><span class="el">NR</span><div class="efad" id="eDn"><s></s><i></i></div><button class="eval" id="eDnV">0</button><button class="esm" id="eDs" style="width:96px">DE-ESS</button></div>
     <div class="erow"><span class="el">EQ</span><div class="epre" id="ePre"><button data-p="FLAT">FLAT</button><button data-p="WARM">WARM</button><button data-p="THIN">THIN</button><button data-p="BRIGHT">BRIGHT</button><button data-p="PHONE">PHONE</button></div></div>
     <div class="eeq"><canvas id="eEq"></canvas></div>
@@ -627,7 +673,7 @@
     <div class="fxbtns b4" id="vCar"><button class="fxb surf" data-c="chord">CHORD</button><button class="fxb surf" data-c="drone">DRONE</button><button class="fxb surf" data-c="noise">NOISE</button><button class="fxb surf" data-c="sample">SAMPLE</button></div>
     <div class="fxdisc" id="vDisc"><canvas id="vCv"></canvas></div>
     <div class="fxbtns" id="vChord"><button class="fxb surf pk" data-h="maj">MAJ</button><button class="fxb surf pk" data-h="min">MIN</button><button class="fxb surf pk" data-h="pwr">PWR</button><button class="fxb surf pk" id="vFollow">FOLLOW</button><button class="fxb surf pk" id="vOct">OCT<b>LOW</b></button></div>
-    <div class="fxknobs vknobs"><div class="fxk" id="kClar"><canvas></canvas><span>CLARITY<b>40</b></span></div><div class="fxk" id="kDry"><canvas></canvas><span>VOICE<b>0</b></span></div></div>
+    <div class="fxknobs vknobs"><div class="fxk" id="kClar"><canvas></canvas><span>CLARITY<b>60</b></span></div><div class="fxk" id="kDry"><canvas></canvas><span>VOICE<b>0</b></span></div></div>
     </div>
     <div class="fxview" id="multiView" hidden>
     <div class="fxbtns"><button class="fxb surf" id="mRunB">RUN</button><button class="fxb surf" id="mGlideB">GLIDE</button><button class="fxb surf dim" id="mPclrB">CLEAR</button><button class="fxb surf" id="mRateB">RATE<b>1/4</b></button><button class="fxb surf" id="mRouteB">ROUTE<b>SEND</b></button></div>
@@ -643,6 +689,14 @@
     <p><b id="savePopN" class="cpn"></b><br><span id="savePopTx"></span></p>
     <div class="cbb"><button class="fxb surf" id="savePopS">SAVE</button><button class="fxb surf pk" id="savePopD">DISCARD</button></div>
     <button class="cpc" id="savePopC">CANCEL</button>
+  </div></div>
+  <div class="cpop" id="fbPop" hidden><div class="cbox" role="dialog" aria-labelledby="fbT">
+    <div class="ct" id="fbT">FEEDBACK</div>
+    <div class="fbl">NAME (OPTIONAL)</div><input id="fbName" autocomplete="off" spellcheck="false">
+    <div class="fbl">EMAIL FOR A REPLY (OPTIONAL)</div><input id="fbMail" type="email" autocomplete="email" spellcheck="false">
+    <div class="fbl">WHAT WORKS, WHAT IS MISSING, WHAT BREAKS</div><textarea id="fbMsg"></textarea>
+    <div class="cbb"><button class="fxb surf" id="fbSend">SEND</button><button class="fxb surf pk" id="fbX">CLOSE</button></div>
+    <div id="fbStat"></div>
   </div></div>
   <div class="cpop" id="calPop" hidden><div class="cbox" role="dialog" aria-labelledby="calPopT">
     <div class="ct" id="calPopT">CALIBRATE FIRST</div>
@@ -691,17 +745,17 @@
 <details><summary>EDIT</summary>
 <p>EDIT works on one layer at a time. Boxes 1 to 6 pick the layer, B mutes the backing loop.</p>
 <p><b>Timing:</b> draw a region over the wave and drag it to fix a late or early phrase. AUTO suggests regions, SNAP or FREE sets the grid, COPY duplicates, DEL silences, RESET undoes all. 1X, 2X and 4X zoom in. One-shots also get trim handles.</p>
-<p><b>VOL</b>, <b>S</b> (solo), <b>M</b> (mute), <b>PAN</b>, <b>WID</b> (stereo width) and <b>DEL LAYER</b>.</p><p><b>NR</b> (noise reduction, 0 to 100): in pauses noise is removed by RNNoise (an open source neural network from Xiph.Org) down to -24 dB at 100; while you sing only a calm, steady reduction of at most 6 dB runs, so the voice itself stays untouched. <b>DE-ESS</b> finds your S sounds and tames only the sharp peaks. Both are worked out when you let go, it takes a moment (CLEANING).</p>
+<p><b>VOL</b>, <b>S</b> (solo), <b>M</b> (mute), <b>PAN</b>, <b>WID</b> (stereo width) and <b>DEL LAYER</b>.</p><p><b>PITCH:</b> moves the whole take up or down in semitones (-12 to +12): all layers, all effects and the background loop together, the tempo stays. It is worked out in the background, until then you hear the last version. Tap the value to go back to 0.</p><p><b>NR</b> (noise reduction, 0 to 100): in pauses noise is removed by RNNoise (an open source neural network from Xiph.Org) down to -24 dB at 100; while you sing only a calm, steady reduction of at most 6 dB runs, so the voice itself stays untouched. <b>DE-ESS</b> finds your S sounds and tames only the sharp peaks. Both are worked out when you let go, it takes a moment (CLEANING).</p>
 <p><b>EQ:</b> 8 bands from 80 Hz to 10 kHz plus low and high cut. Drag the points. FLAT, WARM, THIN, BRIGHT and PHONE are quick starting points.</p></details>
 
 <details><summary>FX</summary>
 <p>After EDIT everything is about the sum: all layers together go through the FX chain. The backing loop never does.</p>
 <p><b>Chain:</b> VOCODER, SNADPAD and MULTI. Tap a device to show it, the light shows if it is on. The arrows move the shown device left or right in the chain. Tap the tab of the page you are on (ROBO, VOCODER, SNADPAD, MULTI) to turn it on or off, the line in the tab lights up when it is on. FX settings are saved with the take.</p>
 <p><b>SNADPAD MB:</b> the original SNADPAD engine. Tap and drag on the scope to play. Double tap sets a point, tap a point to hold it, double tap it to remove it, drag to move it. RUN travels the points, GLIDE smooths the way, RATE sets the speed. REC records your finger on the pad for exactly one round of LEN (1, 2 or 4 bars) and then stops by itself, the move loops right away. Press REC again for another round, it only replaces where you play. Every pass adds to the move: where you play, the new movement replaces the old one, the rest stays. UNDO and REDO step back and forth, LOOP pauses or plays the move, LEN sets its length (1, 2 or 4 bars), DRIFT lets it wander a little every round. The arrows on the ring switch the set. CATCH and FLUSH work in the set CRUMBS. Knobs: drag up for more, double tap to reset.</p>
-<p><b>ROBO:</b> the robot voice, first tab in the FX bar, switches on as soon as you open it. Every sixteenth note plays exactly one note, so the robot steps cleanly instead of wobbling. Inside the glass your take runs three times as rings, cut into steps (eighth notes, the numbers mark the bars): outside HIGH, middle MID, inside LOW. Every step starts in the middle. Drag a step outward or inward and it jumps into that ring, keep dragging along the ring to move a whole passage. Tap a ring to drop a step right there. The robot is one voice, hard and monophonic like Daft Punk: the energy comes from jumping, for example one word an octave down. Your melody sits inside the ring of its step, the playhead runs along. HIGH, MID and LOW below are the tuning wheels of the three rings (HIGH 0 to +24, MID -12 to +12, LOW -24 to 0 semitones, start one octave up, unchanged, one octave down) and land on notes of the scale. TONE picks SAW, SQUARE or SOFT, GLIDE lets notes slide, CLEAR puts all steps back in the middle. Your real voice is gone completely, even S, T and SH are rebuilt from noise in the color of your voice. While ROBO works it keeps playing the last robot result (the very first time the track is silent). MIX brings your real voice back underneath if you want it (starts at 0). The key is found by itself, tap a note on the outer note ring to set it yourself, SCALE switches MAJOR, MINOR and CHROM. ROBO works in the background (ROBO WORKING) once per setting, moving steps is instant. It is part of the export. Below the glass: UNDO and REDO step back and forth through every effect change of this take (all tabs, steps, knobs, on and off). AS LOOP turns everything you hear right now (all layers with all effects, plus a background loop) into a new background loop, so you can sing on top of it. Your take stays as it is.</p>
+<p><b>ROBO:</b> the robot voice, first tab in the FX bar, switches on as soon as you open it. Every sixteenth note plays exactly one note, so the robot steps cleanly instead of wobbling. Inside the circle your take runs three times as rings, cut into steps (eighth notes, the numbers mark the bars): outside HIGH, middle MID, inside LOW. Every step starts in the middle. Drag a step outward or inward and it jumps into that ring, keep dragging along the ring to move a whole passage. Tap a ring to drop a step right there. The robot is one voice, hard and monophonic like Daft Punk: the energy comes from jumping, for example one word an octave down. Your melody sits inside the ring of its step, the playhead runs along. HIGH, MID and LOW below are the tuning wheels of the three rings (HIGH 0 to +24, MID -12 to +12, LOW -24 to 0 semitones, start one octave up, unchanged, one octave down) and land on notes of the scale. TONE picks SAW, SQUARE or SOFT, GLIDE lets notes slide, CLEAR puts all steps back in the middle. Your real voice is gone completely, even S, T and SH are rebuilt from noise in the color of your voice. While ROBO works it keeps playing the last robot result (the very first time the track is silent). MIX brings your real voice back underneath if you want it (starts at 0). The key is found by itself, tap a note on the outer note ring to set it yourself, SCALE switches MAJOR, MINOR and CHROM. ROBO works in the background (ROBO WORKING) once per setting, moving steps is instant. It is part of the export. Below the circle: UNDO and REDO step back and forth through every effect change of this take (all tabs, steps, knobs, on and off). AS LOOP turns everything you hear right now (all layers with all effects, plus a background loop) into a new background loop, so you can sing on top of it. Your take stays as it is.</p>
 <p><b>VOCODER:</b> your voice shapes a carrier. The top row picks it: CHORD plays a synth chord, DRONE a deep single tone, NOISE gives a whisper, SAMPLE picks any sound from your Audiotool library. Tap a note on the ring to set the key. MAJ, MIN and PWR set the chord and the scale. FOLLOW makes CHORD or DRONE follow your singing in that key, without it they hold the key note. OCT switches between LOW and MID. CLARITY brings out consonants, VOICE blends your own voice back in.</p>
-<p><b>MULTI:</b> MODULATION, PULSE, CHOP, SHAPE, DELAY and REVERB. DELAY and REVERB have their own engines, MOD runs on the real STOMPINSKI engine. Tap a button to pick the effect (green frame), it lies in the glass and its knobs show below. Tap it again to switch it on or off (light on the button). Playing the glass switches the picked effect on. Hold a button and drag left or right to change the order, the ring shows the chain. HOLD is on by default: the effect stays where you leave it. With HOLD off the effect only sounds while your finger is on the glass, like a Kaoss Pad: tap a word into the delay and the echo rings out after you let go. HOLD on keeps the effect and the point where you left it. ROUTE switches the picked effect between SEND (your voice stays dry, the effect is added, MIX is the send level) and INSERT (the whole voice goes through it, MIX blends dry and effect). DELAY and REVERB start as SEND. The glass plays: MOD rate and depth, SHAPE curve and drive, REVERB size and level. DELAY is a clock: once around is one bar, the 1 sits at the top. Double tap the glass to place an echo (up to 8), drag it to move it, double tap on an echo removes it, further out is louder. GRID snaps to 1/16, 1/16 T, 1/32 or FREE. The delay works like a tape echo with several heads: FEEDBACK sends all echoes back onto the tape, so a few points grow into a rolling rhythm. TAPE adds wow, flutter and saturation that grows with every repeat, later repeats get softer and smear. DUCK pushes the echoes down while you sing and lets them bloom in the gaps. WIDTH spreads the echoes left and right and lets the repeats cross over. LOW CUT, HIGH CUT and RESO shape the echoes, every repeat gets thinner or darker. Echoes dragged into the outer ring (EDGE) get dirty. REVERB SOUND switches between VOCAL (filtered send, the reverb ducks while you sing and blooms in the gaps) and CLASSIC. PRE sets how late the reverb starts and stays put. PUMP pushes the reverb away on every beat and lets it swell back. EDGE: the right edge of the glass is the experimental zone (marked). In the middle everything stays clean, towards the edge REVERB gets scratched by a fuzz, DELAY saturates and starts to whistle, MOD turns metallic, The EDGE knob sets how strong the zone gets, 0 switches it off. The knobs below hold all other settings of the picked effect, the arrows page through them. MOD has four modes (CHORUS, FLANGER, PHASER, VIBE), DELAY switches between SYNC (note values) and FREE (milliseconds), TONE darkens the echoes, REVERB has ROOM (short and close), DARK HALL (long, dark, floating) and PLATE (bright and dense, the vocal classic). Everything else is set for vocals. PULSE makes the voice pulse in time. The glass works like a clock: around the circle sit note values from 1/4 to 1/64 (straight and triplets), the distance from the centre is how deep it pulses, the centre does nothing. DEPTH sets the maximum depth, SHAPE goes from SOFT edges to PUNCH, GATE sets how long each pulse stays open (short blips to long), PHASE turns the pulse into left and right movement at 180 DEG. Page 2 makes it sound like a synth: FILTER makes every pulse pluck a low pass filter like a synth bass (snaps open, then closes within the pulse), RESO makes it whistle, S&H gives every pulse its own random filter height, SWING pushes every second pulse later (up to a hard 75 percent swing). 1/64 gets so fast that it turns into a buzzing tone. The outer ring breathes with the pulse, left half for the left side, right half for the right side. REC, RUN and HOLD work like on the other effects. CHOP cuts your take into up to 16 syllables as soon as you open it, each with its own colour, numbered in the order you sang them. They sit in the inner ring: tap one to pick it (you hear it). The outer ring is one bar with 16 steps: tap a step to put the picked syllable there, tap it again to clear it, double tap to play it backwards. Drag a step outwards or inwards to change its pitch, drag along the ring to make it longer. Tap the centre for a suggestion, then change it step by step. CLEAR empties the pattern, UNDO and REDO step through your pattern changes. LEN makes the pattern 1, 2 or 4 bars long: new bars start as a copy, the small bar buttons at the top of the centre pick which bar the ring shows for editing, the playing bar lights up and the ring follows it while playing (it stays put for 4 seconds after you pick a bar or edit). STEP shows the pitch of the last step you touched and lets you turn it (on a computer the mouse wheel over a step does the same), TRANSPOSE moves everything up or down, GATE goes from short and choppy to letting each syllable ring, SWING pushes every second step later. Page 2 only shapes the suggestion: DENSITY how many steps, RANGE how far the melody jumps, EDGE octave jumps. CHOP always uses the main take, not its layers. If the VOCODER sits before MULTI in the chain and is on, CHOP cuts the vocoded voice (it takes a moment to update after vocoder changes); if it sits after MULTI, the chops go into the vocoder. SHAPE is a guitar fuzz: left to right the gain, bottom to top the feedback, from the middle on it starts to whistle and sing like a guitar in front of the amp and rings out a little after you stop singing. TONE sets the top end.</p>
-<p><b>MULTI REC AND RUN:</b> works like the SNADPAD. REC records your finger in the glass for exactly one round of LEN (1, 2 or 4 bars) and then stops by itself, the move loops right away. Press REC again for another round, it only replaces where you play. A ring around the glass shows how far the round is. LEN is set for each effect on its own. UNDO and REDO step back and forth, LOOP pauses or plays the move, LEN sets its length. Every effect keeps its own move, a red dot on the ring shows it. Double tap the glass to set up to 8 points, double tap a point to remove it, drag it to move it. RUN travels the points with playback, RATE sets how long each point lasts, GLIDE slides between them. Touch the glass any time to take over. Export plays all moves and runs along.</p>
+<p><b>MULTI:</b> MODULATION, PULSE, CHOP, SHAPE, DELAY and REVERB. DELAY and REVERB have their own engines, MOD runs on the real STOMPINSKI engine. Tap a button to pick the effect (green frame), it lies in the circle and its knobs show below. Tap it again to switch it on or off (light on the button). Playing the circle switches the picked effect on. Hold a button and drag left or right to change the order, the ring shows the chain. HOLD is on by default: the effect stays where you leave it. With HOLD off the effect only sounds while your finger is on the circle, like a Kaoss Pad: tap a word into the delay and the echo rings out after you let go. HOLD on keeps the effect and the point where you left it. ROUTE switches the picked effect between SEND (your voice stays dry, the effect is added, MIX is the send level) and INSERT (the whole voice goes through it, MIX blends dry and effect). DELAY and REVERB start as SEND. The circle plays: MOD rate and depth, SHAPE curve and drive, REVERB size and level. DELAY is a clock: once around is one bar, the 1 sits at the top. Double tap the circle to place an echo (up to 8), drag it to move it, double tap on an echo removes it, further out is louder. GRID snaps to 1/16, 1/16 T, 1/32 or FREE. The delay works like a tape echo with several heads: FEEDBACK sends all echoes back onto the tape, so a few points grow into a rolling rhythm. TAPE adds wow, flutter and saturation that grows with every repeat, later repeats get softer and smear. DUCK pushes the echoes down while you sing and lets them bloom in the gaps. WIDTH spreads the echoes left and right and lets the repeats cross over. LOW CUT, HIGH CUT and RESO shape the echoes, every repeat gets thinner or darker. Echoes dragged into the outer ring (EDGE) get dirty. REVERB SOUND switches between VOCAL (filtered send, the reverb ducks while you sing and blooms in the gaps) and CLASSIC. PRE sets how late the reverb starts and stays put. PUMP pushes the reverb away on every beat and lets it swell back. EDGE: the right edge of the circle is the experimental zone (marked). In the middle everything stays clean, towards the edge REVERB gets scratched by a fuzz, DELAY saturates and starts to whistle, MOD turns metallic, The EDGE knob sets how strong the zone gets, 0 switches it off. The knobs below hold all other settings of the picked effect, the arrows page through them. MOD has four modes (CHORUS, FLANGER, PHASER, VIBE), DELAY switches between SYNC (note values) and FREE (milliseconds), TONE darkens the echoes, REVERB has ROOM (short and close), DARK HALL (long, dark, floating) and PLATE (bright and dense, the vocal classic). Everything else is set for vocals. PULSE makes the voice pulse in time. The circle works like a clock: around it sit note values from 1/4 to 1/64 (straight and triplets), the distance from the centre is how deep it pulses, the centre does nothing. DEPTH sets the maximum depth, SHAPE goes from SOFT edges to PUNCH, GATE sets how long each pulse stays open (short blips to long), PHASE turns the pulse into left and right movement at 180 DEG. Page 2 makes it sound like a synth: FILTER makes every pulse pluck a low pass filter like a synth bass (snaps open, then closes within the pulse), RESO makes it whistle, S&H gives every pulse its own random filter height, SWING pushes every second pulse later (up to a hard 75 percent swing). 1/64 gets so fast that it turns into a buzzing tone. The outer ring breathes with the pulse, left half for the left side, right half for the right side. REC, RUN and HOLD work like on the other effects. CHOP cuts your take into up to 16 syllables as soon as you open it, each with its own colour, numbered in the order you sang them. They sit in the inner ring: tap one to pick it (you hear it). The outer ring is one bar with 16 steps: tap a step to put the picked syllable there, tap it again to clear it, double tap to play it backwards. Drag a step outwards or inwards to change its pitch, drag along the ring to make it longer. Tap the centre for a suggestion, then change it step by step. CLEAR empties the pattern, UNDO and REDO step through your pattern changes. LEN makes the pattern 1, 2 or 4 bars long: new bars start as a copy, the small bar buttons at the top of the centre pick which bar the ring shows for editing, the playing bar lights up and the ring follows it while playing (it stays put for 4 seconds after you pick a bar or edit). STEP shows the pitch of the last step you touched and lets you turn it (on a computer the mouse wheel over a step does the same), TRANSPOSE moves everything up or down, GATE goes from short and choppy to letting each syllable ring, SWING pushes every second step later. Page 2 only shapes the suggestion: DENSITY how many steps, RANGE how far the melody jumps, EDGE octave jumps. CHOP always uses the main take, not its layers. If the VOCODER sits before MULTI in the chain and is on, CHOP cuts the vocoded voice (it takes a moment to update after vocoder changes); if it sits after MULTI, the chops go into the vocoder. SHAPE is a guitar fuzz: left to right the gain, bottom to top the feedback, from the middle on it starts to whistle and sing like a guitar in front of the amp and rings out a little after you stop singing. TONE sets the top end.</p>
+<p><b>MULTI REC AND RUN:</b> works like the SNADPAD. REC records your finger in the circle for exactly one round of LEN (1, 2 or 4 bars) and then stops by itself, the move loops right away. Press REC again for another round, it only replaces where you play. A ring around the circle shows how far the round is. LEN is set for each effect on its own. UNDO and REDO step back and forth, LOOP pauses or plays the move, LEN sets its length. Every effect keeps its own move, a red dot on the ring shows it. Double tap the circle to set up to 8 points, double tap a point to remove it, drag it to move it. RUN travels the points with playback, RATE sets how long each point lasts, GLIDE slides between them. Touch the circle any time to take over. Export plays all moves and runs along.</p>
 <p><b>Export</b> includes the whole chain in your order. On SNADPAD it includes what you recorded with REC, held points and RUN. Free playing without REC is live only.</p></details>
 
 <details><summary>EXPORT</summary>
@@ -720,14 +774,16 @@
 <p><b>FINGERPRINTS:</b> shows a glowing print wherever you touch, gone after a moment. A light tap leaves a fingertip, a held or dragged finger a full print. OFF switches it off.</p>
 <p><b>SET LEVEL:</b> tap it and sing for four seconds as loud as in the song. GAIN is set so your peaks land at -6 dB. Double tap GAIN on the main screen does the same. GAIN goes up to +24 dB for quiet microphones.</p>
 <p><b>CLICK PITCH:</b> tunes the metronome to a note, so you can sing in key.</p>
-<p><b>THEME:</b> switches between dark and bright.</p></details>
+<p><b>THEME:</b> switches between dark and bright.</p>
+<p><b>TOUR:</b> a guided tour through every button, in ten chapters. Each step points at the real button and waits until you have tried it. SKIP opens the chapter list, done chapters are marked.</p>
+<p><b>FEEDBACK:</b> send a message straight to the developer: what works, what is missing, what breaks. Name and email are optional, add an email if you want an answer.</p></details>
 
 <details><summary>HOME SCREEN</summary>
-<p>On iPhone in Chrome: Share, then Add to Home Screen. DREX-MB then starts full screen like an app.</p></details>
+<p>iPhone in Safari: Share in the bar below, then Add to Home Screen. iPhone in Chrome: Share in the address bar top right, then Add to Home Screen. Android: menu (three dots), then Add to home screen. DREX-MB then starts full screen like an app. The icon version keeps its own takes.</p></details>
     </div>
   </div>
   <div class="sheet edit" id="libSheet" aria-hidden="true">
-    <div class="sheet-head"><span id="lTitle">LIBRARY</span><button class="sheet-x" id="libClose" aria-label="Close">CLOSE</button></div>
+    <div class="sheet-head"><span id="lTitle">LIBRARY</span><button class="sheet-x" id="lFile" hidden>FROM DEVICE</button><button class="sheet-x" id="libClose" aria-label="Close">CLOSE</button><input type="file" id="lFileIn" accept="audio/*,.wav,.mp3,.m4a,.aif,.aiff" hidden></div>
     <div class="epre xseg" id="lTabs"><button data-t="my" class="on">MY SAMPLES</button><button data-t="all">SEARCH</button></div>
     <div class="xrow"><input class="lq" id="lQ" placeholder="SEARCH LOOPS" spellcheck="false" autocomplete="off"><button class="sbtn alt" id="lBpm">ANY BPM</button></div>
     <div class="llist" id="lList"></div>
@@ -738,11 +794,11 @@
     <div class="tlist" id="tlist"></div>
   </div>
 
-  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 1.48</span></div>
+  <div class="foot"><span>SNAD INDUSTRIES</span><span class="rev">REV 1.56</span></div>
 </div>
 
 <script type="module">
-/* DREX MB  REV 1.48  -  Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
+/* DREX MB  REV 1.56  -  Tour: eigene Audiodateien als Alternative zur Library nicht mehr extra erwaehnt. Davor 1.55: Tour-Texte: MULTI ohne Aufzaehlung, circle statt glass, Audiotool ueberall optional mit Alternative. Davor 1.54: VOCODER neu gebaut als Spektral-Vocoder (FFT-Kreuzsynthese, 64 Baender, Zischlaute als Rauschen, Carrier weiss gemacht): kein Nachschwingen, kein Pumpen, keine Klacks bei harten Carrier-Akzenten. Latenz wird live und im Export ausgeglichen. Davor 1.53: VOCODER-Klang neu abgestimmt: breitere Baender (weniger Nachklingeln), ruhigere Huellkurven, Carrier-Angleichung ohne Ueberschwinger, Gate, kein Zischlaut-Daempfer, kein Zisch-Rauschen, CLARITY startet bei 0, Sample-Carrier mit weicheren Anschlaegen. Davor 1.52: Carrier-Knopf heisst FROM DEVICE. Davor 1.51: VOCODER: weicher Limiter statt hartem Clipping, Eingang mit Pegelschutz, Loop-Carrier taktgenau (kein Kuerzen/Glaetten), Carrier vom Handy laden. Davor 1.50: Looper: Overdub auf Loop-Takes (eine Runde pro Druck), Stapel mit Stumm-Schaltern, Summen-Limiter, Latenz-Kalibrierung. Davor 0.66 Auto Enhance: Rumpelfilter, Spectral-Gating-Rauschentfernung, Plopp-Schutz, Rider mit Atem-Erkennung, Mulm, selbstsuchender De-Esser, zwei Kompressoren, Praesenz/Luft, -16 LUFS + True-Peak-Limiter, im Web Worker. mit RAW/ENH pro Take. Davor 0.64: Mehrere Takes: Liste unter TAKES, auswaehlen, abspielen, loeschen, im Browser-Speicher (IndexedDB). Haarfeiner Bogen. Davor 0.63: Bogen-Pegel statt Welle im Aufnahme-Screen, IN/OUT-Linie raus, Display waechst mit der Hoehe. Davor 0.62: Stationen unten, Grid-Icon oeffnet Settings, Modus in der Statuszeile, Stereo wenn verfuegbar. Davor 0.61: Transport PLAY/PAUSE, RECORD, LOOP (Stopp auf ganze Takte), Leiste BPM/CLICK/GAIN/COUNT-IN, Settings-Panel. Davor 0.60 Engine-Umbau: Aufnahme sampelgenau an der Audio-Uhr (AudioWorklet), Metronom mit Vorausplaner, Abspielen ueber AudioBuffer. Optik wie 0.59. */
 const $=(id)=>document.getElementById(id);
 const device=$("device");
 const waveCanvas=$("wave"), wctx=waveCanvas.getContext("2d");
@@ -947,7 +1003,7 @@ function drawRings(root, db, cx, cy, R, R0, a0, a1, fs, w){
 }
 function arcLoop(){ drawArc(); requestAnimationFrame(arcLoop); }
 
-/* ================= ENGINE (REV 1.48) =================
+/* ================= ENGINE (REV 1.56) =================
    Eine Audio-Uhr fuer alles: Aufnahme, Count-in, Metronom, Abspielen.
    Aufnahme sampelgenau per AudioWorklet (Fallback ScriptProcessor), kein MediaRecorder mehr. */
 const AC=window.AudioContext||window.webkitAudioContext;
@@ -1601,17 +1657,49 @@ function enhanceCore(chs, sr, s){
   return out;
 }
 
+/* ===== PITCH: ganzer Take (alle Spuren und Backing) -12..+12 Halbtoene, Tempo bleibt ===== */
+function pitchShift(chs, sr, semis, loop){
+  // Tonhoehe ohne Tempo: WSOLA-Dehnung um r (Tonhoehe bleibt), dann Umrechnung zurueck auf die alte Laenge (Tonhoehe x r). Loops rund (Naht bleibt sauber).
+  const r=Math.pow(2,semis/12), n=chs[0].length, C=chs.length; if(!semis || n<4096) return chs.map(a=>Float32Array.from(a));
+  const m=new Float32Array(n); for(let c=0;c<C;c++){ const d=chs[c]; for(let i=0;i<n;i++) m[i]+=d[i]/C; }
+  const W0=Math.round(sr*0.03)&~1, tol=Math.round(sr*0.008); let Ho=W0>>1, Ls=Math.max(W0,Math.round(n*r)), K;
+  if(loop){ K=Math.max(2,Math.round(Ls/Ho)); Ls=K*Ho; } else K=Math.ceil(Ls/Ho)+1;
+  const W=Ho*2, Ha=n*r/Ls*Ho/r*(Ls/(n*r))*1, rr=Ls/n; /* bei Loops genau K Fenster rundherum */
+  const win=new Float32Array(W); for(let j=0;j<W;j++) win[j]=0.5-0.5*Math.cos(2*Math.PI*j/W);
+  const at=(x,i)=>{ if(loop){ i%=n; if(i<0) i+=n; return x[i]; } return (i<0||i>=n)?0:x[i]; };
+  const y=[]; for(let c=0;c<C;c++) y.push(new Float32Array(loop?Ls:Ls+W));
+  let prev=0;
+  for(let k=0;k<K;k++){ const tgt=Math.round(k*Ho/rr); let pos=tgt;
+    if(k>0){ const nat=prev+Ho; let best=-1e30, bd=0;
+      for(let d=-tol; d<=tol; d+=2){ let s=0; const p=tgt+d; for(let j=0;j<W;j+=4) s+=at(m,nat+j)*at(m,p+j); if(s>best){ best=s; bd=d; } }
+      pos=tgt+bd; }
+    const o=k*Ho;
+    for(let c=0;c<C;c++){ const x=chs[c], yc=y[c];
+      for(let j=0;j<W;j++){ let q=o+j; if(loop){ q%=Ls; } else if(q>=yc.length) break; yc[q]+=at(x,pos+j)*win[j]; } }
+    prev=pos; }
+  // Anti-Alias vor dem Verdichten (nur beim Hochpitchen)
+  if(r>1){ const fc=Math.min(0.45*sr/r, 0.45*sr), w0=2*Math.PI*fc/sr, cs=Math.cos(w0), al=Math.sin(w0)/(2*0.707), a0=1+al, b0=(1-cs)/2/a0, b1=(1-cs)/a0, a1=-2*cs/a0, a2=(1-al)/a0;
+    for(const yc of y) for(let p=0;p<2;p++){ let x1=0,x2=0,y1=0,y2=0; const L=yc.length;
+      // Loop: Filter erst ueber das Ende einschwingen lassen, dann rundherum (sonst Sprung an der Naht)
+      if(loop){ for(let i=Math.max(0,L-4096);i<L;i++){ const x=yc[i], v=b0*x+b1*x1+b0*x2-a1*y1-a2*y2; x2=x1; x1=x; y2=y1; y1=v; } }
+      const src=loop?Float32Array.from(yc):yc;
+      for(let i=0;i<L;i++){ const x=src[i], v=b0*x+b1*x1+b0*x2-a1*y1-a2*y2; x2=x1; x1=x; y2=y1; y1=v; yc[i]=v; } } }
+  const out=[]; for(let c=0;c<C;c++){ const yc=y[c], L=loop?Ls:yc.length, o=new Float32Array(n);
+    for(let i=0;i<n;i++){ const p=i*(loop?rr:r), k=Math.floor(p), f=p-k; let a=k, b=k+1; if(loop){ a%=Ls; b%=Ls; } else { if(a>=L) a=L-1; if(b>=L) b=L-1; } o[i]=yc[a]+(yc[b]-yc[a])*f; }
+    out.push(o); }
+  return out; }
+
 /* Rechnet im Hintergrund (Web Worker), damit die App nicht einfriert. Fallback: direkt. */
 let enhWorker=null, enhSeq=0; const enhPending=new Map();
 function getEnhWorker(){
   if(enhWorker!==null) return enhWorker;
   try{
     const src="const RNN_B64=\""+RNN_B64+"\";\n"+[bq,runBq,tc,envF,fftInit,fft,rsCub,rnnDenoise,rnnRun,deEss,cleanCore,spectralGate,enhTonal,kLufs,enhanceTake,enhanceCore].map(f=>f.toString()).join("\n")+
-      "\nconst TUNE_SC="+JSON.stringify(TUNE_SC)+"; const f2m=(f)=>69+12*Math.log2(f/440), m2f=(m)=>440*Math.pow(2,(m-69)/12);\n"+[yinPitch,snapMidi,cleanPitchTrack,tuneNoteSegs,tuneAnalyze,roboEnv,tuneRender].map(f=>f.toString()).join("\n")+
-      "\nonmessage=(e)=>{ const d=e.data; const out=d.k==='clean'?cleanCore(d.chs,d.sr,d.dn,d.ds):d.k==='robo'?tuneRender(d.chs,d.sr,d.ts,d.root,d.loop,d.bpm,{}):enhanceTake(d.chs,d.sr,d.loop,d.s); postMessage({id:d.id,out:out.slice(),info:out.info||null,track:out.track||null},out.map(a=>a.buffer)); };";
+      "\nconst TUNE_SC="+JSON.stringify(TUNE_SC)+"; const f2m=(f)=>69+12*Math.log2(f/440), m2f=(m)=>440*Math.pow(2,(m-69)/12);\n"+[yinPitch,snapMidi,cleanPitchTrack,tuneNoteSegs,tuneAnalyze,roboEnv,tuneRender,pitchShift].map(f=>f.toString()).join("\n")+
+      "\nonmessage=(e)=>{ const d=e.data; const out=d.k==='pitch'?pitchShift(d.chs,d.sr,d.semis,d.loop):d.k==='clean'?cleanCore(d.chs,d.sr,d.dn,d.ds):d.k==='robo'?tuneRender(d.chs,d.sr,d.ts,d.root,d.loop,d.bpm,{}):enhanceTake(d.chs,d.sr,d.loop,d.s); postMessage({id:d.id,out:out.slice(),info:out.info||null,track:out.track||null},out.map(a=>a.buffer)); };";
     enhWorker=new Worker(wlUrl(src));
     enhWorker.onmessage=(e)=>{ const r=enhPending.get(e.data.id); if(r){ enhPending.delete(e.data.id); const o=e.data.out; o.info=e.data.info; if(e.data.track) o.track=e.data.track; r.res(o); } };
-    enhWorker.onerror=()=>{ enhPending.forEach(r=>r.res(r.k==="clean"?cleanCore(r.chs,r.sr,r.dn,r.ds):r.k==="robo"?tuneRender(r.chs,r.sr,r.ts,r.root,r.loop,r.bpm,{}):enhanceTake(r.chs,r.sr,r.loop,r.s))); enhPending.clear(); enhWorker=false; };
+    enhWorker.onerror=()=>{ enhPending.forEach(r=>r.res(r.k==="pitch"?pitchShift(r.chs,r.sr,r.semis,r.loop):r.k==="clean"?cleanCore(r.chs,r.sr,r.dn,r.ds):r.k==="robo"?tuneRender(r.chs,r.sr,r.ts,r.root,r.loop,r.bpm,{}):enhanceTake(r.chs,r.sr,r.loop,r.s))); enhPending.clear(); enhWorker=false; };
   }catch(e){ enhWorker=false; }
   return enhWorker;
 }
@@ -1619,6 +1707,11 @@ function roboAsync(chs, sr, ts, root, loop, bpm){
   const w=getEnhWorker();
   if(!w) return new Promise(res=>setTimeout(()=>res(tuneRender(chs,sr,ts,root,loop,bpm,{})),20));
   return new Promise(res=>{ const id=++enhSeq; enhPending.set(id,{res,chs,sr,ts,root,loop,bpm,k:"robo"}); w.postMessage({id, k:"robo", chs:chs.map(a=>a.slice()), sr, ts:JSON.parse(JSON.stringify(ts)), root, loop, bpm}); });
+}
+function pitchAsync(chs, sr, semis, loop){
+  const w=getEnhWorker();
+  if(!w) return new Promise(res=>setTimeout(()=>res(pitchShift(chs,sr,semis,loop)),20));
+  return new Promise(res=>{ const id=++enhSeq; enhPending.set(id,{res,chs,sr,semis,loop,k:"pitch"}); w.postMessage({id, k:"pitch", chs:chs.map(a=>a.slice()), sr, semis, loop}); });
 }
 function cleanAsync(chs, sr, dn, ds){
   const w=getEnhWorker();
@@ -1636,7 +1729,7 @@ const DB={db:null};
 function dbOpen(){ return new Promise(res=>{ try{ const r=indexedDB.open("drexmb",1);
   r.onupgradeneeded=()=>{ if(!r.result.objectStoreNames.contains("takes")) r.result.createObjectStore("takes",{keyPath:"id"}); };
   r.onsuccess=()=>{ DB.db=r.result; res(true); }; r.onerror=()=>res(false); }catch(e){ res(false); } }); }
-function dbPut(t){ if(!DB.db) return; try{ DB.db.transaction("takes","readwrite").objectStore("takes").put({id:t.id,n:t.n,mode:t.mode,sr:t.sr,len:t.len,ch:t.ch,peaks:t.peaks,peaksEnh:t.peaksEnh||null,useEnh:!!t.useEnh,created:t.created,parent:t.parent||null,bpm:t.bpm||null,muted:!!t.muted,vol:t.vol||0,pan:t.pan||0,backing:t.backing||null,bkData:t.bkData||null,bkMuted:!!t.bkMuted,name:t.name||"",eq:t.eq||null,width:t.width||0,dn:t.dn|0,ds:!!t.ds,trimA:t.trimA||0,trimB:t.trimB||0,lc:t.lc||0,hc:t.hc||0,ph:t.ph||null,vcData:t.vcData||null,fx:t.fx||null,fxOff:!!t.fxOff,saved:t.saved===false?false:true}); }catch(e){} }
+function dbPut(t){ if(!DB.db) return; try{ DB.db.transaction("takes","readwrite").objectStore("takes").put({id:t.id,n:t.n,mode:t.mode,sr:t.sr,len:t.len,ch:t.ch,peaks:t.peaks,peaksEnh:t.peaksEnh||null,useEnh:!!t.useEnh,created:t.created,parent:t.parent||null,bpm:t.bpm||null,muted:!!t.muted,vol:t.vol||0,pan:t.pan||0,backing:t.backing||null,bkData:t.bkData||null,bkMuted:!!t.bkMuted,name:t.name||"",eq:t.eq||null,width:t.width||0,dn:t.dn|0,ds:!!t.ds,trimA:t.trimA||0,trimB:t.trimB||0,lc:t.lc||0,hc:t.hc||0,ph:t.ph||null,vcData:t.vcData||null,fx:t.fx||null,fxOff:!!t.fxOff,pitch:t.pitch|0,saved:t.saved===false?false:true}); }catch(e){} }
 function dbDel(id){ if(!DB.db) return; try{ DB.db.transaction("takes","readwrite").objectStore("takes").delete(id); }catch(e){} }
 function dbAll(){ return new Promise(res=>{ if(!DB.db) return res([]); try{ const r=DB.db.transaction("takes").objectStore("takes").getAll(); r.onsuccess=()=>res(r.result||[]); r.onerror=()=>res([]); }catch(e){ res([]); } }); }
 
@@ -2098,7 +2191,15 @@ function ensureCln(t){ const k=clnKey(t); if(!k || clnOk(t)) return Promise.reso
   t._clnP=cleanAsync(rawChs(t), t.sr, t.dn|0, !!t.ds).then(out=>{ if(t._clnPK!==k) return; t.cln=out; t._clnK=k; t._clnP=null; t._buf=null; t._shC=null;
     if(out.info && t.dn && out.info.engine && out.info.engine!=="rnnoise") tstatTx.textContent="DENOISE: SIMPLE MODE"; });
   return t._clnP; }
-function baseChs(t){ const b=(autoEnh&&t.enh)?t.enh:(clnOk(t)?t.cln:rawChs(t)); if(!b) return b; let cur=b, k=(autoEnh&&t.enh?"e":"r"+(clnOk(t)?t._clnK:""));
+function pitchOf(t){ const r=t&&rootOf(t); return r?Math.max(-12,Math.min(12,r.pitch|0)):0; }
+// Pitch-Stufe: rechnet im Hintergrund; bis dahin laeuft das letzte Pitch-Ergebnis weiter (oder unverstimmt), danach wird uebergeblendet
+function baseChs(t){ const cur=baseChs0(t); const ps=pitchOf(t); if(!ps || !cur) return cur; const key=ckey0(t)+"P"+ps;
+  if(t._pK===key && t._pc) return t._pc;
+  if(t._pPK!==key){ t._pPK=key; const src=cur; t._pP=pitchAsync(src, t.sr, ps, t.mode==="LOOP").then(out=>{ if(t._pPK!==key) return; t._pc=out; t._pK=key; t._pPK=null; t._pP=null; t._buf=null; t._shC=null;
+      if(playing && stackOf(selTake()).includes(t)) playSelected(playPos()); }).catch(e=>{ console.log("[PITCH]", e&&e.message); t._pPK=null; }); }
+  return (t._pc && t._pc[0].length===cur[0].length)?t._pc:cur; }
+async function pitchWait(t){ baseChs(t); if(t._pP) await t._pP; }
+function baseChs0(t){ const b=(autoEnh&&t.enh)?t.enh:(clnOk(t)?t.cln:rawChs(t)); if(!b) return b; let cur=b, k=(autoEnh&&t.enh?"e":"r"+(clnOk(t)?t._clnK:""));
   const tk=tuneKey(t);
   if(tk){ const kk=k+tk; if(t._tnK===kk && t._tn){ const mk=tuneMixKey(t), r=rootOf(t); if(t._tmK!==kk+mk || !t._tm){ t._tm=roboMix(b, t._tn, tuneSt(r), t.sr, r.bpm||bpm, r.mode==="LOOP"); t._tmK=kk+mk; } cur=t._tm; k=kk+mk; }
     else { roboStart(t, b, kk); const mk=tuneMixKey(t), r=rootOf(t), sk="W"+(t._tnK||"0")+mk, ok=t._tn && t._tn[0].length===b[0].length;
@@ -2107,7 +2208,8 @@ function baseChs(t){ const b=(autoEnh&&t.enh)?t.enh:(clnOk(t)?t.cln:rawChs(t)); 
   if(dk){ const kk=k+dk; if(t._dbK===kk && t._db) return t._db; if(!t._dbA || t._dbA.k!==k) t._dbA={k};
     try{ t._db=dblRender(cur, t.sr, dblCfg(rootOf(t)), t.mode==="LOOP", t._dbA); t._dbK=kk; return t._db; }catch(e){ console.log("[DOUBLE]", e&&e.message); } }
   return cur; }
-function ckey(t){ const k0=(autoEnh&&t.enh?"e":"r"+(clnOk(t)?t._clnK:"")), tk=tuneKey(t); return k0+(!tk?"":(t._tnK===k0+tk && t._tn)?tk+tuneMixKey(t):"W"+(t._tnK||"0")+tuneMixKey(t))+dblKey(t); }
+function ckey(t){ const ps=pitchOf(t); return ckey0(t)+(ps?(t._pK===ckey0(t)+"P"+ps?"P"+ps:"Q"+(t._pK||"0")):""); }
+function ckey0(t){ const k0=(autoEnh&&t.enh?"e":"r"+(clnOk(t)?t._clnK:"")), tk=tuneKey(t); return k0+(!tk?"":(t._tnK===k0+tk && t._tn)?tk+tuneMixKey(t):"W"+(t._tnK||"0")+tuneMixKey(t))+dblKey(t); }
 function tuneMixKey(t){ const r=rootOf(t), ts=tuneSt(r); return ts?"M"+(ts.steps||"")+"|"+(+(ts.rmix||0)).toFixed(2):""; }
 // ROBO rechnet im Hintergrund (Worker): bis es fertig ist, laeuft das letzte Robo-Ergebnis (beim ersten Mal Stille), nie die echte Aufnahme, danach wird an derselben Stelle weitergespielt
 function roboStart(t, b, kk){ if(t._tnPK===kk) return; t._tnPK=kk; const r=rootOf(t), vo=(r.id===fxRootId?fxSt.voc:(r.fx&&r.fx.voc))||{};
@@ -2484,7 +2586,7 @@ async function playBufsFor(t, forDub){
   const st=stackOf(t); if(!st.length) return [];
   let list = st.length>1 ? st.filter(x=>!x.muted) : st;
   if(!forDub && soloId){ const so=st.find(x=>x.id===soloId); if(so) list=[so]; }
-  const root=rootOf(t), bk=(root.backing && !root.bkMuted && !(soloId&&!forDub)) ? await bkBuf(root) : null;
+  const root=rootOf(t), bk=(root.backing && !root.bkMuted && !(soloId&&!forDub)) ? await bkPlay(root) : null;
   const bufs=[]; for(const x of list){ const b=await prepBuf(x); bufs.push({b, t:x}); }
   if(bk) bufs.push({b:bk, t:bkPseudo(root)});
   return bufs;
@@ -2504,6 +2606,9 @@ function seamFix(b){
   for(let c=0;c<b.numberOfChannels;c++){ const d=b.getChannelData(c); for(let i=0;i<F;i++){ const g=Math.sin((i+0.5)/F*Math.PI/2); d[i]*=g; d[n-1-i]*=g; } }
   console.log("[BACKING] seam smoothed"); return b;
 }
+async function bkPlay(root){ const b=await bkBuf(root); const ps=pitchOf(root); if(!b || !ps) return b; if(root._bkpS===ps && root._bkp) return root._bkp;
+  const chs=[]; for(let c=0;c<b.numberOfChannels;c++) chs.push(b.getChannelData(c)); const out=await pitchAsync(chs, b.sampleRate, ps, true);
+  const nb=ac.createBuffer(out.length, b.length, b.sampleRate); out.forEach((d,c)=>nb.getChannelData(c).set(d)); root._bkp=nb; root._bkpS=ps; return nb; }
 async function bkBuf(root){
   if(root._bk) return root._bk; if(!root.bkData) return null; if(!ac) wakeAudio();
   try{ root._bk=seamFix(await ac.decodeAudioData(root.bkData.slice(0))); }catch(e){ console.warn("[BACKING]", e); return null; }
@@ -2549,7 +2654,8 @@ function startSources(bufs, when, off, loop, fadeIn){
     let pn=null; if(ac.createStereoPanner){ pn=ac.createStereoPanner(); pn.pan.value=t.pan||0; mg.connect(pn); pn.connect(xg); } else mg.connect(xg);
     liveNodes[t.id]={g:gn, p:pn, eq, cuts, dry, dryR, wA, wB, lfo, an:san};
     sN.onended=()=>{ try{ lfo.stop(); }catch(e){} };
-    sN.start(when, Math.max(0,Math.min(off, b.duration-0.001))); out.push(sN); }
+    let o2=off; if(fxLayerDest(t,bus)===fxIn){ o2+=fxLatS(); if(loop && b.duration>0) o2=o2%b.duration; }
+    sN.start(when, Math.max(0,Math.min(o2, b.duration-0.001))); out.push(sN); }
   out._xg=xgs; return out;
 }
 function widthGains(t){ const w=Math.max(0,Math.min(100,t.width||0))/100; return { d:1/(1+w*0.35), w:w*0.55/(1+w*0.35) }; }
@@ -2674,7 +2780,14 @@ function openEdit(id){
   editId=id; if(selId!==id) selectTake(id);
   openPanel(editSheet); editOpen=true; eWaveKey=""; renderEdit(); requestAnimationFrame(()=>{ editLoop(); });
 }
-function renderEdit(){
+// PITCH: ganzer Take samt Backing, -12..+12 Halbtoene, Tippen auf den Wert setzt auf 0
+function pitchUi(){ const r=rootOf(editTake()), v=r?(r.pitch|0):0; const b=$("ePitV"); b.querySelector("b").textContent=(v>0?"+":"")+v; b.classList.toggle("on", v!==0); }
+function pitchSet(v){ const r=rootOf(editTake()); if(!r) return; v=Math.max(-12,Math.min(12,v|0)); if((r.pitch|0)===v) return; r.pitch=v; dbPut(r); pitchUi();
+  if(recState==="idle"){ tstatTx.textContent=v?"PITCH "+(v>0?"+":"")+v:"PITCH OFF"; } if(typeof fxApply==="function") fxApply(); if(playing) playSelected(playPos()); }
+$("ePitDn").addEventListener("click", ()=>{ const r=rootOf(editTake()); if(r) pitchSet((r.pitch|0)-1); });
+$("ePitUp").addEventListener("click", ()=>{ const r=rootOf(editTake()); if(r) pitchSet((r.pitch|0)+1); });
+$("ePitV").addEventListener("click", ()=>pitchSet(0));
+function renderEdit(){ try{ pitchUi(); }catch(e){}
   const t=editTake(); if(!t){ closeSheet(); return; }
   const root=rootOf(t), st=stackOf(t).slice(0,MAX_LAYERS), slot=Math.max(0,st.indexOf(t)), col=LAYER_COLS[slot];
   const bars=root.mode==="LOOP" ? Math.max(1,Math.round(root.len/root.sr/(4*60/(root.bpm||bpm)))) : 0;
@@ -2937,6 +3050,7 @@ async function renderLayers(layers, loop, lenS, sr){
   if(autoEnh) for(const t of layers) await ensureEnh(t);
   for(const t of layers) await ensureCln(t);
   for(const t of layers) await roboWait(t);
+  for(const t of layers) await pitchWait(t);
   const anyFx=["voc","pad","multi"].some(k=>fxSt.on[k]);
   const dryL=anyFx?[]:layers, wetL=anyFx?layers:[];
   const dryB=dryL.length? await renderSet(dryL,loop,total,sr,g0) : null;
@@ -3069,7 +3183,7 @@ async function libQuery(){
 function renderLib(keepStat){
   lTabsEl.querySelectorAll("button").forEach(b=>b.classList.toggle("on", b.dataset.t===libTab));
   const car=libMode==="car", wd=car?"SOUND":"LOOP";
-  $("lTitle").textContent=car?"CARRIER":"LIBRARY";
+  $("lTitle").textContent=car?"CARRIER":"LIBRARY"; $("lFile").hidden=!car;
   lBpmBtn.textContent= libBpm&&!car ? (bpm+" BPM ±4") : "ANY BPM"; lBpmBtn.classList.toggle("on", libBpm&&!car); lBpmBtn.disabled=car;
   lQ.placeholder = (libTab==="my" ? "FILTER MY " : "SEARCH ")+wd+"S";
   if(!keepStat) lStat.textContent = libRes.length ? libRes.length+" "+wd+(libRes.length>1?"S":"") : "NO "+wd+"S FOUND";
@@ -3115,6 +3229,15 @@ $("bkOpen").addEventListener("click", ()=>{ if(recState!=="idle") return; openLi
 $("bkRemove").addEventListener("click", ()=>{ if(recState!=="idle") return; pendingBk=null; bkInfo(); showReady(); });
 $("modeGrid").addEventListener("click", ()=>setTimeout(bkInfo,0));
 $("libClose").addEventListener("click", ()=>{ if(libMode==="car") libBackToFx(); else closeSheet(); });
+// Carrier vom Handy: Datei waehlen, pruefen, wie ein Library-Sound als Traeger setzen
+$("lFile").addEventListener("click", ()=>{ $("lFileIn").value=""; $("lFileIn").click(); });
+$("lFileIn").addEventListener("change", async ()=>{ const f=$("lFileIn").files&&$("lFileIn").files[0]; if(!f) return; libPreviewStop(); lStat.textContent="LOADING SOUND"; wakeAudio();
+  try{ const data=await f.arrayBuffer(), r=rootOf(selTake()); if(!r) throw new Error("NO TAKE");
+    const test=await ac.decodeAudioData(data.slice(0)); if(!test || test.length<ac.sampleRate*0.1) throw new Error("TOO SHORT");
+    const nm=String(f.name||"MY SOUND").replace(/\.[a-z0-9]+$/i,"");
+    r.vcData=data; fxSt.voc.car="sample"; fxSt.voc.cs={name:"file:"+nm, title:nm.slice(0,28)}; fxSt.on.voc=true; fxVcKey="";
+    fxSave(); dbPut(r); lStat.textContent=""; libBackToFx(); fxApply();
+  }catch(err){ console.error("[CARRIER FILE]", err); lStat.textContent="COULD NOT READ THIS FILE"; } });
 $("exportMod").addEventListener("click", ()=>{ if(recState!=="idle") return; openExport(); });
 $("exportClose").addEventListener("click", closeSheet);
 xWhatEl.addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b||b.disabled) return; xWhat=b.dataset.w; xUp.classList.remove("done"); renderExport(); });
@@ -3760,23 +3883,42 @@ const VOC_NOTES=["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
    auf die Tonart eingerastet, Akkord folgt mit 8 ms Gleiten. Dieselbe Klasse laeuft im Worklet, im Ersatzweg und im Export. */
 const VOC_DSP_SRC=`class VocDSP{
   constructor(sr){
-    this.sr=sr; this.p={car:"chord",root:0,ch:"min",follow:1,reg:-12,clar:0.4,dry:0}; this.smp=null; this.pos=0;
-    const nb=28, fLo=90, fHi=Math.min(9000,sr*0.42), ratio=Math.pow(fHi/fLo,1/(nb-1)); this.nb=nb;
-    const bw=Math.log2(ratio)*0.9, qq=Math.sqrt(Math.pow(2,bw))/(Math.pow(2,bw)-1);
-    this.co=new Float32Array(nb*4); this.tilt=new Float32Array(nb); this.ms=new Float32Array(nb*4); this.cs=new Float32Array(nb*4);
-    this.env=new Float32Array(nb); this.cenv=new Float32Array(nb); this.envOut=new Float32Array(nb); this.aR=new Float32Array(nb);
-    for(let b=0;b<nb;b++){ const f=fLo*Math.pow(ratio,b), w=2*Math.PI*f/sr, al=Math.sin(w)/(2*qq), c=Math.cos(w), a0=1+al;
-      this.co[b*4]=al/a0; this.co[b*4+1]=-al/a0; this.co[b*4+2]=-2*c/a0; this.co[b*4+3]=(1-al)/a0;
-      this.tilt[b]=Math.min(2.8,Math.max(0.7,Math.pow(f/400,0.35)));
-      this.aR[b]=1-Math.exp(-1/(sr*Math.min(0.02,Math.max(0.006,2.5/f)))); }
-    this.aA=1-Math.exp(-1/(sr*0.002)); this.cA=1-Math.exp(-1/(sr*0.004)); this.cR=1-Math.exp(-1/(sr*0.03));
-    this.hpA=1-Math.exp(-2*Math.PI*5000/sr); this.l1=0; this.l2=0; this.l3=0;
+    this.sr=sr; this.p={car:"chord",root:0,ch:"min",follow:1,reg:-12,clar:0,dry:0}; this.smp=null; this.pos=0;
+    // Spektral-Vocoder (FFT-Kreuzsynthese): Klangfarbe der Stimme pro Fenster auf den weiss gemachten Carrier legen. Keine Resonanzfilter, keine Huellkurven-Follower.
+    const N=sr>=88200?2048:1024, H=N>>2; this.N=N; this.H=H; this.LAT=N;
+    let lg=0; while((1<<lg)<N) lg++; this.lg=lg;
+    this.rev=new Uint32Array(N); for(let i=0;i<N;i++){ let r=0; for(let b=0;b<lg;b++) if(i&(1<<b)) r|=1<<(lg-1-b); this.rev[i]=r; }
+    this.cs=new Float64Array(N>>1); this.sn=new Float64Array(N>>1); for(let i=0;i<(N>>1);i++){ this.cs[i]=Math.cos(2*Math.PI*i/N); this.sn[i]=-Math.sin(2*Math.PI*i/N); }
+    this.win=new Float64Array(N); for(let i=0;i<N;i++) this.win[i]=Math.sqrt(0.5-0.5*Math.cos(2*Math.PI*i/N));
+    const K=(N>>1)+1; this.K=K; this.re=new Float64Array(N); this.im=new Float64Array(N);
+    this.inV=new Float64Array(N); this.inC=new Float64Array(N); this.iw=0; this.hc=0;
+    this.ola=new Float64Array(2*N); this.op=0; this.olaN=0;
+    { let s=0; for(let i=0;i<N;i+=H) s+=this.win[i]*this.win[i]; let mn=1e9; for(let i=0;i<H;i++){ let t=0; for(let j=i;j<N;j+=H) t+=this.win[j]*this.win[j]; if(t<mn) mn=t; } this.olaG=1/Math.max(1e-6,mn); }
+    this.mkB=(nb)=>{ const f=k=>k*sr/N, mel=x=>2595*Math.log10(1+x/700), imel=m=>700*(Math.pow(10,m/2595)-1), lo=mel(60), hi=mel(Math.min(16000,sr*0.45));
+      const c=[]; for(let i=0;i<nb+2;i++) c.push(imel(lo+(hi-lo)*i/(nb+1)));
+      const W=[]; for(let b=0;b<nb;b++){ const l=c[b], m=c[b+1], h=c[b+2], ks=[], ws=[]; let sum=0;
+        for(let k=0;k<K;k++){ const fk=f(k), w=Math.max(0,Math.min((fk-l)/(m-l),(h-fk)/(h-m))); if(w>0){ ks.push(k); ws.push(w); sum+=w; } }
+        if(!ks.length){ const k=Math.min(K-1,Math.round(m*N/sr)); ks.push(k); ws.push(1); sum=1; }
+        W.push({k:Int32Array.from(ks), w:Float64Array.from(ws.map(x=>x/sum))}); }
+      // Rueckweg Band -> Bin: Gewichte je Bin ueber die Baender normiert
+      const tot=new Float64Array(K); for(const B of W) for(let j=0;j<B.k.length;j++) tot[B.k[j]]+=B.w[j];
+      const bk=[]; for(let k=0;k<K;k++) bk.push([]); W.forEach((B,b)=>{ for(let j=0;j<B.k.length;j++) bk[B.k[j]].push(b, B.w[j]/tot[B.k[j]]); });
+      return {W, bk:bk.map(a=>Float64Array.from(a)), nb}; };
+    this.bv=this.mkB(64); this.bc=this.mkB(24); this.nb=64;
+    this.env=new Float64Array(64); this.ev=new Float64Array(64); this.ec=new Float64Array(24); this.ecL=new Float64Array(24).fill(1e-4);
+    this.relA=Math.exp(-H/(sr*0.03)); this.ecLA=1-Math.exp(-H/(sr*2.0));
+    this.ebin=new Float64Array(K); this.cbin=new Float64Array(K); this.tl=new Float64Array(K); this.hfK=Math.round(4000*N/sr);
+    for(let k=0;k<K;k++) this.tl[k]=Math.pow(Math.max(k*sr/N,200)/1000,0.15);
+    this.envOut=new Float32Array(64); this.tiltB=new Float32Array(64); for(let b=0;b<64;b++){ const B=this.bv.W[b]; this.tiltB[b]=this.tl[B.k[B.k.length>>1]]; }
+    this.WG=1.35; this.seedF=987654321;
+    // Trocken-Weg und Klarheit laufen um die FFT-Latenz verzoegert, damit sie zum Vocoder passen
+    this.dl=new Float32Array(N); this.dw=0;
     this.upA=1-Math.exp(-2*Math.PI*3500/sr); this.u1=0; this.u2=0;
-    this.hA=1-Math.exp(-1/(sr*0.002)); this.hR=1-Math.exp(-1/(sr*0.02)); this.eH=0; this.eU=0; this.eA=0;
+    this.hA=1-Math.exp(-1/(sr*0.002)); this.hR=1-Math.exp(-1/(sr*0.02)); this.eU=0; this.eA=0;
     this.cpA=1-Math.exp(-2*Math.PI*2600/sr); this.c1=0; this.c2=0;
     this.dpA=1-Math.exp(-2*Math.PI*220/sr); this.d1=0; this.d2=0;
-    this.ph=[0,0.37,0.74,0.11]; this.fsm=0; this.gl=1-Math.exp(-1/(0.035*sr)); this.seed=12345; this.uv=0;
-    this.agK=Math.exp(-1/(sr*0.3)); this.ri=0; this.ra=0; this.g=1; this.gT=1;
+    this.ph=[0,0.37,0.74,0.11]; this.lmE=0; this.lmR=1-Math.exp(-1/(sr*0.08)); this.ipE=0; this.ipR=1-Math.exp(-1/(sr*0.3)); this.fsm=0; this.gl=1-Math.exp(-1/(0.035*sr)); this.seed=12345; this.uv=0;
+    this.gtE=0; this.gtV=0;
     this.D=Math.max(1,Math.round(sr/12000)); this.dsr=sr/this.D; this.dacc=0; this.dcnt=0; this.ring=new Float32Array(1024); this.rw=0; this.since=0;
     this.note=-1; this.pend=-1; this.pendN=0; this.prevF=0; this.yd=new Float32Array(260); this.ycm=new Float32Array(260); this.fr=new Float32Array(512);
   }
@@ -3806,46 +3948,70 @@ const VOC_DSP_SRC=`class VocDSP{
     if(this.note<0){ this.note=best; this.pend=-1; return; }
     if(best===this.pend){ if(++this.pendN>=4){ this.note=best; this.pend=-1; } } else { this.pend=best; this.pendN=1; }
   }
+  fft(re,im,inv){ const N=this.N, rv=this.rev, cs=this.cs, sn=this.sn;
+    for(let i=0;i<N;i++){ const j=rv[i]; if(j>i){ let t=re[i]; re[i]=re[j]; re[j]=t; t=im[i]; im[i]=im[j]; im[j]=t; } }
+    for(let s=2;s<=N;s<<=1){ const h=s>>1, st=N/s;
+      for(let i=0;i<N;i+=s) for(let j=0;j<h;j++){ const wr=cs[j*st], wi=inv?-sn[j*st]:sn[j*st], a=i+j, b=a+h;
+        const tr=re[b]*wr-im[b]*wi, ti=re[b]*wi+im[b]*wr; re[b]=re[a]-tr; im[b]=im[a]-ti; re[a]+=tr; im[a]+=ti; } } }
+  frame(){
+    const N=this.N, K=this.K, re=this.re, im=this.im, w=this.win, iw=this.iw;
+    // Stimme als Realteil, Carrier als Imaginaerteil: eine FFT fuer beide
+    for(let i=0;i<N;i++){ const j=(iw+i)%N; re[i]=this.inV[j]*w[i]; im[i]=this.inC[j]*w[i]; }
+    this.fft(re,im,false);
+    const ebin=this.ebin, cbin=this.cbin, BV=this.bv, BC=this.bc, ev=this.ev, ec=this.ec;
+    // Leistungen je Bin trennen
+    const pv=this.pvB||(this.pvB=new Float64Array(K)), pc=this.pcB||(this.pcB=new Float64Array(K)), cr=this.crB||(this.crB=new Float64Array(K)), ci=this.ciB||(this.ciB=new Float64Array(K));
+    let pt=0, ph=0;
+    for(let k=0;k<K;k++){ const k2=(N-k)%N, ar=re[k], ai=im[k], br=re[k2], bi=im[k2];
+      const vr=0.5*(ar+br), vi=0.5*(ai-bi), xr=0.5*(ai+bi), xi=-0.5*(ar-br);
+      pv[k]=vr*vr+vi*vi; pc[k]=xr*xr+xi*xi; cr[k]=xr; ci[k]=xi; pt+=pv[k]; if(k>=this.hfK) ph+=pv[k]; }
+    for(let b=0;b<BV.nb;b++){ const B=BV.W[b]; let s=0; for(let j=0;j<B.k.length;j++) s+=B.w[j]*pv[B.k[j]]; const e=Math.sqrt(s); this.env[b]=Math.max(e,this.env[b]*this.relA); }
+    for(let b=0;b<BC.nb;b++){ const B=BC.W[b]; let s=0; for(let j=0;j<B.k.length;j++) s+=B.w[j]*pc[B.k[j]]; const e=Math.sqrt(s); this.ecL[b]+=this.ecLA*(e-this.ecL[b]); ec[b]=Math.max(e,this.ecL[b]*0.03,1e-7); }
+    for(let k=0;k<K;k++){ let a=BV.bk[k], s=0; for(let j=0;j<a.length;j+=2) s+=this.env[a[j]]*a[j+1]; ebin[k]=s; a=BC.bk[k]; s=0; for(let j=0;j<a.length;j+=2) s+=ec[a[j]]*a[j+1]; cbin[k]=s; }
+    // Zischlaute: Rauschanteil nach Hochton-Verhaeltnis der Stimme
+    const hf=ph/(pt+1e-12), nz=0.8*Math.max(0,Math.min(1,(hf-0.15)/0.35));
+    for(let k=0;k<K;k++){ const m=Math.sqrt(pc[k]), cw=Math.min(4, m/Math.max(cbin[k],1e-9)), g=ebin[k]*this.tl[k], sc=(1-nz)*Math.min(4,cw)/(m+1e-12);
+      let yr=cr[k]*sc, yi=ci[k]*sc;
+      if(nz>0){ this.seedF=(this.seedF*1664525+1013904223)>>>0; const a=this.seedF/4294967296*2*Math.PI; yr+=nz*Math.cos(a); yi+=nz*Math.sin(a); }
+      re[k]=yr*g; im[k]=yi*g; }
+    re[0]=0; im[0]=0; im[K-1]=0; for(let k=1;k<K-1;k++){ re[N-k]=re[k]; im[N-k]=-im[k]; }
+    this.fft(re,im,true);
+    const ola=this.ola, M=2*N, sc0=this.olaG*this.WG/N;
+    for(let i=0;i<N;i++) ola[(this.op+1+i)%M]+=re[i]*w[i]*sc0;
+    for(let b=0;b<64;b++) this.envOut[b]=this.env[b]*this.tiltB[b];
+  }
   process(L,R,oL,oR,n){
-    const p=this.p, nb=this.nb, co=this.co, ms=this.ms, cs=this.cs, env=this.env, cenv=this.cenv, tilt=this.tilt, aA=this.aA, aR=this.aR, cA=this.cA, cR=this.cR;
-    const tonal=p.car==="chord"||p.car==="drone", chd=this.chord(), nv=chd.length, tgt=this.targetHz(), smp=this.smp, sl=smp?smp.length:0, follow=tonal&&p.follow;
-    if(this.fsm<=0) this.fsm=tgt;
+    const p=this.p, tonal=p.car==="chord"||p.car==="drone", chd=this.chord(), nv=chd.length, smp=this.smp, sl=smp?smp.length:0, follow=tonal&&p.follow, N=this.N, H=this.H, M=2*N;
+    if(this.fsm<=0) this.fsm=this.targetHz();
     for(let i=0;i<n;i++){
-      const x=(L[i]+R[i])*0.5;
+      let x=(L[i]+R[i])*0.5; { const ax0=Math.abs(x); if(ax0>this.ipE) this.ipE=ax0; else this.ipE+=(ax0-this.ipE)*this.ipR; if(this.ipE>0.7) x*=0.7/this.ipE; }
       if(follow){ this.dacc+=x; if(++this.dcnt>=this.D){ this.ring[this.rw&1023]=this.dacc/this.D; this.rw=(this.rw+1)&1023; this.dacc=0; this.dcnt=0; if(++this.since>=256){ this.since=0; this.analyse(); } } }
-      // stimmlos-Erkennung: Anteil ueber 3.5 kHz
       this.u1+=this.upA*(x-this.u1); const q1=x-this.u1; this.u2+=this.upA*(q1-this.u2); const hu=q1-this.u2;
       const au=Math.abs(hu), ax=Math.abs(x); this.eU+=(au>this.eU?this.hA:this.hR)*(au-this.eU); this.eA+=(ax>this.eA?this.hA:this.hR)*(ax-this.eA);
       const uvT=Math.max(0,Math.min(1,(this.eU/(this.eA+1e-9)-0.28)/0.3)); this.uv+=(uvT-this.uv)*(uvT>this.uv?0.01:0.002);
-      this.seed=(this.seed*1103515245+12345)&0x7fffffff; const nz=this.seed/0x3fffffff-1;
+      this.seed=(this.seed*1103515245+12345)&0x7fffffff; const nzs=this.seed/0x3fffffff-1;
       let c=0;
       if(tonal){ this.fsm+=this.gl*(this.targetHz()-this.fsm);
         for(let v=0;v<nv;v++){ const det=((v%2)?1:-1)*4*(1+v*0.3); let f=this.fsm*Math.pow(2,chd[v]/12)*Math.pow(2,det/1200); if(v>0 && p.car==="chord") while(f<80) f*=2;
           const dt=f/this.sr; let ph=this.ph[v]+dt; if(ph>=1) ph-=1; this.ph[v]=ph;
           let s=2*ph-1; if(ph<dt){ const t=ph/dt; s-=t+t-t*t-1; } else if(ph>1-dt){ const t=(ph-1)/dt; s-=t*t+t+t+1; }
           c+=s/nv; }
-        c+=nz*(0.05+1.1*this.uv); }
-      else if(p.car==="sample" && sl){ c=smp[((this.pos%sl)+sl)%sl]+nz*0.6*this.uv; }
-      else c=nz;
-      let acc=0;
-      for(let b=0;b<nb;b++){ const k=b*4, b0=co[k], b2=co[k+1], a1=co[k+2], a2=co[k+3];
-        const ym=b0*x+b2*ms[k+1]-a1*ms[k+2]-a2*ms[k+3]; ms[k+1]=ms[k]; ms[k]=x; ms[k+3]=ms[k+2]; ms[k+2]=ym;
-        const yc=b0*c+b2*cs[k+1]-a1*cs[k+2]-a2*cs[k+3]; cs[k+1]=cs[k]; cs[k]=c; cs[k+3]=cs[k+2]; cs[k+2]=yc;
-        const av=Math.abs(ym); env[b]+=(av>env[b]?aA:aR[b])*(av-env[b]);
-        const ac2=Math.abs(yc); cenv[b]+=(ac2>cenv[b]?cA:cR)*(ac2-cenv[b]);
-        acc+=yc/(cenv[b]+0.004)*env[b]*tilt[b]; }
-      this.l1+=this.hpA*(x-this.l1); const h1=x-this.l1; this.l2+=this.hpA*(h1-this.l2); const h2=h1-this.l2; this.l3+=this.hpA*(h2-this.l3); const hf=h2-this.l3;
-      const ah=Math.abs(hf); this.eH+=(ah>this.eH?this.hA:this.hR)*(ah-this.eH);
-      this.c1+=this.cpA*(x-this.c1); const x1=x-this.c1; this.c2+=this.cpA*(x1-this.c2); const clr=x1-this.c2;
-      this.d1+=this.dpA*(x-this.d1); const y1=x-this.d1; this.d2+=this.dpA*(y1-this.d2); const dhp=y1-this.d2;
-      this.ri=this.ri*this.agK+x*x*(1-this.agK); this.ra=this.ra*this.agK+acc*acc*(1-this.agK);
-      if((i&63)===0 && this.ri>1e-7 && this.ra>1e-12) this.gT=Math.min(40,Math.sqrt(this.ri/this.ra)*0.95);
-      this.g+=(this.gT-this.g)*0.0008;
-      let v=acc*this.g+hf*this.uv*0.6+clr*(0.4+0.6*this.uv)*p.clar*1.3; if(p.dry>0) v=v*(1-p.dry)+dhp*p.dry;
-      if(v>0.98) v=0.98; else if(v<-0.98) v=-0.98;
+        c+=nzs*(0.05+1.1*this.uv); }
+      // Sample-Carrier um die Latenz vorauslesen: die Stimme kommt um dieselbe Zeit frueher herein
+      else if(p.car==="sample" && sl){ c=smp[(((this.pos+this.LAT)%sl)+sl)%sl]; }
+      else c=nzs;
+      this.inV[this.iw]=x; this.inC[this.iw]=c; this.iw=(this.iw+1)%N;
+      if(++this.hc>=H){ this.hc=0; this.frame(); }
+      // Ausgang: aeltestes fertiges Sample aus dem Overlap-Add
+      let wet=this.ola[this.op]; this.ola[this.op]=0; this.op=(this.op+1)%M;
+      const xd=this.dl[this.dw]; this.dl[this.dw]=x; this.dw=(this.dw+1)%N;
+      this.c1+=this.cpA*(xd-this.c1); const x1=xd-this.c1; this.c2+=this.cpA*(x1-this.c2); const clr=x1-this.c2;
+      this.d1+=this.dpA*(xd-this.d1); const y1=xd-this.d1; this.d2+=this.dpA*(y1-this.d2); const dhp=y1-this.d2;
+      { const axg=Math.abs(xd); this.gtE+=(axg>this.gtE?0.01:0.0005)*(axg-this.gtE); const gtt=this.gtE>0.004?1:this.gtE/0.004; this.gtV+=(gtt-this.gtV)*(gtt>this.gtV?0.005:0.0003); }
+      let v=(wet+clr*(0.4+0.6*this.uv)*p.clar*2.0)*this.gtV; if(p.dry>0) v=v*(1-p.dry)+dhp*p.dry;
+      { const lv=Math.abs(v); if(lv>this.lmE) this.lmE=lv; else this.lmE+=(lv-this.lmE)*this.lmR; if(this.lmE>0.85) v*=0.85/this.lmE; v=Math.tanh(v*1.1)/1.1; }
       oL[i]=v; oR[i]=v; this.pos++;
     }
-    for(let b=0;b<nb;b++) this.envOut[b]=env[b]*tilt[b];
   }
 }`;
 const VOC_WORKLET=VOC_DSP_SRC+`
@@ -3854,10 +4020,10 @@ class VocProc extends AudioWorkletProcessor{
     this.on=true; this.z=new Float32Array(128);
     this.port.onmessage=m=>{ const q=m.data; if(q.p) Object.assign(this.d.p,q.p); if(q.on!=null) this.on=q.on; if(q.smp!==undefined) this.d.smp=q.smp; if(q.t0!=null) this.t0=q.t0; if(q.play!=null) this.play=q.play; }; }
   process(ins,outs){ const o=outs[0], n=o[0].length, i=ins[0]||[], L=i[0]||this.z, R=i[1]||L;
-    if(!this.on && !(this.xo>0)){ this.xo=0; o[0].set(L); if(o[1]) o[1].set(R); return true; }
+    if(!this.on && !(this.xo>0)){ this.xo=0; o[0].fill(0); if(o[1]) o[1].fill(0); return true; }
     if(this.play) this.d.pos=Math.round((currentTime-this.t0)*sampleRate);
     this.d.process(L,R,o[0],o[1]||this.z,n);
-    if(this.xo==null) this.xo=this.on?1:0; { const tg=this.on?1:0; if(this.xo!==tg || tg<1){ const st=1/(sampleRate*0.03), oR2=o[1]; for(let k=0;k<n;k++){ this.xo+= tg>this.xo?Math.min(st,tg-this.xo):-Math.min(st,this.xo-tg); const a=this.xo; o[0][k]=L[k]+(o[0][k]-L[k])*a; if(oR2) oR2[k]=R[k]+(oR2[k]-R[k])*a; } } }
+    if(this.xo==null) this.xo=this.on?1:0; { const tg=this.on?1:0; if(this.xo!==tg || tg<1){ const st=1/(sampleRate*0.03), oR2=o[1]; for(let k=0;k<n;k++){ this.xo+= tg>this.xo?Math.min(st,tg-this.xo):-Math.min(st,this.xo-tg); const a=this.xo; o[0][k]*=a; if(oR2) oR2[k]*=a; } } }
     if(++this.cnt>=12){ this.cnt=0; this.port.postMessage({env:this.d.envOut.slice(), note:this.d.note}); }
     return true; }
 }
@@ -4313,7 +4479,7 @@ const M_SND={delay:1, verb:1};
 /* ---- Zustand pro Aufnahme (root.fx), Standard fuer neue ---- */
 const MULTI_FX=[["mod","MODULATION","MOD"],["pls","PULSE","PULSE"],["chop","CHOP","CHOP"],["shape","SHAPE","SHAPE"],["delay","DELAY","DELAY"],["verb","REVERB","VERB"]], MULTI_K=MULTI_FX.map(m=>m[0]);
 function fxDefault(){ return { tune:tuneDefault(), order:["voc","pad","multi"], on:{voc:false,pad:false,multi:false},
-  voc:{car:"chord",root:0,ch:"min",follow:1,reg:-12,clar:0.4,dry:0,cs:null,v2:1}, morder:MULTI_K.slice(),
+  voc:{car:"chord",root:0,ch:"min",follow:1,reg:-12,clar:0,dry:0,cs:null,v2:1}, morder:MULTI_K.slice(),
   pad:null, padPath:null, padLoopOn:true, padDrift:false, padLen:1,
   multi:Object.fromEntries(MULTI_K.map(k=>[k,Object.assign({on:false, v:mDefV(k), route:M_SND[k]?"snd":"ins", hold:true}, k==="delay"?{taps:MX.mDlDefTaps()}:k==="dbl"?{taps:MX.mDblDefTaps()}:k==="chop"?{cs:{seed:1234, steps:null, bars:1}}:{})])), mpath:{}, mloop:{}, mrun:{}, mlen:1, fin:"raw", m2:1, m3:1, m4:1, m5:1 }; }
 let fxSt=fxDefault(), fxRootId=null, fxSaveT=0, fxVcMono=null, fxVcKey="";
@@ -4381,7 +4547,7 @@ function fxApply(){
   vocSample();
   mPost();
 }
-function vocParams(){ const v=fxSt.voc; return {car:v.car,root:v.root,ch:v.ch,follow:v.follow?1:0,reg:v.reg,clar:v.clar,dry:v.dry}; }
+function vocParams(){ const v=fxSt.voc, ps=pitchOf(selTake()); return {car:v.car,root:(((v.root+ps)%12)+12)%12,ch:v.ch,follow:v.follow?1:0,reg:v.reg,clar:v.clar,dry:v.dry}; }
 async function vocSample(){
   const r=rootOf(selTake()), v=fxSt.voc; if(!vocNode || !r || v.car!=="sample" || !r.vcData){ if(vocNode && fxVcKey!==""){ vocNode.port.postMessage({smp:null}); fxVcKey=""; } return; }
   const key=r.id+":"+(v.cs?v.cs.name:""); if(key===fxVcKey) return; fxVcKey=key;
@@ -4392,7 +4558,38 @@ async function vcMono(r, sr){
   for(let c=0;c<b.numberOfChannels;c++){ const d=b.getChannelData(c); for(let i=0;i<n;i++) m[i]+=d[i]/b.numberOfChannels; }
   const q=b.sampleRate/sr, n2=Math.max(1,Math.floor(n/q)), o=new Float32Array(n2);
   for(let i=0;i<n2;i++){ const p=i*q, k=Math.floor(p), f=p-k; o[i]=(m[k]||0)+((m[k+1]||0)-(m[k]||0))*f; }
+  // Loop im Projekttempo (ganze Takte): nicht kuerzen oder glaetten, sonst laeuft er aus dem Takt. Nur auf exakte Laenge bringen und Pegel anheben.
+  const barS=240/Math.max(40,bpm)*sr, bars=n2/barS, nb=Math.round(bars);
+  if(nb>=1 && Math.abs(bars-nb)<=0.03*nb){ const tl=Math.round(nb*barS), e=new Float32Array(tl), st=(n2-1)/Math.max(1,tl-1);
+    for(let i=0;i<tl;i++){ const p=i*st, k=Math.floor(p), f=p-k; e[i]=(o[k]||0)+((o[Math.min(n2-1,k+1)]||0)-(o[k]||0))*f; }
+    return carSoft(e, sr); }
+  return carSoft(carLoop(o, sr), sr);
+}
+// Carrier dauerhaft machen: stille Raender weg, Pegel glatt, Loop-Naht ueberblendet (sonst Ausklinger und Klack beim Neustart)
+// Sample-Carrier: harte Anschlaege weicher machen (Hoehen staerker als Tiefen), sonst klacken sie im Vocoder
+function carSoft(x, sr){
+  const n=x.length, lo=new Float32Array(n), hi=new Float32Array(n), a=1-Math.exp(-2*Math.PI*1500/sr); let s0=0;
+  for(let i=0;i<n;i++){ s0+=a*(x[i]-s0); lo[i]=s0; hi[i]=x[i]-s0; }
+  const sof=(y,attS,ex)=>{ const af=1-Math.exp(-1/(sr*0.0005)), rf=1-Math.exp(-1/(sr*0.04)), as=1-Math.exp(-1/(sr*attS)), k=1-Math.exp(-1/(sr*0.001)); let ef=0, es=0, acc=1;
+    for(let i=0;i<n;i++){ const v=Math.abs(y[i]); ef+=(v>ef?af:rf)*(v-ef); es+=(v>es?as:rf)*(v-es); const g=Math.pow(Math.min(1,(es+1e-6)/(ef+1e-6)),ex); acc+=k*(g-acc); y[i]*=acc; } };
+  sof(lo,0.015,0.8); sof(hi,0.04,1.6);
+  const o=new Float32Array(n); let pk=0; for(let i=0;i<n;i++){ o[i]=lo[i]+hi[i]; const v=Math.abs(o[i]); if(v>pk) pk=v; } if(pk>1e-5){ const g=0.9/pk; for(let i=0;i<n;i++) o[i]*=g; }
   return o;
+}
+function carLoop(o, sr){
+  const W=Math.max(1,Math.round(sr*0.05)), nW=Math.floor(o.length/W); if(nW<6) return o;
+  const e=new Float32Array(nW); let mx=0; for(let w=0;w<nW;w++){ let s=0; for(let i=w*W;i<(w+1)*W;i++) s+=o[i]*o[i]; e[w]=Math.sqrt(s/W); if(e[w]>mx) mx=e[w]; }
+  if(mx<1e-5) return o;
+  let a=0; while(a<nW-1 && e[a]<mx*0.2) a++; let z=nW-1; while(z>a && e[z]<mx*0.2) z--;
+  let seg=o.slice(a*W,(z+1)*W); if(seg.length<sr*0.25) return o;
+  // Pegel glaetten (300 ms), damit Ausklinger nicht leiser werden
+  const S=Math.round(sr*0.3), env=new Float32Array(seg.length); { let acc=0; const sq=new Float32Array(seg.length); for(let i=0;i<seg.length;i++) sq[i]=seg[i]*seg[i];
+    for(let i=0;i<seg.length;i++){ acc+=sq[i]; if(i>=S) acc-=sq[i-S]; env[i]=Math.sqrt(acc/Math.min(i+1,S)); } }
+  const ref=mx*0.7; for(let i=0;i<seg.length;i++){ const g=Math.min(8, ref/Math.max(env[Math.min(seg.length-1,i+(S>>1))],1e-6)); seg[i]*=g; }
+  // Naht: letzte 80 ms in den Anfang ueberblenden
+  const X=Math.min(Math.round(sr*0.08), seg.length>>2), L=seg.length-X, out=seg.slice(0,L);
+  for(let i=0;i<X;i++){ const t=i/X, gi=Math.sin(t*Math.PI/2), go=Math.cos(t*Math.PI/2); out[i]=seg[i]*gi+seg[L+i]*go; }
+  return out;
 }
 async function ensureVoc(){
   if(vocNode) return vocNode; if(vocLoading) return vocLoading;
@@ -4416,13 +4613,17 @@ async function ensureVoc(){
 }
 async function ensureChain(){
   if(chainReady) return; if(!ac) wakeAudio(); ensureMix();
-  if(!fxW.voc){ fxW.voc=fxWrap(ac); fxW.pad=fxWrap(ac); fxW.multi=fxWrap(ac); }
+  if(!fxW.voc){ fxW.voc=fxWrap(ac); fxW.pad=fxWrap(ac); fxW.multi=fxWrap(ac);
+    const w=fxW.voc, dn=ac.createDelay(0.2); dn.delayTime.value=vocLatS(); w.byp.disconnect(); w.byp.connect(dn); dn.connect(w.out); }
   if(!fxW.multi.dev){ try{ const ml=await ensureMulti(); fxW.multi.send.connect(ml.node); ml.node.connect(fxW.multi.out); fxW.multi.dev=ml.node; fxWire(); }catch(e){ console.log("[MULTI]", e&&e.message); } }
   try{ const v=await ensureVoc(); if(!fxW.voc.dev){ fxW.voc.send.connect(v); v.connect(fxW.voc.out); fxW.voc.dev=v; fxWire(); } }catch(e){ console.log("[VOC]", e&&e.message); }
   try{ const p=await ensurePad(); if(!fxW.pad.dev){ fxW.pad.send.connect(p); p.connect(fxW.pad.out); fxW.pad.dev=p; fxWire(); } }catch(e){ console.log("[PAD]", e&&e.message); }
   chainReady=!!(fxW.voc.dev && fxW.pad.dev && fxW.multi.dev); fxApply();
 }
 function fxLayerDest(t, bus){ return (t.noFx || !fxIn) ? bus : fxIn; }
+// Latenz des FFT-Vocoders in Sekunden. Spuren in den Effekt-Bus starten um diese Zeit frueher, damit sie im Takt bleiben.
+function vocLatS(){ const sr=ac?ac.sampleRate:48000; return (sr>=88200?2048:1024)/sr; }
+function fxLatS(){ return (fxW.voc && fxW.voc.dev) ? vocLatS() : 0; }
 
 /* ---- MULTI live: Worklet mit dem STOMPINSKI-Kern, Ersatzweg ScriptProcessor ---- */
 let mOvr=null, mLoading=null;
@@ -4468,8 +4669,11 @@ async function exportChain(buf, sr, root, total){
 async function exVoc(b, sr, root){
   const d=new VocDSPClass(sr); Object.assign(d.p, vocParams());
   if(fxSt.voc.car==="sample" && root.vcData) d.smp=await vcMono(root, sr);
-  const n=b.length, L=b.getChannelData(0), R=b.numberOfChannels>1?b.getChannelData(1):L, o=new AudioBuffer({numberOfChannels:2,length:n,sampleRate:sr}), oL=o.getChannelData(0), oR=o.getChannelData(1);
-  for(let i=0;i<n;i+=128){ const m=Math.min(128,n-i); d.pos=i; d.process(L.subarray(i,i+m),R.subarray(i,i+m),oL.subarray(i,i+m),oR.subarray(i,i+m),m); if((i&65535)===0) await new Promise(z=>setTimeout(z,0)); }
+  // FFT-Vocoder rechnet mit Latenz LAT: Eingang um LAT verlaengern, Ausgang um LAT nach vorn schieben
+  const n=b.length, LAT=d.LAT, nn=n+LAT, L=new Float32Array(nn), R=new Float32Array(nn), tL=new Float32Array(nn), tR=new Float32Array(nn);
+  L.set(b.getChannelData(0)); R.set(b.numberOfChannels>1?b.getChannelData(1):b.getChannelData(0));
+  for(let i=0;i<nn;i+=128){ const m=Math.min(128,nn-i); d.pos=i-LAT; d.process(L.subarray(i,i+m),R.subarray(i,i+m),tL.subarray(i,i+m),tR.subarray(i,i+m),m); if((i&65535)===0) await new Promise(z=>setTimeout(z,0)); }
+  const o=new AudioBuffer({numberOfChannels:2,length:n,sampleRate:sr}); o.getChannelData(0).set(tL.subarray(LAT)); o.getChannelData(1).set(tR.subarray(LAT));
   return o;
 }
 async function exPad(b, sr, root){
@@ -4615,7 +4819,7 @@ function tDraw(){
   if(ppos>=0 && n0){ const a=ppos/n0*P2-Math.PI/2; g.strokeStyle="rgba("+P_HOT+",0.85)"; g.lineWidth=2; g.beginPath(); g.moveTo(PC+Math.cos(a)*RB_LO[0],PC+Math.sin(a)*RB_LO[0]); g.lineTo(PC+Math.cos(a)*PR*0.97,PC+Math.sin(a)*PR*0.97); g.stroke(); }
   g.fillStyle="rgba(0,0,0,0.35)"; g.beginPath(); g.arc(PC,PC,PR*0.36,0,P2); g.fill();
   const key=VOC_NOTES[root]+" "+T_SCN[ts.scale];
-  dText(g, key, PC, PC-12, "26px VT323, monospace", gold, br?null:"rgba(50,235,164,.55)"); dText(g, "ROBO", PC, PC+14, "15px VT323, monospace", "rgba("+P_WARM+",.7)"); dText(g, (nS||0)+" STEPS", PC, PC+60, "12px VT323, monospace", "rgba("+P_WARM+",.4)");
+  dText(g, key, PC, PC-12, "26px VT323, monospace", gold, br?null:"rgba(50,235,164,.55)"); dText(g, "ROBO", PC, PC+14, "15px VT323, monospace", "rgba("+P_WARM+",.7)");
   const busy=TT&&TT.t._tnPK, l3=performance.now()-tMsgT<1800?tMsg:!rr?"SELECT A TAKE FIRST":!on?"ROBO OFF":busy?"ROBO WORKING":!stS.replace(/[01]/g,"")?"DRAG STEPS OUT OR IN":!tr?"PRESS PLAY":"";
   if(l3){ g.font="13px VT323, monospace"; const tw=g.measureText(l3).width+14; g.fillStyle="rgba(10,10,14,0.85)"; g.fillRect(PC-tw/2,PC+38-10,tw,20); dText(g, l3, PC, PC+38, "13px VT323, monospace", "rgba("+P_HOT+",.9)"); }
   g.restore(); g.drawImage(tD.gl,0,0,PS,PS);
@@ -4630,7 +4834,7 @@ function fxKnob(el, get, put, def){
   const end=()=>{ drag=null; }; el.addEventListener("pointerup",end); el.addEventListener("pointercancel",end);
   ["touchstart","touchmove"].forEach(ev=>el.addEventListener(ev, e=>{ if(e.cancelable) e.preventDefault(); }, {passive:false}));
 }
-fxKnob($("kClar"), ()=>fxSt.voc.clar, f=>vocSet({clar:f}), 0.4);
+fxKnob($("kClar"), ()=>fxSt.voc.clar, f=>vocSet({clar:f}), 0.6);
 fxKnob($("kDry"), ()=>fxSt.voc.dry, f=>vocSet({dry:f}), 0);
 
 /* ---- MULTI: Tasten (Tippen = an/aus, lange druecken und ziehen = Reihenfolge) und Knoepfe ---- */
@@ -5119,7 +5323,7 @@ async function bounceToLoop(){ const t0=selTake(), r=t0&&rootOf(t0); if(!r || re
   try{ wakeAudio(); stopPlay();
     const o=await renderLayers(stackOf(r), r.mode==="LOOP", r.len, r.sr), n=o.length;
     const L=Float32Array.from(o.getChannelData(0)), Rt=Float32Array.from(o.numberOfChannels>1?o.getChannelData(1):o.getChannelData(0));
-    const bk=(r.backing && !r.bkMuted)? await bkBuf(r) : null;
+    const bk=(r.backing && !r.bkMuted)? await bkPlay(r) : null;
     if(bk){ const bl=bk.getChannelData(0), br=bk.numberOfChannels>1?bk.getChannelData(1):bl, m=bk.length, g=0.708; for(let i=0;i<n;i++){ L[i]+=bl[i%m]*g; Rt[i]+=br[i%m]*g; } }
     let pk=0; for(let i=0;i<n;i++){ const a=Math.max(Math.abs(L[i]),Math.abs(Rt[i])); if(a>pk) pk=a; } const s=pk>0.891?0.891/pk:1;
     const ab=ac.createBuffer(2,n,r.sr); for(let i=0;i<n;i++){ L[i]*=s; Rt[i]*=s; } ab.copyToChannel(L,0); ab.copyToChannel(Rt,1);
@@ -5252,6 +5456,195 @@ const fpUp=e=>{ const q=FP.ptr[e.pointerId]; if(!q) return; q.p.live=false; q.p.
 document.addEventListener("pointerup", fpUp, true); document.addEventListener("pointercancel", fpUp, true);
 
 loadTakes();
+/* ===== TOUR: Kapitel mit Schritten, zeigt auf echte Knoepfe und wartet, bis man sie benutzt hat =====
+   Schritt: {t:Titel, s:Text, el:()=>Element, pre:()=>{} vorher, wait:"click"|"down"|()=>bool, skip:()=>bool, btn:"NEXT"/"START"/..., go:()=>{} beim Knopf} */
+const TOUR_K="drexmb_tour";
+function tourStore(){ try{ return JSON.parse(localStorage.getItem(TOUR_K)||"{}")||{}; }catch(e){ return {}; } }
+function tourSave(o){ try{ localStorage.setItem(TOUR_K, JSON.stringify(o)); }catch(e){} }
+const T$=s=>document.querySelector(s);
+function tourRoot(){ const r=rootOf(selTake()); if(r) return r; const s=takes.filter(t=>!t.parent && t.saved!==false); return s.length?s[s.length-1]:null; }
+function tourSel(){ const r=tourRoot(); if(r && (!selTake() || rootOf(selTake())!==r)) selectTake(r.id); return r; }
+function tourFx(k){ tourSel(); if(!fxSheet.classList.contains("open")) $("fxMod").click(); if(k && fxTab!==k) fxShow(k); }
+function tourCloseAll(){ try{ closeSheet(); }catch(e){} }
+const tourDev=(()=>{ const ua=navigator.userAgent||"", ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1), and=/Android/.test(ua);
+  const sa=!!(navigator.standalone || (window.matchMedia && matchMedia("(display-mode: standalone)").matches));
+  return { ios, and, chromeIOS:ios&&/CriOS/.test(ua), sa }; })();
+const SHARE_SVG='<svg width="30" height="36" viewBox="0 0 34 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3v21M10 10l7-7 7 7"/><path d="M11 16H6v21h22V16h-5"/></svg>';
+const PLUS_SVG='<svg width="30" height="30" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><rect x="3" y="3" width="28" height="28" rx="6"/><path d="M17 10v14M10 17h14"/></svg>';
+const DOTS_SVG='<svg width="30" height="30" viewBox="0 0 34 34" fill="currentColor"><circle cx="17" cy="7" r="3.2"/><circle cx="17" cy="17" r="3.2"/><circle cx="17" cy="27" r="3.2"/></svg>';
+function tourNeedTake(){ return { t:"Record something first", s:"This chapter works on a take. Tap RECORD, say or sing something, tap RECORD again to stop.", el:()=>$("recBtn"),
+  pre:()=>{ tourCloseAll(); }, skip:()=>!!tourRoot(), wait:()=>!!tourRoot() && recState==="idle" }; }
+let tourRecN=0;
+const TOUR=[
+ {id:"basics", name:"BASICS", steps:[
+  {t:"Record your voice. Mangle it. Save it.", s:"This tour shows you every button. Each step waits until you have tried it.", btn:"START", pre:()=>tourCloseAll()},
+  {t:"This is your screen", s:"The arc is your input meter. Inside, six rings show the layers of a loop. The status line below always says what happens next.", el:()=>$("device"), btn:"NEXT"},
+  {t:"Calibrate first", s:"Once per device, so your takes land on the beat. Open SETTINGS, the grid top right.", el:()=>$("modeGrid"), skip:()=>latMs>0, wait:()=>$("sheet").classList.contains("open")},
+  {t:"Tap CALIBRATE", s:"Headphones on. Four high clicks count in, then clap along to the 8 clicks.", el:()=>$("calBtn").closest(".srow"), skip:()=>latMs>0, wait:()=>/^DONE/.test($("calInfo").textContent)},
+  {t:"Close SETTINGS", s:"", el:()=>$("sheetClose"), skip:()=>!$("sheet").classList.contains("open"), wait:"click"},
+  {t:"Tap RECORD", s:"Headphones on is best. After the count-in it records: sing, rap or play your instrument.", el:()=>$("recBtn"), pre:()=>{ calAsked=true; tourRecN=takes.length; }, wait:()=>recState!=="idle"},
+  {t:"Tap RECORD again to stop", s:"Take your time, the tour waits.", el:()=>$("recBtn"), wait:()=>recState==="idle" && takes.length>tourRecN},
+  {t:"Play it back", s:"PLAY plays the selected take, tap again to pause.", el:()=>$("playBtn"), wait:"click"},
+  {t:"Keep it: tap SAVE", s:"A new take stays unsaved until you save it. Only saved takes stay in TAKES.", el:()=>$("tSave"), skip:()=>$("tSave").hidden, wait:()=>$("tSave").hidden},
+  {t:"Open TAKES", s:"All your takes live here.", el:()=>$("takesMod"), wait:"click"},
+  {t:"Every row is a take", s:"Tap a row to select it, the play symbol to listen, the mini wave to open EDIT, DEL to delete. NEW LOOP starts a fresh loop, IMPORT loads an audio file.", el:()=>T$("#tlist .trow")||$("tlist"), btn:"NEXT"},
+  {t:"Close TAKES", s:"", el:()=>$("takesClose"), wait:"click"},
+  {id:"icon", t:"Put DREX MB on your home screen", s:"", icon:true, skip:()=>tourDev.sa, btn:"NEXT", pre:()=>tourCloseAll()},
+  {t:"Basics done", s:"Pick the next chapter whenever you like. The tour and the manual are in SETTINGS, the grid top right.", btn:"CHAPTERS"} ]},
+ {id:"loop", name:"LOOP + OVERDUB", steps:[
+  {t:"Turn LOOP on", s:"With LOOP on every recording becomes a loop that closes on a full bar. With LOOP off you record a ONE-SHOT of any length.", el:()=>$("loopBtn"), pre:()=>{ tourCloseAll(); try{ selectTake(null); }catch(e){} }, skip:()=>loopOn, wait:()=>loopOn},
+  {t:"Tempo", s:"BPM sets the tempo for click, count-in and loop length.", el:()=>$("bpmBox"), btn:"NEXT"},
+  {t:"Click", s:"ON plays the metronome, VISUAL is silent (for recording without headphones), OFF switches it off. The screen shows the beat either way.", el:()=>$("metroBtn"), btn:"NEXT"},
+  {t:"Gain", s:"Your input level. Double tap it and sing for four seconds, it sets itself.", el:()=>$("gainBox"), btn:"NEXT"},
+  {t:"Count-in", s:"One bar of clicks before recording starts, or none.", el:()=>$("countBtn"), btn:"NEXT"},
+  {t:"Bars", s:"FREE, 1, 2, 4 or 8 bars. With a fixed length the recording stops by itself.", el:()=>$("barsBtn"), btn:"NEXT"},
+  {t:"Record a loop", s:"Tap RECORD, sing, tap RECORD to stop. The loop closes on a full bar and starts playing.", el:()=>$("recBtn"), pre:()=>{ calAsked=true; tourRecN=takes.length; }, wait:()=>recState==="idle" && takes.length>tourRecN && (rootOf(selTake())||{}).mode==="LOOP"},
+  {t:"Add a layer", s:"While a loop is selected, every RECORD adds one round on top and stops by itself. Up to 6 layers.", el:()=>$("recBtn"), pre:()=>{ tourRecN=takes.length; }, wait:()=>recState==="idle" && takes.length>tourRecN},
+  {t:"Loop done", s:"To start a fresh loop, tap NEW LOOP in TAKES.", btn:"CHAPTERS"} ]},
+ {id:"track", name:"SING OVER A TRACK", steps:[
+  {t:"Open SETTINGS", s:"The grid top right.", el:()=>$("modeGrid"), pre:()=>tourCloseAll(), wait:()=>$("sheet").classList.contains("open")},
+  {t:"Background loop", s:"LIBRARY opens the Audiotool loop library (log in when asked). Pick a loop, USE loads it, then RECORD sings over it. REMOVE takes it out again.", el:()=>$("bkOpen").closest(".srow"), btn:"NEXT"},
+  {t:"Close SETTINGS", s:"", el:()=>$("sheetClose"), wait:"click"},
+  tourNeedTake(),
+  {t:"AS LOOP", s:"In the FX window: turns everything you hear, all layers with all effects plus a background loop, into a new background loop to sing over. Your take stays.", el:()=>$("fxBounceB"), pre:()=>tourFx("tune"), btn:"NEXT"},
+  {t:"Track done", s:"Tip: bounce the part of your Audiotool track you want to sing over, it lands in your library.", pre:()=>tourCloseAll(), btn:"CHAPTERS"} ]},
+ {id:"edit", name:"EDIT", steps:[
+  tourNeedTake(),
+  {t:"This is EDIT", s:"Open it by tapping the mini wave of a take. EDIT works on one layer at a time.", el:()=>$("eWave"), pre:()=>{ tourCloseAll(); const r=tourSel(); if(r) openEdit(r.id); }, btn:"NEXT"},
+  {t:"Layers", s:"Boxes 1 to 6 pick the layer, B mutes the background loop.", el:()=>$("eChips"), btn:"NEXT"},
+  {t:"Timing", s:"Draw a region over the wave and drag it to fix a late or early phrase. AUTO suggests regions, SNAP sets the grid, COPY, DEL, RESET, and 1X to 4X zoom.", el:()=>$("eTime"), btn:"NEXT"},
+  {t:"Volume, solo, mute", s:"Drag VOL, S plays only this layer, M mutes it.", el:()=>$("eVol").closest(".erow"), btn:"NEXT"},
+  {t:"Pan and delete", s:"PAN moves the layer left or right. DEL LAYER removes it (tap twice).", el:()=>$("ePan").closest(".erow"), btn:"NEXT"},
+  {t:"Width", s:"WID spreads the layer into a wide stereo double.", el:()=>$("eWid"), btn:"NEXT"},
+  {t:"Tap + on PITCH", s:"Moves the whole take up or down in semitones, all layers and the background loop together, the tempo stays. Tap the value to reset.", el:()=>$("ePit"), wait:()=>((tourRoot()||{}).pitch|0)!==0},
+  {t:"NR and DE-ESS", s:"NR removes background noise in the pauses, DE-ESS tames sharp S sounds.", el:()=>$("eDn").closest(".erow"), btn:"NEXT"},
+  {t:"EQ", s:"Pick a preset, then drag the points. Low and high cut sit at the edges.", el:()=>$("ePre").closest(".erow"), btn:"NEXT"},
+  {t:"Name", s:"Tap the name to rename the take.", el:()=>$("eName"), btn:"NEXT"},
+  {t:"Close EDIT", s:"", el:()=>$("editClose"), wait:"click"},
+  {t:"Edit done", s:"Everything you set here is saved with the take.", btn:"CHAPTERS"} ]},
+ {id:"robo", name:"ROBO", steps:[
+  tourNeedTake(),
+  {t:"Tap ROBO", s:"The robot voice. Opening the tab switches it on, tapping it again switches it off.", el:()=>T$(".fxslot[data-k='tune']"), pre:()=>tourFx(null), wait:()=>fxTab==="tune" && fxSt.tune.on},
+  {t:"Drag a step out or in", s:"Your take runs three times as rings: outside HIGH, middle MID, inside LOW. Keep dragging along the ring to move a whole phrase.", el:()=>$("tDisc"), pre:()=>{ tourStepsWas=String(fxSt.tune.steps||""); }, wait:()=>String(fxSt.tune.steps||"")!==tourStepsWas},
+  {t:"Sound", s:"TONE picks the synth, GLIDE slides between notes, CLEAR puts all steps back in the middle, SCALE sets major, minor or chromatic. The light shows what is active.", el:()=>$("tMode"), btn:"NEXT"},
+  {t:"Key", s:"Found by itself. Tap a note on the outer ring to set it yourself.", el:()=>$("tDisc"), btn:"NEXT"},
+  {t:"Tuning wheels and MIX", s:"HIGH, MID and LOW tune the three rings in semitones. MIX brings your real voice back underneath.", el:()=>T$(".tknobs"), btn:"NEXT"},
+  {t:"UNDO, REDO, AS LOOP", s:"UNDO and REDO step through every effect change of this take, in all tabs. AS LOOP makes a background loop out of what you hear.", el:()=>$("tLay"), btn:"NEXT"},
+  {t:"Robo done", s:"", btn:"CHAPTERS"} ]},
+ {id:"voc", name:"VOCODER", steps:[
+  tourNeedTake(),
+  {t:"Switch on VOCODER", s:"Tap the tab to show it, tap it again to switch it on or off. The line in the tab lights up when it is on.", el:()=>T$(".fxslot[data-k='voc']"), pre:()=>tourFx(null), wait:()=>fxTab==="voc" && fxSt.on.voc},
+  {t:"Carrier", s:"Your voice shapes a sound: CHORD, DRONE, NOISE, or SAMPLE, any sound from your Audiotool library or your device.", el:()=>$("vCar"), btn:"NEXT"},
+  {t:"Key", s:"Tap a note on the ring to set the key.", el:()=>$("vDisc"), btn:"NEXT"},
+  {t:"Chord", s:"MAJ, MIN and PWR set chord and scale. FOLLOW makes it follow your singing, OCT switches LOW and MID.", el:()=>$("vChord"), btn:"NEXT"},
+  {t:"CLARITY and VOICE", s:"CLARITY brings out consonants, VOICE blends your own voice back in.", el:()=>T$(".vknobs"), btn:"NEXT"},
+  {t:"Vocoder done", s:"", btn:"CHAPTERS"} ]},
+ {id:"pad", name:"SNADPAD", steps:[
+  tourNeedTake(),
+  {t:"Switch on SNADPAD", s:"Tap the tab to show it, tap it again to switch it on.", el:()=>T$(".fxslot[data-k='pad']"), pre:()=>tourFx(null), wait:()=>fxTab==="pad" && fxSt.on.pad},
+  {t:"Put a finger on the pad", s:"Drag around while it plays: every spot is a different effect. Let go and your voice comes back.", el:()=>$("fxDisc"), wait:"down"},
+  {t:"Points", s:"Double tap sets a point, tap a point to hold it, double tap removes it. The arrows switch between effect sets.", el:()=>$("fxDisc"), btn:"NEXT"},
+  {t:"RUN, GLIDE, CLEAR, RATE, CATCH", s:"RUN travels your points, GLIDE smooths the way, CLEAR removes them, RATE sets the speed.", el:()=>$("pRun").parentElement, btn:"NEXT"},
+  {t:"Record a move", s:"REC records your finger for one round of LEN (1, 2 or 4 bars), then it loops. UNDO and REDO step through it, LOOP pauses or plays it.", el:()=>$("pRec").parentElement, btn:"NEXT"},
+  {t:"Knobs", s:"LOW CUT, MIX, ECHO and VERB shape the whole pad.", el:()=>T$("#padView .fxknobs"), btn:"NEXT"},
+  {t:"Snadpad done", s:"", btn:"CHAPTERS"} ]},
+ {id:"multi", name:"MULTI", steps:[
+  tourNeedTake(),
+  {t:"Switch on MULTI", s:"Six effects in one.", el:()=>T$(".fxslot[data-k='multi']"), pre:()=>tourFx(null), wait:()=>fxTab==="multi" && fxSt.on.multi},
+  ...[["mod","MOD","Chorus, flanger and phaser from the STOMPINSKI engine."],["pls","PULSE","Chops your voice in rhythm, with filter, S&H and swing."],["chop","CHOP","Slices your take and plays the slices in a new order. Paint the steps in the circle."],["shape","SHAPE","Distortion, from warm to crushed."],["delay","DELAY","Echoes in time, up to 8 points."],["verb","VERB","Reverb, from room to space."]].map(([k,n,d])=>({t:"Pick "+n+" and switch it on", s:d+" Tap once to pick it (green frame), tap again to switch it on.", el:()=>$("m_"+k), wait:()=>fxSt.multi[k] && fxSt.multi[k].on && mSel===k})),
+  {t:"The circle", s:"Drag in the circle to play the picked effect. HOLD keeps it where you leave it, without HOLD it only sounds while you touch, like a Kaoss Pad.", el:()=>$("mDisc"), btn:"NEXT"},
+  {t:"Knobs", s:"Every effect has its own knobs, swipe for more pages.", el:()=>$("mKnobs"), btn:"NEXT"},
+  {t:"REC, RUN and order", s:"REC and RUN work like on the SNADPAD. Hold an effect button and drag to change the order.", el:()=>$("mRecB").parentElement, btn:"NEXT"},
+  {t:"Chain order", s:"The arrows next to the tabs move VOCODER, SNADPAD and MULTI in the chain.", el:()=>$("fxR"), btn:"NEXT"},
+  {t:"Multi done", s:"", pre:()=>tourCloseAll(), btn:"CHAPTERS"} ]},
+ {id:"export", name:"EXPORT", steps:[
+  tourNeedTake(),
+  {t:"Open EXPORT", s:"What you hear is what you export.", el:()=>$("exportMod"), pre:()=>{ tourCloseAll(); tourSel(); }, wait:()=>$("exportSheet").classList.contains("open")},
+  {t:"Log in", s:"Log in with Audiotool once to send exports to your library. Only need the file? DOWNLOAD WAV works without it.", el:()=>$("xLoginBtn").closest(".xrow"), btn:"NEXT"},
+  {t:"Name", s:"This is the name in your library.", el:()=>$("xName"), btn:"NEXT"},
+  {t:"What to export", s:"MIX is all layers together, LAYER one layer, ALL LAYERS one file each.", el:()=>$("xWhat"), btn:"NEXT"},
+  {t:"FINALIZER", s:"Mastering on the sum: RAW, CLEAN, WARM, BRIGHT or LOUD. Tap PLAY and switch while it plays.", el:()=>$("xFin"), btn:"NEXT"},
+  {t:"Send it", s:"EXPORT TO LIBRARY uploads the WAV with its BPM. DOWNLOAD WAV saves it on your phone.", el:()=>$("xUp"), btn:"NEXT"},
+  {t:"Close EXPORT", s:"", el:()=>$("exportClose"), wait:"click"},
+  {t:"Export done", s:"", btn:"CHAPTERS"} ]},
+ {id:"settings", name:"SETTINGS", steps:[
+  {t:"Open SETTINGS", s:"", el:()=>$("modeGrid"), pre:()=>tourCloseAll(), wait:()=>$("sheet").classList.contains("open")},
+  {t:"Click pitch", s:"Tunes the metronome to a note, so you can sing in key.", el:()=>$("pitchDn").closest(".srow"), btn:"NEXT"},
+  {t:"SET LEVEL", s:"Tap it and sing for four seconds as loud as in the song. GAIN sets itself.", el:()=>$("lvlBtn").closest(".srow"), btn:"NEXT"},
+  {t:"CALIBRATE", s:"Headphones on, clap along to 8 clicks. Do it once per device, then your takes land on the beat.", el:()=>$("calBtn").closest(".srow"), btn:"NEXT"},
+  {t:"THEME", s:"Dark or bright.", el:()=>$("themeBtn").closest(".srow"), btn:"NEXT"},
+  {t:"FINGERPRINTS", s:"Glowing prints where you touch. Switch them off if you like it clean.", el:()=>$("fpBtn").closest(".srow"), btn:"NEXT"},
+  {t:"MANUAL", s:"Everything from this tour to read again, plus the details.", el:()=>$("manOpen"), btn:"NEXT"},
+  {t:"Tour and feedback", s:"Start this tour again here. FEEDBACK goes straight to me: what works, what is missing, what breaks.", el:()=>$("helpRow"), btn:"NEXT"},
+  {t:"That's it", s:"Thanks for trying DREX MB. Tell me what you think.", btn:"FEEDBACK", go:()=>{ tourEnd(); fbOpen(); }} ]} ];
+let tourStepsWas="";
+const tour={on:false, ch:-1, i:-1, el:null, t0:0, adv:false, card:null, L:null};
+function tourBuild(){ if(tour.L) return; const L=document.createElement("div"); L.id="tourL"; L.innerHTML='<div class="tsh"></div><div class="tsh"></div><div class="tsh"></div><div class="tsh"></div><div class="thole"></div><img class="ticon" alt=""><div class="tptr"><span></span><i></i></div><div id="tourCard"></div><div id="tourMenu" hidden></div>'; document.body.appendChild(L); tour.L=L; tour.card=L.querySelector("#tourCard");
+  L.querySelectorAll(".tsh").forEach(s=>{ ["pointerdown","click"].forEach(ev=>s.addEventListener(ev,e=>{ e.preventDefault(); e.stopPropagation(); if(ev==="pointerdown"){ tour.card.classList.remove("shk"); void tour.card.offsetWidth; tour.card.classList.add("shk"); } })); });
+  const ic=document.querySelector('link[rel="apple-touch-icon"]'); if(ic) L.querySelector(".ticon").src=ic.href;
+  document.addEventListener("click", e=>tourEv("click",e), true); document.addEventListener("pointerdown", e=>tourEv("down",e), true);
+  const lp=()=>{ tourFrame(true); requestAnimationFrame(lp); }; requestAnimationFrame(lp); }
+function tourEv(kind, e){ if(!tour.on || tour.i<0) return; const st=tourStep(); if(!st || st.wait!==kind) return; const el=tour.el; if(el && el.contains(e.target)) tourAdvance(); }
+function tourStep(){ const c=TOUR[tour.ch]; return c?c.steps[tour.i]:null; }
+function tourStart(id){ tourBuild(); const ci=TOUR.findIndex(c=>c.id===id); if(ci<0) return; tour.on=true; tour.ch=ci; tour.i=-1; tour.sk=0; tour.L.classList.add("on"); $("tourMenu").hidden=true; tourNext(); }
+function tourNext(){ const c=TOUR[tour.ch]; tour.adv=false;
+  for(;;){ tour.i++; const st=c.steps[tour.i]; if(!st){ tourChapterDone(); return; } try{ if(st.pre) st.pre(); }catch(e){ console.log("[TOUR]",e); } if(st.skip && st.skip()){ tour.sk++; continue; } break; }
+  setTimeout(()=>tourShow(), 260); }
+function tourShow(){ const st=tourStep(), c=TOUR[tour.ch]; if(!st) return; let el=null; try{ el=st.el?st.el():null; }catch(e){} tour.el=el; tour.t0=performance.now();
+  const n=c.steps.length-(tour.sk||0), k=tour.i+1-(tour.sk||0), btn=st.btn?'<button class="tb pk" id="tourGo">'+st.btn+'</button>':'';
+  let body=st.s?'<div class="tsub">'+st.s+'</div>':'';
+  if(st.icon) body=tourIconBody();
+  tour.card.innerHTML='<div class="tch"><span>'+c.name+'</span><span>'+k+'/'+n+'</span></div><div class="ttx">'+st.t+'</div>'+body+'<div class="trw"><button class="tb" id="tourSkip">'+(k===n?"CLOSE":"SKIP")+'</button>'+btn+'</div>';
+  $("tourSkip").onclick=()=>tourMenu(); const g=$("tourGo"); if(g) g.onclick=()=>{ if(st.go) st.go(); else if(st.btn==="CHAPTERS") tourChapterDone(); else tourAdvance(); };
+  tour.L.classList.toggle("icon", !!st.icon); tourFrame(true); }
+function tourIconBody(){ const d=tourDev; let s1, ic1, where;
+  if(d.and){ s1="Tap the menu (three dots) top right"; ic1=DOTS_SVG; where="up"; }
+  else if(d.chromeIOS){ s1="Tap SHARE in the address bar top right"; ic1=SHARE_SVG; where="up"; }
+  else { s1="Tap SHARE in the bar below"; ic1=SHARE_SVG; where="down"; }
+  tour.ptr=where;
+  return '<div class="tst"><b>1</b><span class="tic">'+ic1+'</span><span>'+s1+'</span></div><div class="tst"><b>2</b><span class="tic">'+PLUS_SVG+'</span><span>'+(d.and?"Add to home screen":"Add to Home Screen")+'</span></div><div class="tst"><b>3</b><span class="tic tmb">MB</span><span>Open DREX MB from the new icon</span></div><div class="tsub" style="margin-top:8px">The icon version keeps its own takes, so start fresh there.</div>'; }
+function tourAdvance(){ if(tour.adv) return; tour.adv=true; tour.card.classList.add("ok"); setTimeout(()=>{ tour.card.classList.remove("ok"); tourNext(); }, 420); }
+function tourChapterDone(){ const c=TOUR[tour.ch]; if(c){ const s=tourStore(); s.done=s.done||{}; s.done[c.id]=1; s.seen=1; tourSave(s); } tourMenu(); }
+function tourMenu(){ tourBuild(); tour.on=true; tour.i=-1; tour.el=null; tour.L.classList.add("on"); tour.L.classList.remove("icon"); const s=tourStore(), dn=s.done||{}; let next=TOUR.findIndex(c=>!dn[c.id]);
+  const m=$("tourMenu"); m.hidden=false; tour.card.innerHTML="";
+  m.innerHTML='<h1>TOUR <em>MB</em></h1><div class="tms">PICK A CHAPTER. ABOUT ONE TO TWO MINUTES EACH.</div>'+TOUR.map((c,i)=>'<button class="tit'+(dn[c.id]?" done":i===next?" next":"")+'" data-c="'+c.id+'"><b>'+String(i+1).padStart(2,"0")+'</b>'+c.name+'<span>'+(dn[c.id]?"DONE":i===next?"NEXT &gt;":"")+'</span></button>').join("")+'<button class="tb tclose" id="tourMClose">CLOSE</button>';
+  m.querySelectorAll(".tit").forEach(b=>b.onclick=()=>tourStart(b.dataset.c)); $("tourMClose").onclick=()=>tourEnd(); tourFrame(true); }
+function tourEnd(){ if(!tour.L) return; tour.on=false; tour.i=-1; tour.el=null; tour.L.classList.remove("on","icon"); $("tourMenu").hidden=true; tour.card.innerHTML=""; const s=tourStore(); s.seen=1; tourSave(s); }
+// Rahmen und Karte folgen dem Ziel; Fenster der App (Speichern-Abfrage usw.) haben Vorrang, solange sie offen sind
+function tourFrame(){ if(!tour.L || !tour.on) return;
+  const L=tour.L, pop=[...document.querySelectorAll(".cpop")].some(p=>!p.hidden && p.id!=="fbPop"); L.style.visibility=pop?"hidden":"";
+  const sh=L.querySelectorAll(".tsh"), ho=L.querySelector(".thole"), W=innerWidth, H=innerHeight, st=tourStep(), menu=!$("tourMenu").hidden;
+  if(st && st.el && !menu && !tour.adv){ try{ const e=st.el(); if(e) tour.el=e; }catch(e){} }
+  let r=null; if(tour.el && !menu){ const b=tour.el.getBoundingClientRect(); if(b.width>0 && b.height>0) r={l:b.left-6,t:b.top-6,r:b.right+6,b:b.bottom+6}; }
+  if(!r){ sh[0].style.cssText="left:0;top:0;width:"+W+"px;height:"+H+"px"; for(let k=1;k<4;k++) sh[k].style.cssText="display:none"; ho.style.display="none"; }
+  else { sh[0].style.cssText="left:0;top:0;width:"+W+"px;height:"+Math.max(0,r.t)+"px"; sh[1].style.cssText="left:0;top:"+r.b+"px;width:"+W+"px;height:"+Math.max(0,H-r.b)+"px";
+    sh[2].style.cssText="left:0;top:"+r.t+"px;width:"+Math.max(0,r.l)+"px;height:"+(r.b-r.t)+"px"; sh[3].style.cssText="left:"+r.r+"px;top:"+r.t+"px;width:"+Math.max(0,W-r.r)+"px;height:"+(r.b-r.t)+"px";
+    ho.style.cssText="display:block;left:"+r.l+"px;top:"+r.t+"px;width:"+(r.r-r.l)+"px;height:"+(r.b-r.t)+"px"; }
+  const c=tour.card; if(menu || !st){ c.style.display="none"; } else { c.style.display="";
+    const ch=c.offsetHeight||200; let top;
+    if(!r) top=Math.max(16,(H-ch)/2-60);
+    else if(r.b+12+ch<H-10 && (r.t+r.b)/2<H*0.55) top=r.b+12;
+    else if(r.t-12-ch>10) top=r.t-12-ch;
+    else top=H-ch-14;
+    if(st.icon){ const rb=$("recBtn").getBoundingClientRect(); top=Math.max(10, rb.top+rb.height/2-rb.width*0.625-ch-16); }
+    c.style.top=top+"px"; }
+  const ic=L.querySelector(".ticon"), pt=L.querySelector(".tptr");
+  if(st && st.icon && !menu){ const rb=$("recBtn").getBoundingClientRect(), s=rb.width*1.25; ic.style.cssText="display:block;left:"+(rb.left+rb.width/2-s/2)+"px;top:"+(rb.top+rb.height/2-s/2)+"px;width:"+s+"px;height:"+s+"px";
+    pt.style.display="flex"; pt.className="tptr "+(tour.ptr||"down"); pt.querySelector("span").textContent=tour.ptr==="up"?(tourDev.and?"MENU IS UP HERE":"SHARE IS UP HERE"):"SHARE IS DOWN HERE"; }
+  else { ic.style.display="none"; pt.style.display="none"; }
+  if(st && typeof st.wait==="function" && !tour.adv && performance.now()-tour.t0>300){ let ok=false; try{ ok=st.wait(); }catch(e){} if(ok) tourAdvance(); } }
+function tourAuto(){ const s=tourStore(); if(s.seen) return; setTimeout(()=>{ if(!tourStore().seen && recState==="idle" && ![...document.querySelectorAll(".cpop")].some(p=>!p.hidden)) tourStart("basics"); }, 1400); }
+/* ===== FEEDBACK: geht an dasselbe Formular wie bei THE DRECKSLER und BRACHINSKI ===== */
+function fbOpen(){ $("fbPop").hidden=false; $("fbStat").textContent=""; }
+$("fbBtn").addEventListener("click", ()=>fbOpen());
+$("tourBtn").addEventListener("click", ()=>{ closeSheet(); setTimeout(()=>tourMenu(), 250); });
+$("fbX").addEventListener("click", ()=>{ $("fbPop").hidden=true; });
+$("fbSend").addEventListener("click", async ()=>{ const msg=$("fbMsg").value.trim(), st=$("fbStat"); if(!msg){ st.textContent="MESSAGE REQUIRED"; return; } st.textContent="SENDING...";
+  const rev=(String(($("foot")||document.querySelector(".foot .rev")||{}).textContent||"").match(/1\.\d+/)||[""])[0];
+  try{ const res=await fetch("https://formspree.io/f/mkoaqeez",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({name:$("fbName").value.trim()||"ANONYMOUS", email:$("fbMail").value.trim()||"", message:msg, device:"DREX-MB", rev})});
+    if(res.ok){ st.textContent="THANKS, RECEIVED"; $("fbMsg").value=""; setTimeout(()=>{ $("fbPop").hidden=true; },1600); } else st.textContent="COULD NOT SEND, TRY AGAIN"; }catch(e){ st.textContent="NO CONNECTION"; } });
+tourAuto();
+
 </script>
 </body>
 </html>
